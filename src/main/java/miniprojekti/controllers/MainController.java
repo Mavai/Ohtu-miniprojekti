@@ -52,15 +52,26 @@ public class MainController {
         //List<Reference> result = refRepo.findAll();
         String bibtex = "";
         for (Reference r : refRepo.findAll()) {
-            bibtex += "@book{"+r.getName()+"\n";
-            bibtex += " author    = \""+r.getAuthor()+"\",\n";
-            bibtex += " title     = \""+r.getTitle()+"\",\n";
-            bibtex += " publisher = \""+r.getPublisher()+"\",\n";
-            bibtex += " year      = \""+r.getYear()+"\"\n";
-            bibtex += " address   = \""+r.getAddress()+"\",\n";
-            bibtex += " edition   = \""+r.getEdition()+"\"\n";
-            bibtex += "}\n\n";
+            bibtex += "@"+r.getType()+"{"+r.getName()+"\n";
+            bibtex += r.getAuthor() != null ? " author    = \""+r.getAuthor()+"\",\n" : "";
+            bibtex += r.getTitle() != null ? " title     = \""+r.getTitle()+"\",\n" : "";
+            bibtex += r.getPublisher() != null ? " publisher = \""+r.getPublisher()+"\",\n" : "";
+            bibtex += r.getYear() != null ? " year      = \""+r.getYear()+"\",\n" : "";
+            bibtex += r.getMonth() != null ? " month     = \""+r.getMonth()+"\",\n" : "";
+            bibtex += r.getAddress() != null ? " address   = \""+r.getAddress()+"\",\n" : "";
+            bibtex += r.getEdition() != null ? " edition   = \""+r.getEdition()+"\",\n" : "";
+            bibtex += r.getJournal() != null ? " journal   = \""+r.getJournal()+"\",\n" : "";
+            bibtex += r.getVolume() != null ?  " volume    = \""+r.getVolume()+"\",\n" : "";
+            bibtex += r.getNumber() != null ? " number    = \""+r.getNumber()+"\",\n" : "";
+            bibtex += r.getPages() != null ? " pages     = \""+r.getPages()+"\",\n" : "";
+            bibtex += r.getNote() != null ? " note       = \""+r.getNote()+"\",\n" :  "";
+            bibtex += r.getKey() != null ? " key          = \""+r.getKey()+"\",\n" : "";
+            bibtex += r.getPublisher() != null ? " publisher = \""+r.getPublisher()+"\",\n" : "";
+            bibtex += r.getSeries() != null ? " series   = \""+r.getSeries()+"\",\n" : "";
+            bibtex = bibtex.substring(0, bibtex.length()-2);
+            bibtex += "\n}\n\n";
         }
+
         model.addAttribute("bibtexString", bibtex);
         return("bibtex");
     }
