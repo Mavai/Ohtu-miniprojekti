@@ -35,7 +35,6 @@ public class Reference {
     String edition;
 
     public Reference() {
-
     }
     
     public Reference(Long id, String type, String name, String author, String journal, String year, String volume, String number, String pages, String month, String note, String key, String publisher, String series, String address, String edition, String title) {
