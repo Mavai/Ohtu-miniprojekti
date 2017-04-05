@@ -4,6 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Miniprojekti</title>
+        <link href="webjars/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"> </link>
+
     </head>
 
     <body>
@@ -12,34 +14,34 @@
 
         <form id="ref-form" role="form" th:action="@{/save}" method="post" th:object="${reference}">
             <input type="hidden" th:value="${reference.type}"
-                       th:field="${reference.type}"/>
+                   th:field="${reference.type}"/>
             <div class="form-group">
-                <label>reference name</label>
+                <label>reference name*</label>
                 <input type="text" th:value="${reference.name}"
                        th:field="${reference.name}" required="required"/>
             </div>
             <div class="form-group">
-                <label>author</label>
+                <label>author*</label>
                 <input type="text" th:value="${reference.author}"
                        th:field="${reference.author}" required="required"/>
             </div>
             <div class="form-group">
-                <label>title</label>
+                <label>title*</label>
                 <input type="text" th:value="${reference.title}"
                        th:field="${reference.title}" required="required"/>
             </div>
             <div class="form-group">
-                <label>journal</label>
+                <label>journal*</label>
                 <input type="text" th:value="${reference.journal}"
                        th:field="${reference.journal}" required="required"/>
             </div>
             <div>
-                <label>year</label>
+                <label>year*</label>
                 <input type="text" th:value="${reference.year}"
                        th:field="${reference.year}" required="required"/>
             </div>
             <div>
-                <label>volume</label>
+                <label>volume*</label>
                 <input type="text" th:value="${reference.volume}"
                        th:field="${reference.volume}" required="required"/>
             </div>
@@ -70,5 +72,7 @@
             </div>
             <button type="submit">Save</button>
         </form>
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="webjars/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     </body>
 </html>
