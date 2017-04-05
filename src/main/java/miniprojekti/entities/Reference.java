@@ -29,13 +29,19 @@ public class Reference {
     String month;
     String note;
     String key;
+    String publisher;
+    String series;
+    String address;
+    String edition;
 
     public Reference() {
         
     }
 
-    public Reference(String type, String author, String journal, String year, String volume, String number, String pages, String month, String note, String key) {
+    public Reference(Long id, String type, String name, String author, String journal, String year, String volume, String number, String pages, String month, String note, String key, String publisher, String series, String address, String edition) {
+        this.id = id;
         this.type = type;
+        this.name = name;
         this.author = author;
         this.journal = journal;
         this.year = year;
@@ -45,6 +51,10 @@ public class Reference {
         this.month = month;
         this.note = note;
         this.key = key;
+        this.publisher = publisher;
+        this.series = series;
+        this.address = address;
+        this.edition = edition;
     }
     
     public Reference(String type) {
@@ -138,5 +148,46 @@ public class Reference {
     public void setType(String type) {
         this.type = type;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public String getSeries() {
+        return series;
+    }
+
+    public void setSeries(String series) {
+        this.series = series;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getEdition() {
+        return edition;
+    }
+
+    public void setEdition(String edition) {
+        this.edition = edition;
+    }
+    
     
 }
