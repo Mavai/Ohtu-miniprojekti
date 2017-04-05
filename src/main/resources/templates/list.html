@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Miniprojekti</title>
+        <link href="webjars/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"> </link>
+
+    </head>
+
+    <body>
+        
+
+        <table class="table table-bordered">
+            <tr>
+                <th>References</th>
+            </tr>
+        </table>
+
+        <table>
+                <tr th:each="reference : ${references}">
+                    <td>
+                        <p th:text="${reference.type}"></p>
+                    </td>
+                    <td>
+                        <p th:text="${reference.name}"></p>
+                    </td>
+                    <td>
+                        <p th:text="${reference.author}"></p>
+                    </td>
+                </tr>
+            <tr th:each="reference : ${references}">
+                <td th:text="${reference.author}">reference type</td>
+            </tr>
+            
+            <tr>
+                <td>test</td>
+            </tr>
+            <tr>
+                <td>test</td>
+            </tr>
+        </table>
+
+        <h2>Create a new reference</h2>
+
+        <form th:action="@{/references}" method="POST">
+            <span>Type:</span>
+            <select name="type">
+                    <option value="article">article</option>
+                    <option value="book">book</option>
+            </select>
+            <input type="submit" value="Create"/>
+        </form>
+
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="webjars/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    </body>
+</html>
