@@ -1,6 +1,5 @@
 /*
  */
-
 package miniprojekti.entities;
 
 import java.util.List;
@@ -13,15 +12,14 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Reference {
-    
+
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     String type;
     String name;
     String author;
-    String title;
     String journal;
     String year;
     String volume;
@@ -37,15 +35,12 @@ public class Reference {
     String title;
 
     public Reference() {
-        
+
     }
 
-<<<<<<< HEAD
-    public Reference(String type, String author, String title, String journal, String year, String volume, String number, String pages, String month, String note, String key) {
-=======
     public Reference(Long id, String type, String name, String author, String journal, String year, String volume, String number, String pages, String month, String note, String key, String publisher, String series, String address, String edition, String title) {
         this.id = id;
->>>>>>> 09bb5a95f55395ec7a4ae788058c98092df1e23d
+
         this.type = type;
         this.name = name;
         this.author = author;
@@ -64,7 +59,7 @@ public class Reference {
         this.edition = edition;
         this.title = title;
     }
-    
+
     public Reference(String type) {
         this.type = type;
     }
@@ -204,6 +199,5 @@ public class Reference {
     public void setTitle(String title) {
         this.title = title;
     }
-    
-    
+
 }
