@@ -51,7 +51,7 @@ public class MainController {
         //List<Reference> result = refRepo.findAll();
         String bibtex = "";
         for (Reference r : refRepo.findAll()) {
-            bibtex += "@" + r.getType() + "{" + r.getName() + "\n";
+            bibtex += "@" + r.getType() + "{" + r.getName() + ",\n";
             bibtex += r.getAuthor() != null && !r.getAuthor().equals("") ? " author    = \"" + r.getAuthor() + "\",\n" : "";
             bibtex += r.getTitle() != null && !r.getTitle().equals("") ? " title     = \"" + r.getTitle() + "\",\n" : "";
             bibtex += r.getPublisher() != null && !r.getPublisher().equals("") ? " publisher = \"" + r.getPublisher() + "\",\n" : "";
