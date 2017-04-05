@@ -8,23 +8,23 @@
 
     <body>
 
-        <h2>Add an article reference</h2>
+        <h2>Add a book reference</h2>
 
         <form id="ref-form" role="form" th:action="@{/save}" method="post" th:object="${reference}">
-            <div class="form-group">  
+            <div>
             <label>author</label>
             <input type="text" th:value="${reference.author}"
                    th:field="${reference.author}" required="required"/>
             </div>
-            <div class="form-group">
+            <div>
             <label>title</label>
             <input type="text" th:value="${reference.title}"
                    th:field="${reference.title}" required="required"/>
             </div>
-            <div class="form-group">
-            <label>journal</label>
-            <input type="text" th:value="${reference.journal}"
-                   th:field="${reference.journal}" required="required"/>
+            <div>
+            <label>publisher</label>
+            <input type="text" th:value="${reference.publisher}"
+                   th:field="${reference.publisher}" required="required"/>
             </div>
             <div>
             <label>year</label>
@@ -34,7 +34,7 @@
             <div>
             <label>volume</label>
             <input type="text" th:value="${reference.volume}"
-                   th:field="${reference.volume}" required="required"/>
+                   th:field="${reference.volume}"/>
             </div>
             <div>
             <label>number</label>
@@ -42,9 +42,19 @@
                    th:field="${reference.number}"/>
             </div>
             <div>
-            <label>pages</label>
-            <input type="text" th:value="${reference.pages}"
-                   th:field="${reference.pages}"/>
+            <label>series</label>
+            <input type="text" th:value="${reference.series}"
+                   th:field="${reference.series}"/>
+            </div>
+            <div>
+            <label>address</label>
+            <input type="text" th:value="${reference.address}"
+                   th:field="${reference.address}"/>
+            </div>
+            <div>
+            <label>edition</label>
+            <input type="text" th:value="${reference.edition}"
+                   th:field="${reference.edition}"/>
             </div>
             <div>
             <label>month</label>
