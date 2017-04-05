@@ -25,8 +25,8 @@ public class Stepdefs {
         driver.get(baseUrl);
     }
 
-    @When("^article is selected$")
-    public void article_is_selected() throws Throwable {
+    @When("^book is selected$")
+    public void book_is_selected() throws Throwable {
         WebElement selectElement = driver.findElement(By.name("type"));
         Select select = new Select(selectElement);
         select.selectByVisibleText("book");
@@ -35,9 +35,26 @@ public class Stepdefs {
         submit.submit();
     }
 
+    @When("^form is filled with a value: \"([^\"]*)\" for \"([^\"]*)\"$")
+    public void form_is_filled_with_a_value(String value, String field) throws Throwable {
+        WebElement fieldElement = driver.findElement(By.id(field));
+        fieldElement.sendKeys(value);
+    }
+
+    @When("^form is submitted$")
+    public void form_is_submitted() {
+        WebElement submit = driver.findElement(By.id("submit"));
+        submit.submit();
+    }
+
     @Then("^page displays create a new reference$")
     public void page_displays_create_a_new_reference() throws Throwable {
         assertTrue(driver.getPageSource().contains("Create a new reference"));
+    }
+
+    @Then("^page displays value: \"([^\"]*)\"$")
+    public void page_displays_value(String field) throws Throwable {
+        assertTrue(driver.getPageSource().contains(field));
     }
 
     @Then("^page displays add a book reference content$")
