@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Miniprojekti</title>
+    </head>
+
+    <body>
+
+        <h2>Add a book reference</h2>
+
+        <form id="ref-form" role="form" th:action="@{/save}" method="post" th:object="${reference}">
+            <div>
+            <label>author</label>
+            <input type="text" th:value="${reference.author}"
+                   th:field="${reference.author}"/>
+            </div>
+            <div>
+            <label>title</label>
+            <input type="text" th:value="${reference.title}"
+                   th:field="${reference.title}"/>
+            </div>
+            <div>
+            <label>publisher</label>
+            <input type="text" th:value="${reference.publisher}"
+                   th:field="${reference.publisher}"/>
+            </div>
+            <div>
+            <label>year</label>
+            <input type="text" th:value="${reference.year}"
+                   th:field="${reference.year}"/>
+            </div>
+            <div>
+            <label>volume</label>
+            <input type="text" th:value="${reference.volume}"
+                   th:field="${reference.volume}"/>
+            </div>
+            <div>
+            <label>number</label>
+            <input type="text" th:value="${reference.number}"
+                   th:field="${reference.number}"/>
+            </div>
+            <div>
+            <label>series</label>
+            <input type="text" th:value="${reference.series}"
+                   th:field="${reference.series}"/>
+            </div>
+            <div>
+            <label>address</label>
+            <input type="text" th:value="${reference.address}"
+                   th:field="${reference.address}"/>
+            </div>
+            <div>
+            <label>edition</label>
+            <input type="text" th:value="${reference.edition}"
+                   th:field="${reference.edition}"/>
+            </div>
+            <div>
+            <label>month</label>
+            <input type="text" th:value="${reference.month}"
+                   th:field="${reference.month}"/>
+            </div>
+            <div>
+            <label>note</label>
+            <input type="text" th:value="${reference.note}"
+                   th:field="${reference.note}"/>
+            </div>
+            <div>
+            <label>key</label>
+            <input type="text" th:value="${reference.key}"
+                   th:field="${reference.key}"/>
+            </div>
+            <button type="submit">Save</button>
+        </form>
+    </body>
+</html>
