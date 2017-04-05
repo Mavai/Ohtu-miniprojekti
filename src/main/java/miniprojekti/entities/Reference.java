@@ -21,6 +21,7 @@ public class Reference {
     String type;
     String name;
     String author;
+    String title;
     String journal;
     String year;
     String volume;
@@ -34,9 +35,10 @@ public class Reference {
         
     }
 
-    public Reference(String type, String author, String journal, String year, String volume, String number, String pages, String month, String note, String key) {
+    public Reference(String type, String author, String title, String journal, String year, String volume, String number, String pages, String month, String note, String key) {
         this.type = type;
         this.author = author;
+        this.title = title;
         this.journal = journal;
         this.year = year;
         this.volume = volume;
