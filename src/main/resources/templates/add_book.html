@@ -11,6 +11,13 @@
         <h2>Add a book reference</h2>
 
         <form id="ref-form" role="form" th:action="@{/save}" method="post" th:object="${reference}">
+            <input type="hidden" th:value="${reference.type}"
+                       th:field="${reference.type}"/>
+            <div class="form-group">
+                <label>reference name</label>
+                <input type="text" th:value="${reference.name}"
+                       th:field="${reference.name}" required="required"/>
+            </div>
             <div>
             <label>author</label>
             <input type="text" th:value="${reference.author}"

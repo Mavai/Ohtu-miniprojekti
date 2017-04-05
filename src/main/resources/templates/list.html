@@ -12,15 +12,17 @@
             <tr>
                 <th>References</th>
             </tr>
-
-            <tr th:each="reference : ${references}">
-                <td th:text="${reference.type}">reference type</td>
-            </tr>
         </table>
 
         <table>
-                <tr>
-                    <td th:each="reference : ${references}">
+                <tr th:each="reference : ${references}">
+                    <td>
+                        <p th:text="${reference.type}"></p>
+                    </td>
+                    <td>
+                        <p th:text="${reference.name}"></p>
+                    </td>
+                    <td>
                         <p th:text="${reference.author}"></p>
                     </td>
                 </tr>
