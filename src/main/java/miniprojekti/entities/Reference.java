@@ -33,12 +33,13 @@ public class Reference {
     String series;
     String address;
     String edition;
+    String title;
 
     public Reference() {
         
     }
 
-    public Reference(Long id, String type, String name, String author, String journal, String year, String volume, String number, String pages, String month, String note, String key, String publisher, String series, String address, String edition) {
+    public Reference(Long id, String type, String name, String author, String journal, String year, String volume, String number, String pages, String month, String note, String key, String publisher, String series, String address, String edition, String title) {
         this.id = id;
         this.type = type;
         this.name = name;
@@ -55,6 +56,7 @@ public class Reference {
         this.series = series;
         this.address = address;
         this.edition = edition;
+        this.title = title;
     }
     
     public Reference(String type) {
@@ -187,6 +189,14 @@ public class Reference {
 
     public void setEdition(String edition) {
         this.edition = edition;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
     
     
