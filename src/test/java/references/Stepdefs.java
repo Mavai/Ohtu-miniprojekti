@@ -24,7 +24,7 @@ public class Stepdefs {
         driver.get(baseUrl);
     }
     
-    @Then("^page displayes create a new reference$")
+    @Then("^page displays create a new reference$")
     public void page_displays_create_a_new_reference() throws Throwable {
         assertTrue(driver.getPageSource().contains("Create a new reference"));
     }
