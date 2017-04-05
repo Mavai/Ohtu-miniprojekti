@@ -49,16 +49,16 @@ public class MainController {
 
     @RequestMapping(value = "/getbibtex", method=RequestMethod.GET)
     public String getBibtex(Model model) {
-        Iterable result = refRepo.findAll();
+        //List<Reference> result = refRepo.findAll();
         String bibtex = "";
-        for (Reference r : result) {
-            bibtex += "@book{"+=r.getName()+"\n";
+        for (Reference r : refRepo.findAll()) {
+            bibtex += "@book{"+r.getName()+"\n";
             bibtex += " author    = \""+r.getAuthor()+"\",\n";
-            bibtex += " title     = "+r.getTitle()+"\",\n";
-            bibtex += " publisher = "+r.getPublisher()+"\",\n";
-            bibtex += " year      = "+r.getYear()+"\"\n";
-            bibtex += " address   = "+r.getAddress()+"\",\n";
-            bibtex += " edition   = "+r.getEdition()+"\",\n";
+            bibtex += " title     = \""+r.getTitle()+"\",\n";
+            bibtex += " publisher = \""+r.getPublisher()+"\",\n";
+            bibtex += " year      = \""+r.getYear()+"\"\n";
+            bibtex += " address   = \""+r.getAddress()+"\",\n";
+            bibtex += " edition   = \""+r.getEdition()+"\"\n";
             bibtex += "}\n\n";
         }
         model.addAttribute("bibtexString", bibtex);
