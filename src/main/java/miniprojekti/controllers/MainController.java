@@ -23,59 +23,17 @@ public class MainController {
 
     @Autowired
     ReferenceRepository refRepo;
-
-    @Autowired
-    TypeRepository typeRepo;
-
-
-
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String initTypes(Model model) {
-        ArrayList<String> reqFields = new ArrayList<>();
-        ArrayList<String> optFields = new ArrayList<>();
-        reqFields.add("author");
-        reqFields.add("title");
-        reqFields.add("journal");
-        optFields.add("number");
-        optFields.add("pages");
-        typeRepo.save(new Type("article", reqFields, optFields));
-        
-        reqFields = new ArrayList<>();
-        optFields = new ArrayList<>();
-        reqFields.add("author");
-        reqFields.add("title");
-        reqFields.add("publisher");
-        optFields.add("volume");
-        optFields.add("series");
-        typeRepo.save(new Type("book", reqFields, optFields));
-        
-        return "redirect:/references";
-    }
     
     @RequestMapping(value = "/references", method = RequestMethod.GET)
     public String get(Model model) {
         model.addAttribute("references", refRepo.findAll());
-        model.addAttribute("types", typeRepo.findAll());
         return "list";
     }
 
     @RequestMapping(value = "/references/create/{type}", method = RequestMethod.GET)
     public String showForm(Model model, @PathVariable String type) {
-        Type refType = typeRepo.findOne(type);
-        model.addAttribute("reference", initializeRef(refType));
-        return "add";
-    }
-    
-    // inits new empty reference for dynamically generating a form
-    private Reference initializeRef(Type type) {
-        List<RefField> refs = new ArrayList<>();
-        for (String fieldname : type.getReqFields()) {
-            refs.add(new RefField(fieldname, "", true));
-        }
-        for (String fieldname : type.getOptFields()) {
-            refs.add(new RefField(fieldname, "", false));
-        }
-        return new Reference(type.getName(), refs);
+        model.addAttribute("reference", new Reference(type));
+        return "add_" + type;
     }
 
     @RequestMapping(value = "/save")

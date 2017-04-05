@@ -19,13 +19,11 @@
         </table>
 
         <table>
-            <th:block th:each="reference : ${references}">
                 <tr>
-                    <td th:each="field : ${reference.fields}">
-                        <p th:text="${field.name + ': ' + field.content}"></p>
+                    <td th:each="reference : ${references}">
+                        <p th:text="${reference.author}"></p>
                     </td>
                 </tr>
-            </th:block>
         </table>
 
         <h2>Create a new reference</h2>
@@ -33,9 +31,7 @@
         <form th:action="@{/references}" method="POST">
             <span>Type:</span>
             <select name="type">
-                <th:block th:each="type : ${types}">
-                    <option th:text="${type.name}" th:value="${type.name}">ref type</option>
-                </th:block>
+                    <option value="article">article</option>
             </select>
             <input type="submit" value="Create"/>
         </form>

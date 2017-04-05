@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<!--
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Miniprojekti</title>
+    </head>
+
+    <body>
+
+        <h2>Add an article reference</h2>
+
+        <form id="ref-form" role="form" th:action="@{/save}" method="post" th:object="${reference}">
+            <label>author</label>
+            <input type="text" th:value="${reference.author}"
+                   th:field="${reference.author}"/>
+            <button type="submit">Save</button>
+        </form>
+    </body>
+</html>
