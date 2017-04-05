@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Miniprojekti</title>
+    </head>
+
+    <body>
+
+        <h2>Add a reference</h2>
+
+        <form id="ref-form" role="form" th:action="@{/save}" method="post" th:object="${reference}">
+            <div>
+                <ul>
+                    <li th:each="item, stat : *{fields}">
+                        <div>
+                            <label th:text="*{fields[__${stat.index}__].name}">testing</label>
+                            <input type="hidden" th:value="*{fields[__${stat.index}__].name}"
+                                   th:field="*{fields[__${stat.index}__].name}"/>
+                            <input type="text" 
+                                   th:field="*{fields[__${stat.index}__].content}"/>
+                            <input type="hidden" th:value="*{fields[__${stat.index}__].isRequired}"
+                                   th:field="*{fields[__${stat.index}__].isRequired}"/>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <button type="submit">Save</button>
+            </div>
+        </form>
+    </body>
+</html>

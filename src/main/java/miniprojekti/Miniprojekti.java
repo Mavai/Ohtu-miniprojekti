@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @SpringBootApplication
 @Controller
 public class Miniprojekti {
-    @RequestMapping("*")
-    public String home() {
-        return "index";
-    }
+//    @RequestMapping("*")
+//    public String home() {
+//        return "index";
+//    }
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Miniprojekti.class, args);
