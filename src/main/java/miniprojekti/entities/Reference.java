@@ -18,6 +18,8 @@ public class Reference {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     
+    String type;
+    String name;
     String author;
     String journal;
     String year;
@@ -27,13 +29,13 @@ public class Reference {
     String month;
     String note;
     String key;
-    String type;
 
     public Reference() {
         
     }
 
-    public Reference(String author, String journal, String year, String volume, String number, String pages, String month, String note, String key, String type) {
+    public Reference(String type, String author, String journal, String year, String volume, String number, String pages, String month, String note, String key) {
+        this.type = type;
         this.author = author;
         this.journal = journal;
         this.year = year;
@@ -43,6 +45,9 @@ public class Reference {
         this.month = month;
         this.note = note;
         this.key = key;
+    }
+    
+    public Reference(String type) {
         this.type = type;
     }
 
