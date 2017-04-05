@@ -27,6 +27,8 @@ public class MainController {
     @Autowired
     TypeRepository typeRepo;
 
+
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String initTypes(Model model) {
         ArrayList<String> reqFields = new ArrayList<>();
@@ -85,5 +87,23 @@ public class MainController {
     @RequestMapping(value = "/references", method = RequestMethod.POST)
     public String createReference(Model model, @RequestParam String type) {
         return "redirect:/references/create/" + type;
+    }
+
+    @RequestMapping(value = "/getbibtex", method=RequestMethod.GET)
+    public String getBibtex(Model model) {
+        Iterable result = refRepo.findAll();
+        String bibtex = "";
+        for (Reference r : result) {
+            bibtex += "@book{"+=r.getName()+"\n";
+            bibtex += " author    = \""+r.getAuthor()+"\",\n";
+            bibtex += " title     = "+r.getTitle()+"\",\n";
+            bibtex += " publisher = "+r.getPublisher()+"\",\n";
+            bibtex += " year      = "+r.getYear()+"\"\n";
+            bibtex += " address   = "+r.getAddress()+"\",\n";
+            bibtex += " edition   = "+r.getEdition()+"\",\n";
+            bibtex += "}\n\n";
+        }
+        model.addAttribute("bibtexString", bibtex);
+        return("bibtex");
     }
 }
