@@ -75,4 +75,5 @@ public class MainController {
         model.addAttribute("bibtexString", bibtex);
         return("bibtex");
     }
+
 }
