@@ -4,12 +4,15 @@ import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import miniprojekti.repositories.ReferenceRepository;
 import static org.junit.Assert.assertTrue;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -17,12 +20,32 @@ import org.openqa.selenium.support.ui.Select;
  */
 public class Stepdefs {
 
+    @Autowired
+    ReferenceRepository refRepo;
+
     WebDriver driver = new ChromeDriver();
     String referencesPath = "http://localhost:8080/references";
+    String getbibtexPath = "http://localhost:8080/getbibtex";
 
-    @Given("^index is visited$")
-    public void index_is_visited() throws Throwable {
+    @Given("references is visited$")
+    public void references_is_visited() throws Throwable {
         driver.get(referencesPath);
+    }
+
+    @Given("^getbibtex is visited$")
+    public void getbibtex_is_visited() throws Throwable {
+        driver.get(getbibtexPath);
+    }
+
+    @Given("^book is added$")
+    public void book_is_added() throws Throwable {
+        type_is_selected("book");
+        form_is_submitted();
+        form_is_filled_with_value("authorName", "author");
+        form_is_filled_with_value("titleOfTheBook", "title");
+        form_is_filled_with_value("1994", "year");
+        form_is_filled_with_value("publisherName", "publisher");
+        form_is_submitted();
     }
 
     @When("^type: \"([^\"]*)\" is selected$")
@@ -48,7 +71,6 @@ public class Stepdefs {
 //    public void page_displays_create_a_new_reference() throws Throwable {
 //        assertTrue(driver.getPageSource().contains("Create a new reference"));
 //    }
-
     @Then("^page displays content: \"([^\"]*)\"$")
     public void page_displays_content(String content) throws Throwable {
         assertTrue(driver.getPageSource().contains(content));
@@ -61,4 +83,9 @@ public class Stepdefs {
 //        assertTrue(driver.getPageSource().contains("year"));
 //        assertTrue(driver.getPageSource().contains("publisher"));
 //    }
+    @Transactional
+    @After("^destroy reference named \"([^\"]*)\"$")
+    public void destroy_reference_named(String name) throws Throwable {
+        refRepo.deleteReferenceByName(name);
+    }
 }
