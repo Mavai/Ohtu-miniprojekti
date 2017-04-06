@@ -2,6 +2,7 @@
  */
 package miniprojekti.controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import miniprojekti.entities.RefField;
@@ -10,6 +11,9 @@ import miniprojekti.entities.Type;
 import miniprojekti.repositories.ReferenceRepository;
 import miniprojekti.repositories.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
