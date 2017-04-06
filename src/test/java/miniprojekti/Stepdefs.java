@@ -4,14 +4,20 @@ import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import miniprojekti.repositories.ReferenceRepository;
 import static org.junit.Assert.assertTrue;
+import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -26,6 +32,19 @@ public class Stepdefs {
     WebDriver driver = new ChromeDriver();
     String referencesPath = "http://localhost:8080/references";
     String getbibtexPath = "http://localhost:8080/getbibtex";
+
+    @Before
+    public void start_server() {
+        try {
+            SpringApplication.run(Miniprojekti.class, new String[0]);
+        } catch (Exception ex) {
+        }
+    }
+
+    @After
+    public void shutdown_server() {
+
+    }
 
     @Given("references is visited$")
     public void references_is_visited() throws Throwable {

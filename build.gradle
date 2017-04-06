@@ -46,6 +46,17 @@ dependencies {
     compile group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version:seleniumVersion
     compile group: 'org.seleniumhq.selenium', name: 'selenium-api', version:seleniumVersion
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version:seleniumVersion 
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-server', version: seleniumVersion
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-remote-driver', version: seleniumVersion
+    testCompile("io.github.bonigarcia:webdrivermanager:1.6.2") {
+        exclude group: 'org.seleniumhq.selenium'
+    }
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("org.springframework:spring-test")
+    testCompile "info.cukes:cucumber-core:" + cucumberVersion
+    testCompile "info.cukes:cucumber-java:" + cucumberVersion
+    testCompile "info.cukes:cucumber-junit:" + cucumberVersion
+testCompile "info.cukes:cucumber-spring:" + cucumberVersion
 }
 
 mainClassName = 'miniprojekti.Miniprojekti'
