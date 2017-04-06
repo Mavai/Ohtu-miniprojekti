@@ -41,6 +41,7 @@ public class Stepdefs {
     public void book_is_added() throws Throwable {
         type_is_selected("book");
         form_is_submitted();
+        form_is_filled_with_value("referenceName", "name");
         form_is_filled_with_value("authorName", "author");
         form_is_filled_with_value("titleOfTheBook", "title");
         form_is_filled_with_value("1994", "year");
@@ -83,9 +84,10 @@ public class Stepdefs {
 //        assertTrue(driver.getPageSource().contains("year"));
 //        assertTrue(driver.getPageSource().contains("publisher"));
 //    }
-    @Transactional
-    @After("^destroy reference named \"([^\"]*)\"$")
-    public void destroy_reference_named(String name) throws Throwable {
-        refRepo.deleteReferenceByName(name);
-    }
+//    
+//    @Transactional
+//    @After("^destroy reference named$")
+//    public void destroy_reference_named(String name) throws Throwable {
+//        refRepo.deleteReferenceByName(name);
+//    }
 }
