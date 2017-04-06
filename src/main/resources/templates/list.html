@@ -12,11 +12,31 @@
         <th>Type</th>
         <th>Name</th>
         <th>Author</th>
+        <th>Title</th>
+        <th>Publisher</th>
+        <th>Year</th>
+        <th>Number</th>
+        <th>Series</th>
+        <th>Address</th>
+        <th>Edition</th>
+        <th>Month</th>
+        <th>Note</th>
+        <th>Key</th>
     </tr>
     <tr th:each="reference : ${references}">
         <td><span th:text="${reference.type}"></span></td>
         <td><span th:text="${reference.name}"></span></td>
         <td><span th:text="${reference.author}"></span></td>
+        <td><span th:text="${reference.title}"></span></td>
+        <td><span th:text="${reference.publisher}"></span></td>
+        <td><span th:text="${reference.year}"></span></td>
+        <td><span th:text="${reference.number}"></span></td>
+        <td><span th:text="${reference.series}"></span></td>
+        <td><span th:text="${reference.address}"></span></td>
+        <td><span th:text="${reference.edition}"></span></td>
+        <td><span th:text="${reference.month}"></span></td>
+        <td><span th:text="${reference.note}"></span></td>
+        <td><span th:text="${reference.key}"></span></td>
     </tr>
 </table>
 
