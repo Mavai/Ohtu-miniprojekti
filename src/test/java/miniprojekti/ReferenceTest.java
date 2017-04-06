@@ -5,6 +5,7 @@
  */
 package miniprojekti;
 
+import miniprojekti.entities.Reference;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -35,6 +36,14 @@ public class ReferenceTest {
     
     @After
     public void tearDown() {
+    }
+
+    @Test
+    public void controllerWithVariableAmountParameters() {
+        Reference ref = new Reference("name:nimi", "author:kirjoittaja", "type:book");
+        assertEquals("nimi", ref.getName());
+        assertEquals("kirjoittaja", ref.getAuthor());
+        assertEquals("book", ref.getType());
     }
 
     // TODO add test methods here.
