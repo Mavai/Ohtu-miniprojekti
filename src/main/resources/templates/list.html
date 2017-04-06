@@ -2,57 +2,38 @@
 <!--
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Miniprojekti</title>
-        <link href="webjars/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"> </link>
+<head th:include="base :: header"></head>
 
-    </head>
+<body>
 
-    <body>
-        
 
-        <table class="table table-bordered">
-            <tr>
-                <th>References</th>
-            </tr>
-        </table>
+<table class="table table-bordered">
+    <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Author</th>
+    </tr>
+    <tr th:each="reference : ${references}">
+        <td><span th:text="${reference.type}"></span></td>
+        <td><span th:text="${reference.name}"></span></td>
+        <td><span th:text="${reference.author}"></span></td>
+    </tr>
+</table>
 
-        <table>
-                <tr th:each="reference : ${references}">
-                    <td>
-                        <p th:text="${reference.type}"></p>
-                    </td>
-                    <td>
-                        <p th:text="${reference.name}"></p>
-                    </td>
-                    <td>
-                        <p th:text="${reference.author}"></p>
-                    </td>
-                </tr>
-            <tr th:each="reference : ${references}">
-                <td th:text="${reference.author}">reference type</td>
-            </tr>
-            
-            <tr>
-                <td>test</td>
-            </tr>
-            <tr>
-                <td>test</td>
-            </tr>
-        </table>
+<h2>Create a new reference</h2>
 
-        <h2>Create a new reference</h2>
+<form class="form-inline" th:action="@{/references}" method="POST">
+    <div class="form-group">
+        <label for="type">Type:</label>
+        <select class="form-control" id="type" name="type">
+            <option value="book">book</option>
+            <option value="article">article</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
 
-        <form th:action="@{/references}" method="POST">
-            <span>Type:</span>
-            <select name="type">
-                    <option value="article">article</option>
-                    <option value="book">book</option>
-            </select>
-            <input id="submit" type="submit" value="Create"/>
-        </form>
-
-        <script src="http://code.jquery.com/jquery.js"></script>
-        <script src="webjars/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    </body>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="webjars/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+</body>
 </html>

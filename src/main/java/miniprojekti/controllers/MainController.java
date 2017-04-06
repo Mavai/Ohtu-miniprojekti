@@ -51,22 +51,22 @@ public class MainController {
         //List<Reference> result = refRepo.findAll();
         String bibtex = "";
         for (Reference r : refRepo.findAll()) {
-            bibtex += "@" + r.getType() + "{" + r.getName() + "\n";
-            bibtex += r.getAuthor() != null ? " author    = \"" + r.getAuthor() + "\",\n" : "";
-            bibtex += r.getTitle() != null ? " title     = \"" + r.getTitle() + "\",\n" : "";
-            bibtex += r.getPublisher() != null ? " publisher = \"" + r.getPublisher() + "\",\n" : "";
-            bibtex += r.getYear() != null ? " year      = \"" + r.getYear() + "\",\n" : "";
-            bibtex += r.getMonth() != null ? " month     = \"" + r.getMonth() + "\",\n" : "";
-            bibtex += r.getAddress() != null ? " address   = \"" + r.getAddress() + "\",\n" : "";
-            bibtex += r.getEdition() != null ? " edition   = \"" + r.getEdition() + "\",\n" : "";
-            bibtex += r.getJournal() != null ? " journal   = \"" + r.getJournal() + "\",\n" : "";
-            bibtex += r.getVolume() != null ? " volume    = \"" + r.getVolume() + "\",\n" : "";
-            bibtex += r.getNumber() != null ? " number    = \"" + r.getNumber() + "\",\n" : "";
-            bibtex += r.getPages() != null ? " pages     = \"" + r.getPages() + "\",\n" : "";
-            bibtex += r.getNote() != null ? " note       = \"" + r.getNote() + "\",\n" : "";
-            bibtex += r.getKey() != null ? " key          = \"" + r.getKey() + "\",\n" : "";
-            bibtex += r.getPublisher() != null ? " publisher = \"" + r.getPublisher() + "\",\n" : "";
-            bibtex += r.getSeries() != null ? " series   = \"" + r.getSeries() + "\",\n" : "";
+            bibtex += "@" + r.getType() + "{" + r.getName() + ",\n";
+            bibtex += r.getAuthor() != null && !r.getAuthor().equals("") ? " author    = \"" + r.getAuthor() + "\",\n" : "";
+            bibtex += r.getTitle() != null && !r.getTitle().equals("") ? " title     = \"" + r.getTitle() + "\",\n" : "";
+            bibtex += r.getPublisher() != null && !r.getPublisher().equals("") ? " publisher = \"" + r.getPublisher() + "\",\n" : "";
+            bibtex += r.getYear() != null && !r.getYear().equals("") ? " year      = \"" + r.getYear() + "\",\n" : "";
+            bibtex += r.getMonth() != null && !r.getMonth().equals("") ? " month     = \"" + r.getMonth() + "\",\n" : "";
+            bibtex += r.getAddress() != null && !r.getAddress().equals("") ? " address   = \"" + r.getAddress() + "\",\n" : "";
+            bibtex += r.getEdition() != null && !r.getEdition().equals("") ? " edition   = \"" + r.getEdition() + "\",\n" : "";
+            bibtex += r.getJournal() != null && !r.getJournal().equals("") ? " journal   = \"" + r.getJournal() + "\",\n" : "";
+            bibtex += r.getVolume() != null && !r.getVolume().equals("") ? " volume    = \"" + r.getVolume() + "\",\n" : "";
+            bibtex += r.getNumber() != null && !r.getNumber().equals("") ? " number    = \"" + r.getNumber() + "\",\n" : "";
+            bibtex += r.getPages() != null && !r.getPages().equals("") ? " pages     = \"" + r.getPages() + "\",\n" : "";
+            bibtex += r.getNote() != null && !r.getNote().equals("") ? " note       = \"" + r.getNote() + "\",\n" : "";
+            bibtex += r.getKey() != null && !r.getKey().equals("") ? " key          = \"" + r.getKey() + "\",\n" : "";
+            bibtex += r.getPublisher() != null && !r.getPublisher().equals("") ? " publisher = \"" + r.getPublisher() + "\",\n" : "";
+            bibtex += r.getSeries() != null && !r.getSeries().equals("") ? " series   = \"" + r.getSeries() + "\",\n" : "";
             bibtex = bibtex.substring(0, bibtex.length() - 2);
             bibtex += "\n}\n\n";
         }

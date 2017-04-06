@@ -2,149 +2,116 @@
 <!--
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Miniprojekti</title>
-        <link href="webjars/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"> </link>
+<head th:include="base :: header"></head>
 
-    </head>
+<body>
 
-    <body>
+<div class="container">
+    <h2>Add a book reference</h2>
 
-        <h2>Add a book reference</h2>
-
-        <form id="ref-form" role="form" th:action="@{/save}" method="post" th:object="${reference}">
-            <input type="hidden" th:value="${reference.type}"
-                   th:field="${reference.type}"/>
-            <div class="form-group">
-                <label>reference name*</label>
-                <input type="text" th:value="${reference.name}"
+    <form class="form-horizontal" id="ref-form" role="form" th:action="@{/save}" method="post" th:object="${reference}">
+        <input type="hidden" th:value="${reference.type}"
+               th:field="${reference.type}"/>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="name">*Reference name:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:value="${reference.name}"
                        th:field="${reference.name}" id="name" required="required"/>
             </div>
-            <div>
-<<<<<<< HEAD
-                <label>author*</label>
-                <input type="text" th:value="${reference.author}"
-                       th:field="${reference.author}" required="required"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="author">*Author:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:value="${reference.author}"
+                       th:field="${reference.author}" id="author" required="required"/>
             </div>
-            <div>
-                <label>title*</label>
-                <input type="text" th:value="${reference.title}"
-                       th:field="${reference.title}" required="required"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="title">*Title:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:value="${reference.title}"
+                       th:field="${reference.title}" id="title" required="required"/>
             </div>
-            <div>
-                <label>publisher*</label>
-                <input type="text" th:value="${reference.publisher}"
-                       th:field="${reference.publisher}" required="required"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="publisher">*Publisher:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:value="${reference.publisher}"
+                       th:field="${reference.publisher}" id="publisher" required="required"/>
             </div>
-            <div>
-                <label>year*</label>
-                <input type="text" th:value="${reference.year}"
-                       th:field="${reference.year}" required="required"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="year">*Year:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:value="${reference.year}"
+                       th:field="${reference.year}" id="year" required="required"/>
             </div>
-            <div>
-                <label>volume</label>
-                <input type="text" th:value="${reference.volume}"
-                       th:field="${reference.volume}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="volume">Volume:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:value="${reference.volume}"
+                       th:field="${reference.volume}" id="volume"/>
             </div>
-            <div>
-                <label>number</label>
-                <input type="text" th:value="${reference.number}"
-                       th:field="${reference.number}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="number">Number:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:value="${reference.number}"
+                       th:field="${reference.number}" id="number"/>
             </div>
-            <div>
-                <label>series</label>
-                <input type="text" th:value="${reference.series}"
-                       th:field="${reference.series}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="series">Series:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:value="${reference.series}"
+                       th:field="${reference.series}" id="series"/>
             </div>
-            <div>
-                <label>address</label>
-                <input type="text" th:value="${reference.address}"
-                       th:field="${reference.address}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="address">Address:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:value="${reference.address}"
+                       th:field="${reference.address}" id="address"/>
             </div>
-            <div>
-                <label>edition</label>
-                <input type="text" th:value="${reference.edition}"
-                       th:field="${reference.edition}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="edition">Edition:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:value="${reference.edition}"
+                       th:field="${reference.edition}" id="edition"/>
             </div>
-            <div>
-                <label>month</label>
-                <input type="text" th:value="${reference.month}"
-                       th:field="${reference.month}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="month">Month:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:value="${reference.month}"
+                       th:field="${reference.month}" id="month"/>
             </div>
-            <div>
-                <label>note</label>
-                <input type="text" th:value="${reference.note}"
-                       th:field="${reference.note}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="note">Note:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:value="${reference.note}"
+                       th:field="${reference.note}" id="note"/>
             </div>
-            <div>
-                <label>key</label>
-                <input type="text" th:value="${reference.key}"
-                       th:field="${reference.key}"/>
-=======
-            <label>author</label>
-            <input type="text" th:value="${reference.author}"
-                   th:field="${reference.author}" id="author" required="required"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="key">Key:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:value="${reference.key}"
+                       th:field="${reference.key}" id="key"/>
             </div>
-            <div>
-            <label>title</label>
-            <input type="text" th:value="${reference.title}"
-                   th:field="${reference.title}" id="title" required="required"/>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-            <div>
-            <label>publisher</label>
-            <input type="text" th:value="${reference.publisher}"
-                   th:field="${reference.publisher}" id="publisher" required="required"/>
-            </div>
-            <div>
-            <label>year</label>
-            <input type="text" th:value="${reference.year}"
-                   th:field="${reference.year}" id="year" required="required"/>
-            </div>
-            <div>
-            <label>volume</label>
-            <input type="text" th:value="${reference.volume}"
-                   th:field="${reference.volume}" id="volume"/>
-            </div>
-            <div>
-            <label>number</label>
-            <input type="text" th:value="${reference.number}"
-                   th:field="${reference.number}" id="number"/>
-            </div>
-            <div>
-            <label>series</label>
-            <input type="text" th:value="${reference.series}"
-                   th:field="${reference.series}" id="series"/>
-            </div>
-            <div>
-            <label>address</label>
-            <input type="text" th:value="${reference.address}"
-                   th:field="${reference.address}" id="address"/>
-            </div>
-            <div>
-            <label>edition</label>
-            <input type="text" th:value="${reference.edition}"
-                   th:field="${reference.edition}" id="edition"/>
-            </div>
-            <div>
-            <label>month</label>
-            <input type="text" th:value="${reference.month}"
-                   th:field="${reference.month}" id="month"/>
-            </div>
-            <div>
-            <label>note</label>
-            <input type="text" th:value="${reference.note}"
-                   th:field="${reference.note}" id="note"/>
-            </div>
-            <div>
-            <label>key</label>
-            <input type="text" th:value="${reference.key}"
-                   th:field="${reference.key}" id="key"/>
->>>>>>> 1343ce0a311296fff982f4d2bc02e9e2fb28c300
-            </div>
-            <button type="submit">Save</button>
-        </form>
+        </div>
+    </form>
+</div>
 
-        <script src="http://code.jquery.com/jquery.js"></script>
-        <script src="webjars/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    </body>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="webjars/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+</body>
 </html>
