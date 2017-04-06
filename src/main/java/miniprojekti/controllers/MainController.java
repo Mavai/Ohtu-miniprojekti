@@ -4,8 +4,6 @@ package miniprojekti.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.io.*;
-import org.springframework.http.*;
 import miniprojekti.entities.RefField;
 import miniprojekti.entities.Reference;
 import miniprojekti.entities.Type;
