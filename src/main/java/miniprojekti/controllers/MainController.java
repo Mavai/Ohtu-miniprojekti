@@ -47,9 +47,8 @@ public class MainController {
     }
 
     @RequestMapping(value = "/getbibtex", method = RequestMethod.GET)
-    public String getBibtex(Model model) {
-        //List<Reference> result = refRepo.findAll();
-        String bibtex = "";
+    public HttpEntity<byte[]> getBibtex(Model model) throws IOException {
+       String bibtex = "";
         for (Reference r : refRepo.findAll()) {
             bibtex += "@" + r.getType() + "{" + r.getName() + ",\n";
             bibtex += r.getAuthor() != null && !r.getAuthor().equals("") ? " author    = \"" + r.getAuthor() + "\",\n" : "";
@@ -71,7 +70,12 @@ public class MainController {
             bibtex += "\n}\n\n";
         }
 
-        model.addAttribute("bibtexString", bibtex);
-        return ("bibtex");
+        byte[] data = bibtex.getBytes();
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(MediaType.TEXT_PLAIN);
+        header.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=bibtex.txt");
+        header.setContentLength(data.length);
+        return new HttpEntity<byte[]>(data, header  );
+
     }
 }
