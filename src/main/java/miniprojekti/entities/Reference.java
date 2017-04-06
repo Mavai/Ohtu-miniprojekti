@@ -2,7 +2,9 @@
  */
 package miniprojekti.entities;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -55,6 +57,35 @@ public class Reference {
         this.series = series;
         this.address = address;
         this.edition = edition;
+    }
+
+    public Reference (String... args) {
+        Map<String, String> arguments = extractArguments(args);
+        this.type = arguments.get("type") != null ? arguments.get("type") : "";
+        this.name = arguments.get("name") != null ? arguments.get("name") : "";
+        this.author= arguments.get("author") != null ? arguments.get("author") : "";
+        this.title = arguments.get("title") != null ? arguments.get("title") : "";
+        this.journal = arguments.get("journal") != null ? arguments.get("journal") : "";
+        this.year = arguments.get("year") != null ?  arguments.get("year") : "";
+        this.volume = arguments.get("volume") != null ? arguments.get("volume") : "";
+        this.number = arguments.get("number") != null ? arguments.get("number") : "";
+        this.pages = arguments.get("pages") != null ? arguments.get("pages") : "";
+        this.month = arguments.get("month") != null ? arguments.get("month") : "";
+        this.note = arguments.get("note") != null ? arguments.get("note") : "";
+        this.key = arguments.get("key") != null ? arguments.get("key") : "";
+        this.publisher = arguments.get("publisher") != null ? arguments.get("publisher") : "";
+        this.series = arguments.get("series") != null ? arguments.get("series") : "";
+        this.address = arguments.get("address") != null ? arguments.get("address") : "";
+        this.edition = arguments.get("edition") != null ? arguments.get("edition") : "";
+    }
+
+    private Map<String, String> extractArguments(String[] args) {
+        Map<String, String> arguments = new HashMap<>();
+        for (String argument : args) {
+            String[] info = argument.split(":");
+            arguments.put(info[0], info[1]);
+        }
+        return arguments;
     }
 
     public Reference(String type) {
