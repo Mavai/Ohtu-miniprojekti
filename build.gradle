@@ -47,7 +47,7 @@ dependencies {
     compile group: 'org.seleniumhq.selenium', name: 'selenium-api', version:seleniumVersion
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version:seleniumVersion 
     //compile group: 'org.seleniumhq.selenium', name: 'selenium-server', version: seleniumVersion
-    //compile group: 'org.seleniumhq.selenium', name: 'selenium-remote-driver', version: seleniumVersion
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-remote-driver', version: seleniumVersion
     //testCompile("io.github.bonigarcia:webdrivermanager:1.6.2") {
     //    exclude group: 'org.seleniumhq.selenium'
     //}

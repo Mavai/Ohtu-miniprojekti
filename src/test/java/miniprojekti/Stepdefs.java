@@ -15,10 +15,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -35,10 +31,6 @@ public class Stepdefs {
 
     @Before
     public void start_server() {
-        try {
-            SpringApplication.run(Miniprojekti.class, new String[0]);
-        } catch (Exception ex) {
-        }
     }
 
     @After
