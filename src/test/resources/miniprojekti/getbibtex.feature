@@ -1,3 +1,4 @@
+
 Feature: GetBibtex page displays right content
 
   Scenario: Added book is found on bibtex page

@@ -24,8 +24,8 @@ Feature: References pages display right content
     And form is filled with value: "1955" for "year"
     And form is filled with value: "testPublisher" for "publisher"
     And form is submitted
-    Then page displays value: "testAuthor"
-    And page displays value: "testTitle"
+    Then page displays content: "testAuthor"
+    And page displays content: "testTitle"
 
   Scenario: Add article reference page is accessible from index page
     Given references is visited
@@ -40,7 +40,7 @@ Feature: References pages display right content
     And page displays content: "Volume"
     And page displays content: "Pages"
     And page displays content: "Number"
-#    And page displays content: "Address" 
+#    And page displays content: "Address"
 
   Scenario: References page displays added article
     Given references is visited
