@@ -4,53 +4,43 @@ import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import miniprojekti.repositories.ReferenceRepository;
 import static org.junit.Assert.assertTrue;
-import org.junit.Before;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.junit.Ignore;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  *
  * @author hanranti
  */
+@Ignore
+@RunWith(SpringRunner.class)
+@ContextConfiguration(classes = Miniprojekti.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class Stepdefs {
 
-    @Autowired
-    ReferenceRepository refRepo;
-
-    WebDriver driver = new ChromeDriver();
     String referencesPath = "http://localhost:8080/references";
     String getbibtexPath = "http://localhost:8080/getbibtex";
 
-    @Before
-    public void start_server() {
-//        try {
-//            SpringApplication.run(Miniprojekti.class, new String[0]);
-//        } catch (Exception ex) {
-//        }
-    }
-
     @After
     public void shutdown_server() {
+        DriverFactory.getInstance().removeDriver();
 
     }
 
     @Given("references is visited$")
     public void references_is_visited() throws Throwable {
-        driver.get(referencesPath);
+        DriverFactory.getInstance().getDriver().get(referencesPath);
     }
 
     @Given("^getbibtex is visited$")
     public void getbibtex_is_visited() throws Throwable {
-        driver.get(getbibtexPath);
+        DriverFactory.getInstance().getDriver().get(getbibtexPath);
     }
 
     @Given("^book is added$")
@@ -67,20 +57,20 @@ public class Stepdefs {
 
     @When("^type: \"([^\"]*)\" is selected$")
     public void type_is_selected(String type) throws Throwable {
-        WebElement selectElement = driver.findElement(By.name("type"));
+        WebElement selectElement = DriverFactory.getInstance().getDriver().findElement(By.name("type"));
         Select select = new Select(selectElement);
         select.selectByVisibleText(type);
     }
 
     @When("^form is filled with value: \"([^\"]*)\" for \"([^\"]*)\"$")
     public void form_is_filled_with_value(String value, String field) throws Throwable {
-        WebElement fieldElement = driver.findElement(By.id(field));
+        WebElement fieldElement = DriverFactory.getInstance().getDriver().findElement(By.id(field));
         fieldElement.sendKeys(value);
     }
 
     @When("^form is submitted$")
     public void form_is_submitted() {
-        WebElement submit = driver.findElement(By.id("submit"));
+        WebElement submit = DriverFactory.getInstance().getDriver().findElement(By.id("submit"));
         submit.submit();
     }
 
@@ -90,8 +80,9 @@ public class Stepdefs {
 //    }
     @Then("^page displays content: \"([^\"]*)\"$")
     public void page_displays_content(String content) throws Throwable {
-        assertTrue(driver.getPageSource().contains(content));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains(content));
     }
+
 
 //    @Then("^page displays add a book reference content$")
 //    public void page_displays_add_a_book_reference_content() throws Throwable {
