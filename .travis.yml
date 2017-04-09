@@ -6,3 +6,16 @@ deploy:
  api-key:
   secure: $HEROKU_API_KEY
  app: pacific-tor-29266
+
+dist: trusty
+sudo: false
+
+addons:
+  apt:
+    packages:
+      - google-chrome-stable
+
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start &
+  - sleep 3
