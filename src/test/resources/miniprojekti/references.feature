@@ -24,8 +24,8 @@ Feature: References pages display right content
     And form is filled with value: "1955" for "year"
     And form is filled with value: "testPublisher" for "publisher"
     And form is submitted
-    Then page displays value: "testAuthor"
-    And page displays value: "testTitle"
+    Then page displays content: "testAuthor"
+    And page displays content: "testTitle"
 
   Scenario: Add article reference page is accessible from index page
     Given references is visited
@@ -40,21 +40,21 @@ Feature: References pages display right content
     And page displays content: "Volume"
     And page displays content: "Pages"
     And page displays content: "Number"
-#    And page displays content: "Address" 
+#    And page displays content: "Address"
 
   Scenario: References page displays added article
     Given references is visited
     When type: "article" is selected
     And form is submitted
-#    And form is filled with value: "referenceName" for "name"
-#    And form is filled with value: "testAuthor" for "author"
-#    And form is filled with value: "testTitle" for "title"
-#    And form is filled with value: "1955" for "year"
+    And form is filled with value: "referenceName" for "name"
+    And form is filled with value: "testAuthor" for "author"
+    And form is filled with value: "testTitle" for "title"
+    And form is filled with value: "1955" for "year"
 #    And form is filled with value: "testPublisher" for "publisher"
-#    And form is filled with value: "testJournal" for "journal"
-#    And form is filled with value: "1" for "volume"
-#    And form is filled with value: "175" for "pages"
-#    And form is filled with value: "2" for "number"
+    And form is filled with value: "testJournal" for "journal"
+    And form is filled with value: "1" for "volume"
+    And form is filled with value: "175" for "pages"
+    And form is filled with value: "2" for "number"
 #    And form is filled with value: "USA" for "address"
     And form is submitted
     Then page displays content: "testAuthor"

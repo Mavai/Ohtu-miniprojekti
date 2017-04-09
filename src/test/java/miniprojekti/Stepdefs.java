@@ -74,24 +74,24 @@ public class Stepdefs {
         submit.submit();
     }
 
-//    @Then("^page displays create a new reference$")
-//    public void page_displays_create_a_new_reference() throws Throwable {
-//        assertTrue(driver.getPageSource().contains("Create a new reference"));
-//    }
+    @Then("^page displays create a new reference$")
+    public void page_displays_create_a_new_reference() throws Throwable {
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Create a new reference"));
+    }
     @Then("^page displays content: \"([^\"]*)\"$")
     public void page_displays_content(String content) throws Throwable {
         assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains(content));
     }
 
 
-//    @Then("^page displays add a book reference content$")
-//    public void page_displays_add_a_book_reference_content() throws Throwable {
-//        assertTrue(driver.getPageSource().contains("author"));
-//        assertTrue(driver.getPageSource().contains("title"));
-//        assertTrue(driver.getPageSource().contains("year"));
-//        assertTrue(driver.getPageSource().contains("publisher"));
-//    }
-//    
+    @Then("^page displays add a book reference content$")
+    public void page_displays_add_a_book_reference_content() throws Throwable {
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("author"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("title"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("year"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("publisher"));
+    }
+
 //    @Transactional
 //    @After("^destroy reference named$")
 //    public void destroy_reference_named(String name) throws Throwable {
