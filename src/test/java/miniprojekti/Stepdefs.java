@@ -92,9 +92,4 @@ public class Stepdefs {
         assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("publisher"));
     }
 
-//    @Transactional
-//    @After("^destroy reference named$")
-//    public void destroy_reference_named(String name) throws Throwable {
-//        refRepo.deleteReferenceByName(name);
-//    }
 }
