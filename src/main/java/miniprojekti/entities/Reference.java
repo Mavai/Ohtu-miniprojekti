@@ -35,38 +35,26 @@ public class Reference {
     String series;
     String address;
     String edition;
+    String annote;
+    String chapter;
+    String crossref;
+    String editor;
+    String howpublished;
+    String institution;
+    String organization;
+    String school;
 
     public Reference() {
     }
-    
-    public Reference(Long id, String type, String name, String author, String journal, String year, String volume, String number, String pages, String month, String note, String key, String publisher, String series, String address, String edition, String title) {
-        this.id = id;
-        this.type = type;
-        this.name = name;
-        this.author = author;
-        this.title = title;
-        this.journal = journal;
-        this.year = year;
-        this.volume = volume;
-        this.number = number;
-        this.pages = pages;
-        this.month = month;
-        this.note = note;
-        this.key = key;
-        this.publisher = publisher;
-        this.series = series;
-        this.address = address;
-        this.edition = edition;
-    }
 
-    public Reference (String... args) {
+    public Reference(String... args) {
         Map<String, String> arguments = extractArguments(args);
         this.type = arguments.get("type") != null ? arguments.get("type") : "";
         this.name = arguments.get("name") != null ? arguments.get("name") : "";
-        this.author= arguments.get("author") != null ? arguments.get("author") : "";
+        this.author = arguments.get("author") != null ? arguments.get("author") : "";
         this.title = arguments.get("title") != null ? arguments.get("title") : "";
         this.journal = arguments.get("journal") != null ? arguments.get("journal") : "";
-        this.year = arguments.get("year") != null ?  arguments.get("year") : "";
+        this.year = arguments.get("year") != null ? arguments.get("year") : "";
         this.volume = arguments.get("volume") != null ? arguments.get("volume") : "";
         this.number = arguments.get("number") != null ? arguments.get("number") : "";
         this.pages = arguments.get("pages") != null ? arguments.get("pages") : "";
@@ -77,6 +65,14 @@ public class Reference {
         this.series = arguments.get("series") != null ? arguments.get("series") : "";
         this.address = arguments.get("address") != null ? arguments.get("address") : "";
         this.edition = arguments.get("edition") != null ? arguments.get("edition") : "";
+        this.annote = arguments.get("annote") != null ? arguments.get("annote") : "";;
+        this.chapter = arguments.get("chapter") != null ? arguments.get("chapter") : "";;
+        this.crossref = arguments.get("crossref") != null ? arguments.get("crossref") : "";;
+        this.editor = arguments.get("editor") != null ? arguments.get("editor") : "";;
+        this.howpublished = arguments.get("howpublished") != null ? arguments.get("howpublished") : "";;
+        this.institution = arguments.get("institution") != null ? arguments.get("institution") : "";;
+        this.organization = arguments.get("organization") != null ? arguments.get("organization") : "";;
+        this.school = arguments.get("school") != null ? arguments.get("school") : "";;
     }
 
     private Map<String, String> extractArguments(String[] args) {
@@ -228,6 +224,70 @@ public class Reference {
         this.title = title;
     }
 
+    public String getAnnote() {
+        return annote;
+    }
+
+    public void setAnnote(String annote) {
+        this.annote = annote;
+    }
+
+    public String getChapter() {
+        return chapter;
+    }
+
+    public void setChapter(String chapter) {
+        this.chapter = chapter;
+    }
+
+    public String getCrossref() {
+        return crossref;
+    }
+
+    public void setCrossref(String crossref) {
+        this.crossref = crossref;
+    }
+
+    public String getEditor() {
+        return editor;
+    }
+
+    public void setEditor(String editor) {
+        this.editor = editor;
+    }
+
+    public String getHowpublished() {
+        return howpublished;
+    }
+
+    public void setHowpublished(String howpublished) {
+        this.howpublished = howpublished;
+    }
+
+    public String getInstitution() {
+        return institution;
+    }
+
+    public void setInstitution(String institution) {
+        this.institution = institution;
+    }
+
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
     public String getBibtex() {
         String bibtex = "";
         bibtex += "@" + getType() + "{" + getName() + ",\n";
@@ -244,7 +304,7 @@ public class Reference {
         bibtex += getPages() != null && !getPages().equals("") ? " pages     = \"" + getPages() + "\",\n" : "";
         bibtex += getNote() != null && !getNote().equals("") ? " note       = \"" + getNote() + "\",\n" : "";
         bibtex += getKey() != null && !getKey().equals("") ? " key          = \"" + getKey() + "\",\n" : "";
-        bibtex += getPublisher() != null && !getPublisher().equals("") ? " publisher = \"" + getPublisher() + "\",\n" : "";    
+        bibtex += getPublisher() != null && !getPublisher().equals("") ? " publisher = \"" + getPublisher() + "\",\n" : "";
         bibtex += getSeries() != null && !getSeries().equals("") ? " series   = \"" + getSeries() + "\",\n" : "";
         bibtex = bibtex.substring(0, bibtex.length() - 2);
         bibtex += "\n}\n\n";
