@@ -19,6 +19,7 @@ public class Reference {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    String refType;
     String type;
     String name;
     String author;
@@ -49,6 +50,7 @@ public class Reference {
 
     public Reference(String... args) {
         Map<String, String> arguments = extractArguments(args);
+        this.refType = arguments.get("type") != null ? arguments.get("type") : "";
         this.type = arguments.get("type") != null ? arguments.get("type") : "";
         this.name = arguments.get("name") != null ? arguments.get("name") : "";
         this.author = arguments.get("author") != null ? arguments.get("author") : "";
@@ -65,14 +67,14 @@ public class Reference {
         this.series = arguments.get("series") != null ? arguments.get("series") : "";
         this.address = arguments.get("address") != null ? arguments.get("address") : "";
         this.edition = arguments.get("edition") != null ? arguments.get("edition") : "";
-        this.annote = arguments.get("annote") != null ? arguments.get("annote") : "";;
-        this.chapter = arguments.get("chapter") != null ? arguments.get("chapter") : "";;
-        this.crossref = arguments.get("crossref") != null ? arguments.get("crossref") : "";;
-        this.editor = arguments.get("editor") != null ? arguments.get("editor") : "";;
-        this.howpublished = arguments.get("howpublished") != null ? arguments.get("howpublished") : "";;
-        this.institution = arguments.get("institution") != null ? arguments.get("institution") : "";;
-        this.organization = arguments.get("organization") != null ? arguments.get("organization") : "";;
-        this.school = arguments.get("school") != null ? arguments.get("school") : "";;
+        this.annote = arguments.get("annote") != null ? arguments.get("annote") : "";
+        this.chapter = arguments.get("chapter") != null ? arguments.get("chapter") : "";
+        this.crossref = arguments.get("crossref") != null ? arguments.get("crossref") : "";
+        this.editor = arguments.get("editor") != null ? arguments.get("editor") : "";
+        this.howpublished = arguments.get("howpublished") != null ? arguments.get("howpublished") : "";
+        this.institution = arguments.get("institution") != null ? arguments.get("institution") : "";
+        this.organization = arguments.get("organization") != null ? arguments.get("organization") : "";
+        this.school = arguments.get("school") != null ? arguments.get("school") : "";
     }
 
     private Map<String, String> extractArguments(String[] args) {
@@ -85,7 +87,7 @@ public class Reference {
     }
 
     public Reference(String type) {
-        this.type = type;
+        this.refType = type;
     }
 
     public Long getId() {
@@ -169,11 +171,11 @@ public class Reference {
     }
 
     public String getType() {
-        return type;
+        return refType;
     }
 
     public void setType(String type) {
-        this.type = type;
+        this.refType = type;
     }
 
     public String getName() {
@@ -286,6 +288,14 @@ public class Reference {
 
     public void setSchool(String school) {
         this.school = school;
+    }
+
+    public String getRefType() {
+        return refType;
+    }
+
+    public void setRefType(String refType) {
+        this.refType = refType;
     }
 
     public String getBibtex() {
