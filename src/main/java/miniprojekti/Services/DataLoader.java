@@ -27,7 +27,7 @@ public class DataLoader implements ApplicationRunner {
         referenceRepository.save(new Reference("type:Book", "name:royce70", "author:Test Author4", "publisher:Test Publisher", "year:2017"));
         referenceRepository.save(new Reference("type:Book", "name:Martin09", "author:Test Author5", "publisher:Test Publisher", "year:2017"));
         referenceRepository.save(new Reference("type:Book", "name:Begel_2008", "author:Test Author6", "publisher:Test Publisher", "year:2017"));
-        referenceRepository.save(new Reference("type:Book", "name:fox", "author:Test Author7", "publisher:Test Publisher", "year:2017"));
+        referenceRepository.save(new Reference("type:Book", "name:fox", "author:Äääööö Äuthör", "publisher:Test Publisher", "year:2017"));
 
     }
 }
