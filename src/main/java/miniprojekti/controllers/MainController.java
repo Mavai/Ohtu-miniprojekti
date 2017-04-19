@@ -93,8 +93,8 @@ public class MainController {
         for (Reference r : refRepo.findAll()) {
             bibtex += r.getBibtex();
         }
-        bibtex = bibtex.replaceAll("ä", "\\\\"+"\"a");
-        bibtex = bibtex.replaceAll("ö", "\\\\"+"\"o");
+        bibtex = bibtex.replaceAll("ä", "\\\\"+"\"{a}");
+        bibtex = bibtex.replaceAll("ö", "\\\\"+"\"{o}");
         return bibtex;
     }
 
