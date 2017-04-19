@@ -5,10 +5,13 @@ import java.net.URL;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.validation.constraints.AssertTrue;
 import miniprojekti.entities.Reference;
 import miniprojekti.repositories.ReferenceRepository;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -28,7 +31,7 @@ public class GetBibtexTest {
     @Autowired
     ReferenceRepository referenceRepository;
 
-    String getbibtexPath = "http://localhost:8080/getbibtex";
+    String getbibtexPath = "http://localhost:8080/references";
 
     @BeforeClass
     public static void setUpClass() {
@@ -56,7 +59,24 @@ public class GetBibtexTest {
     @Test
     public void getBibtexFileContainsSavedBook() {
         String file = downloadFile(getbibtexPath);
-        file.contains("referenceName");
+        assertTrue(file.contains("referenceName"));
+        assertTrue(file.contains("authorName"));
+        assertTrue(file.contains("bookTitle"));
+        assertTrue(file.contains("1234"));
+        assertTrue(file.contains("publisherName"));
+    }
+
+    @Test
+    public void getBibtexFileDoesNotContainUnAddedFields() {
+        String file = downloadFile(getbibtexPath);
+        assertFalse(file.contains("volume"));
+        assertFalse(file.contains("number"));
+        assertFalse(file.contains("series"));
+        assertFalse(file.contains("address"));
+        assertFalse(file.contains("edition"));
+        assertFalse(file.contains("month"));
+        assertFalse(file.contains("note"));
+        assertFalse(file.contains("key"));
     }
 
     private String downloadFile(String path) {
