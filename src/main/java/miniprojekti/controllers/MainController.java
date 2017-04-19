@@ -54,7 +54,7 @@ public class MainController {
     public HttpEntity<byte[]> getBibtex(Model model) throws IOException {
        String bibtex = "";
         for (Reference r : refRepo.findAll()) {
-            bibtex += "@" + r.getType() + "{" + r.getName() + ",\n";
+ /*           bibtex += "@" + r.getType() + "{" + r.getName() + ",\n";
             bibtex += r.getAuthor() != null && !r.getAuthor().equals("") ? " author    = \"" + r.getAuthor() + "\",\n" : "";
             bibtex += r.getTitle() != null && !r.getTitle().equals("") ? " title     = \"" + r.getTitle() + "\",\n" : "";
             bibtex += r.getPublisher() != null && !r.getPublisher().equals("") ? " publisher = \"" + r.getPublisher() + "\",\n" : "";
@@ -71,7 +71,8 @@ public class MainController {
             bibtex += r.getPublisher() != null && !r.getPublisher().equals("") ? " publisher = \"" + r.getPublisher() + "\",\n" : "";
             bibtex += r.getSeries() != null && !r.getSeries().equals("") ? " series   = \"" + r.getSeries() + "\",\n" : "";
             bibtex = bibtex.substring(0, bibtex.length() - 2);
-            bibtex += "\n}\n\n";
+            bibtex += "\n}\n\n";*/
+            bibtex += r.getBibtex();
         }
 
         byte[] data = bibtex.getBytes();
