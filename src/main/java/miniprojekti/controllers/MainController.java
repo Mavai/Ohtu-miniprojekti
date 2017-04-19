@@ -83,9 +83,9 @@ public class MainController {
         return new HttpEntity<byte[]>(data, header  );
     }
 
-    @RequestMapping(value= "/requestbibtex", method = RequestMethod.GET)
-    public String requestBibtex(Model model) {
-        return "";
+    @RequestMapping(value= "/requestbibtex", method = RequestMethod.POST)
+    public String requestBibtex(Model model, @RequestParam String filename) {
+        return "redirect:/getbibtex/" + filename;
     }
 
 }
