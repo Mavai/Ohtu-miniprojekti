@@ -8,8 +8,8 @@
             <h2>Add a Ph.D. thesis reference</h2>
 
             <form class="form-horizontal" id="ref-form" role="form" th:action="@{/save}" method="post" th:object="${reference}">
-                <input type="hidden" th:value="${reference.type}"
-                       th:field="${reference.type}"/>
+                <input type="hidden" th:value="${reference.refType}"
+                       th:field="${reference.refType}"/>
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="name">*Reference name:</label>
                     <div class="col-sm-10">
