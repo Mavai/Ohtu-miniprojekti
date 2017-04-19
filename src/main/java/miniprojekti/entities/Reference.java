@@ -228,4 +228,27 @@ public class Reference {
         this.title = title;
     }
 
+    public String getBibtex() {
+        String bibtex = "";
+        bibtex += "@" + getType() + "{" + getName() + ",\n";
+        bibtex += getAuthor() != null && !getAuthor().equals("") ? " author    = \"" + getAuthor() + "\",\n" : "";
+        bibtex += getTitle() != null && !getTitle().equals("") ? " title     = \"" + getTitle() + "\",\n" : "";
+        bibtex += getPublisher() != null && !getPublisher().equals("") ? " publisher = \"" + getPublisher() + "\",\n" : "";
+        bibtex += getYear() != null && !getYear().equals("") ? " year      = \"" + getYear() + "\",\n" : "";
+        bibtex += getMonth() != null && !getMonth().equals("") ? " month     = \"" + getMonth() + "\",\n" : "";
+        bibtex += getAddress() != null && !getAddress().equals("") ? " address   = \"" + getAddress() + "\",\n" : "";
+        bibtex += getEdition() != null && !getEdition().equals("") ? " edition   = \"" + getEdition() + "\",\n" : "";
+        bibtex += getJournal() != null && !getJournal().equals("") ? " journal   = \"" + getJournal() + "\",\n" : "";
+        bibtex += getVolume() != null && !getVolume().equals("") ? " volume    = \"" + getVolume() + "\",\n" : "";
+        bibtex += getNumber() != null && !getNumber().equals("") ? " number    = \"" + getNumber() + "\",\n" : "";
+        bibtex += getPages() != null && !getPages().equals("") ? " pages     = \"" + getPages() + "\",\n" : "";
+        bibtex += getNote() != null && !getNote().equals("") ? " note       = \"" + getNote() + "\",\n" : "";
+        bibtex += getKey() != null && !getKey().equals("") ? " key          = \"" + getKey() + "\",\n" : "";
+        bibtex += getPublisher() != null && !getPublisher().equals("") ? " publisher = \"" + getPublisher() + "\",\n" : "";    
+        bibtex += getSeries() != null && !getSeries().equals("") ? " series   = \"" + getSeries() + "\",\n" : "";
+        bibtex = bibtex.substring(0, bibtex.length() - 2);
+        bibtex += "\n}\n\n";
+        return bibtex;
+    }
+
 }

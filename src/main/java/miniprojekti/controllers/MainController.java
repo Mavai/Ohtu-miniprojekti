@@ -50,10 +50,10 @@ public class MainController {
         return "redirect:/references/create/" + type;
     }
 
-    @RequestMapping(value = "/getbibtex", method = RequestMethod.GET)
-    public HttpEntity<byte[]> getBibtex(Model model) throws IOException {
-       String bibtex = "";
-        for (Reference r : refRepo.findAll()) {
+    @RequestMapping(value = "/getbibtex/{filename}", method = RequestMethod.GET)
+    public HttpEntity<byte[]> getBibtex(Model model, @PathVariable String filename) throws IOException {
+       String bibtex = generateBibtex();
+/*        for (Reference r : refRepo.findAll()) {
             bibtex += "@" + r.getType() + "{" + r.getName() + ",\n";
             bibtex += r.getAuthor() != null && !r.getAuthor().equals("") ? " author    = \"" + r.getAuthor() + "\",\n" : "";
             bibtex += r.getTitle() != null && !r.getTitle().equals("") ? " title     = \"" + r.getTitle() + "\",\n" : "";
@@ -72,14 +72,28 @@ public class MainController {
             bibtex += r.getSeries() != null && !r.getSeries().equals("") ? " series   = \"" + r.getSeries() + "\",\n" : "";
             bibtex = bibtex.substring(0, bibtex.length() - 2);
             bibtex += "\n}\n\n";
-        }
+            bibtex += r.getBibtex();
+        }*/
 
         byte[] data = bibtex.getBytes();
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.TEXT_PLAIN);
-        header.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=bibtex.txt");
+        header.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+filename+".bib");
         header.setContentLength(data.length);
         return new HttpEntity<byte[]>(data, header  );
-
     }
+
+    @RequestMapping(value= "/requestbibtex", method = RequestMethod.POST)
+    public String requestBibtex(Model model, @RequestParam String filename) {
+        return "redirect:/getbibtex/" + filename;
+    }
+
+    public String generateBibtex() {
+        String bibtex = "";
+        for (Reference r : refRepo.findAll()) {
+            bibtex += r.getBibtex();
+        }
+        return bibtex;
+    }
+
 }
