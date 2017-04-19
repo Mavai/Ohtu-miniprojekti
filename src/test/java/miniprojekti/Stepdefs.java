@@ -87,8 +87,11 @@ public class Stepdefs {
 
     @When("^getbibtex file is downloaded$")
     public void getbibtex_file_is_downloaded() throws Throwable {
-        URL url = new URL(getbibtexPath);
-        downloadedFile = new Scanner(url.openStream()).useDelimiter("\\A").next();
+//        URL url = new URL(getbibtexPath);
+//        downloadedFile = new Scanner(url.openStream()).useDelimiter("\\A").next();
+        WebElement getBibtexButton = DriverFactory.getInstance().getDriver().findElement(By.id("submitBibtex"));
+        getBibtexButton.submit();
+        System.out.println(DriverFactory.getInstance().getDriver().getPageSource());
     }
 
     @Then("^page displays create a new reference$")
@@ -100,7 +103,7 @@ public class Stepdefs {
     public void page_displays_content(String content) throws Throwable {
         assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains(content));
     }
-    
+
     @Then("^page does not display content: \"([^\"]*)\"$")
     public void page_does_not_display_content(String content) throws Throwable {
         assertFalse(DriverFactory.getInstance().getDriver().getPageSource().contains(content));
