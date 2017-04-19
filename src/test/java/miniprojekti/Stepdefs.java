@@ -87,11 +87,8 @@ public class Stepdefs {
 
     @When("^getbibtex file is downloaded$")
     public void getbibtex_file_is_downloaded() throws Throwable {
-        System.out.println("downloading bibtex.txt");
         URL url = new URL(getbibtexPath);
         downloadedFile = new Scanner(url.openStream()).useDelimiter("\\A").next();
-        System.out.println("bibtex downloaded");
-        System.out.println(downloadedFile);
     }
 
     @Then("^page displays create a new reference$")
