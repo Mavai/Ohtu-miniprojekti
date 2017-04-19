@@ -85,13 +85,14 @@ public class Stepdefs {
         submit.submit();
     }
 
-    @When("^getbibtex file is downloaded$")
-    public void getbibtex_file_is_downloaded() throws Throwable {
-//        URL url = new URL(getbibtexPath);
-//        downloadedFile = new Scanner(url.openStream()).useDelimiter("\\A").next();
+    @When("^getbibtex file named \"([^\"]*)\" is downloaded$")
+    public void getbibtex_file_is_downloaded(String file) throws Throwable {
+        WebElement fileNameInput = DriverFactory.getInstance().getDriver().findElement(By.name("fileName"));
+        fileNameInput.sendKeys(file);
         WebElement getBibtexButton = DriverFactory.getInstance().getDriver().findElement(By.id("submitBibtex"));
         getBibtexButton.submit();
-        System.out.println(DriverFactory.getInstance().getDriver().getPageSource());
+        URL url = new URL(getbibtexPath + "/" + file);
+        downloadedFile = new Scanner(url.openStream()).useDelimiter("\\A").next();
     }
 
     @Then("^page displays create a new reference$")
