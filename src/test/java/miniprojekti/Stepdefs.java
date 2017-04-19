@@ -4,12 +4,22 @@ import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.validation.constraints.AssertFalse;
+import miniprojekti.repositories.ReferenceRepository;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -26,6 +36,7 @@ public class Stepdefs {
 
     String referencesPath = "http://localhost:8080/references";
     String getbibtexPath = "http://localhost:8080/getbibtex";
+    String downloadedFile;
 
     @After
     public void shutdown_server() {
@@ -69,20 +80,39 @@ public class Stepdefs {
     }
 
     @When("^form is submitted$")
-    public void form_is_submitted() {
+    public void form_is_submitted() throws Throwable {
         WebElement submit = DriverFactory.getInstance().getDriver().findElement(By.id("submit"));
         submit.submit();
+    }
+
+    @When("^getbibtex file is downloaded$")
+    public void getbibtex_file_is_downloaded() throws Throwable {
+        System.out.println("downloading bibtex.txt");
+        URL url = new URL(getbibtexPath);
+        downloadedFile = new Scanner(url.openStream()).useDelimiter("\\A").next();
+        System.out.println("bibtex downloaded");
+        System.out.println(downloadedFile);
     }
 
     @Then("^page displays create a new reference$")
     public void page_displays_create_a_new_reference() throws Throwable {
         assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Create a new reference"));
     }
+
     @Then("^page displays content: \"([^\"]*)\"$")
     public void page_displays_content(String content) throws Throwable {
         assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains(content));
     }
+    
+    @Then("^page does not display content: \"([^\"]*)\"$")
+    public void page_does_not_display_content(String content) throws Throwable {
+        assertFalse(DriverFactory.getInstance().getDriver().getPageSource().contains(content));
+    }
 
+    @Then("^file contains content: \"([^\"]*)\"$")
+    public void file_contains_content(String content) throws Throwable {
+        assertTrue(downloadedFile.contains(content));
+    }
 
     @Then("^page displays add a book reference content$")
     public void page_displays_add_a_book_reference_content() throws Throwable {
