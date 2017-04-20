@@ -1,4 +1,4 @@
-#Feature: References pages display right content
+Feature: References pages display right content
 #
 #  Scenario: References page displays Create a new reference
 #    Given references is visited
@@ -28,13 +28,13 @@
 #    And page displays content: "testTitle"
 #
 #  #
-#  Scenario: Book with empty fields will not be added
-#    Given references is visited
-#    When type: "Book" is selected
-#    And form is submitted
-#    And form is filled with value: "authorWithOtherFieldsEmpty" for "author"
-#    And form is submitted
-#    Then page displays content: "Add an article reference"
+  Scenario: Book with empty fields will not be added
+    Given references is visited
+    When type: "Book" is selected
+    And form is submitted
+    And form is filled with value: "authorWithOtherFieldsEmpty" for "author"
+    And form is submitted
+    Then page displays content: "Add a book reference"
 #
 #  Scenario: Add article reference page is accessible from references page
 #    Given references is visited
