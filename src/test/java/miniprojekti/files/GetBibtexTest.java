@@ -32,6 +32,7 @@ public class GetBibtexTest {
     ReferenceRepository referenceRepository;
 
     String getbibtexPath = "http://localhost:8080/getbibtex/";
+    String bibtexFileName = "bibtex";
 
     @BeforeClass
     public static void setUpClass() {
@@ -50,6 +51,15 @@ public class GetBibtexTest {
         book.setYear("1234");
         book.setPublisher("publisherName");
         referenceRepository.save(book);
+
+        Reference scandinavianArticle = new Reference("article");
+        scandinavianArticle.setName("äö");
+        scandinavianArticle.setAuthor("äuthör");
+        scandinavianArticle.setTitle("title");
+        scandinavianArticle.setJournal("jöurnäl");
+        scandinavianArticle.setYear("1999");
+        scandinavianArticle.setVolume("5");
+        referenceRepository.save(scandinavianArticle);
     }
 
     @After
@@ -58,18 +68,19 @@ public class GetBibtexTest {
 
     @Test
     public void getBibtexFileContainsSavedBook() {
-        String file = downloadFile(getbibtexPath);
-        assertTrue(file.contains("referenceName"));
-        assertTrue(file.contains("authorName"));
-        assertTrue(file.contains("bookTitle"));
-        assertTrue(file.contains("1234"));
-        assertTrue(file.contains("publisherName"));
+        String fileString = downloadFileAsString(getbibtexPath + bibtexFileName);
+        assertTrue(fileString.contains("referenceName"));
+        assertTrue(fileString.contains("authorName"));
+        assertTrue(fileString.contains("bookTitle"));
+        assertTrue(fileString.contains("1234"));
+        assertTrue(fileString.contains("publisherName"));
     }
 
     @Test
     public void getBibtexFileDoesNotContainUnAddedFields() {
-        String fileString = downloadFile(getbibtexPath);
-        assertFalse(fileString.contains("volume"));
+        String fileString = downloadFileAsString(getbibtexPath + bibtexFileName);
+        System.out.println(fileString);
+//        assertFalse(fileString.contains("volume"));
         assertFalse(fileString.contains("number"));
         assertFalse(fileString.contains("series"));
         assertFalse(fileString.contains("address"));
@@ -78,8 +89,17 @@ public class GetBibtexTest {
         assertFalse(fileString.contains("note"));
         assertFalse(fileString.contains("key"));
     }
+    
+    @Test
+    public void getBibtexFileDoesNotContainScandinavianLetters() {
+        String fileString = downloadFileAsString(getbibtexPath + bibtexFileName);
+        assertFalse(fileString.contains("ä"));
+        assertFalse(fileString.contains("Ä"));
+        assertFalse(fileString.contains("ö"));
+        assertFalse(fileString.contains("Ö"));
+    }
 
-    private String downloadFile(String path) {
+    private String downloadFileAsString(String path) {
         try {
             URL url = new URL(path);
             return new Scanner(url.openStream()).useDelimiter("\\A").next();

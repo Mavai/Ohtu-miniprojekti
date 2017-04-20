@@ -54,33 +54,46 @@ public class Stepdefs {
         DriverFactory.getInstance().getDriver().get(getbibtexPath);
     }
 
-    @Given("^book is added$")
-    public void book_is_added() throws Throwable {
-        type_is_selected("book");
-        form_is_submitted();
-        form_is_filled_with_value("referenceName", "name");
-        form_is_filled_with_value("authorName", "author");
-        form_is_filled_with_value("titleOfTheBook", "title");
-        form_is_filled_with_value("1994", "year");
-        form_is_filled_with_value("publisherName", "publisher");
-        form_is_submitted();
+    @Given("^book is added with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
+    public void book_is_added(String name, String author, String title, String year, String publisher) throws Throwable {
+        selectType("book");
+        submitForm();
+        fillInputWithValue(name, "name");
+        fillInputWithValue(author, "author");
+        fillInputWithValue(title, "title");
+        fillInputWithValue(year, "year");
+        fillInputWithValue(publisher, "publisher");
+        submitForm();
     }
 
     @When("^type: \"([^\"]*)\" is selected$")
     public void type_is_selected(String type) throws Throwable {
+        selectType(type);
+    }
+
+    private void selectType(String type) {
         WebElement selectElement = DriverFactory.getInstance().getDriver().findElement(By.name("type"));
         Select select = new Select(selectElement);
         select.selectByVisibleText(type);
+
     }
 
     @When("^form is filled with value: \"([^\"]*)\" for \"([^\"]*)\"$")
     public void form_is_filled_with_value(String value, String field) throws Throwable {
-        WebElement fieldElement = DriverFactory.getInstance().getDriver().findElement(By.id(field));
+        fillInputWithValue(value, field);
+    }
+
+    private void fillInputWithValue(String value, String input) {
+        WebElement fieldElement = DriverFactory.getInstance().getDriver().findElement(By.id(input));
         fieldElement.sendKeys(value);
     }
 
     @When("^form is submitted$")
     public void form_is_submitted() throws Throwable {
+        submitForm();
+    }
+
+    private void submitForm() {
         WebElement submit = DriverFactory.getInstance().getDriver().findElement(By.id("submit"));
         submit.submit();
     }
