@@ -1,4 +1,4 @@
-Feature: GetBibtex page displays right content
+Feature: Bibtex file can be downloaded
 
   #  Scenario: Added book is found on bibtex page
   #    Given references is visited

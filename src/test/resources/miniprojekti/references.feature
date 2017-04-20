@@ -75,19 +75,19 @@ Feature: References pages display right content
 #
 #  Scenario: Add inproceedings reference page is accessible from references page
 #    Given references is visited
-#    When type: "Inroceedings" is selected
+#    When type: "Inproceedings" is selected
 #    And form is submitted
 #    Then page displays content: "Reference name"
 #    And page displays content: "Author"
 #    And page displays content: "Title"
-#    And page displays content: "Booktitle"
+#    And page displays content: "Book Title"
 #    And page displays content: "Year"
 #    And page displays content: "Pages"
 #    And page displays content: "Publisher"
 #
 #  Scenario: References page displays added inproceedings
 #    Given references is visited
-#    When type: "Inproceeding" is selected
+#    When type: "Inproceedings" is selected
 #    And form is submitted
 #    And form is filled with value: "referenceName" for "name"
 #    And form is filled with value: "testAuthor" for "author"
