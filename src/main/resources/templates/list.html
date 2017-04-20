@@ -24,7 +24,7 @@
         <th>Key</th>
     </tr>
     <tr th:each="reference : ${references}">
-        <td><span th:text="${reference.type}"></span></td>
+        <td><span th:text="${reference.refType}"></span></td>
         <td><span th:text="${reference.name}"></span></td>
         <td><span th:text="${reference.author}"></span></td>
         <td><span th:text="${reference.title}"></span></td>
@@ -46,9 +46,16 @@
     <div class="form-group">
         <label for="type">Type:</label>
         <select class="form-control" id="type" name="type">
-            <option value="book">Book</option>
             <option value="article">Article</option>
+            <option value="book">Book</option>
+            <option value="booklet">Booklet</option>
+            <option value="conference">Conference</option>
+            <option value="inbook">Inbook</option>
+            <option value="incollection">Incollection</option>
+            <option value="inproceedings">Inproceedings</option>
+            <option value="manual">Manual</option>
             <option value="mastersthesis">Master's thesis</option>
+            <option value="misc">Misc</option>
             <option value="phdthesis">Ph.D. thesis</option>
             <option value="proceedings">Proceedings</option>
             <option value="techreport">Tech report</option>

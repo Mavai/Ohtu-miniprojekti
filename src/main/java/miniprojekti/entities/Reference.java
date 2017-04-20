@@ -44,13 +44,14 @@ public class Reference {
     String institution;
     String organization;
     String school;
+    String booktitle;
 
     public Reference() {
     }
 
     public Reference(String... args) {
         Map<String, String> arguments = extractArguments(args);
-        this.refType = arguments.get("type") != null ? arguments.get("type") : "";
+        this.refType = arguments.get("refType") != null ? arguments.get("refType") : "";
         this.type = arguments.get("type") != null ? arguments.get("type") : "";
         this.name = arguments.get("name") != null ? arguments.get("name") : "";
         this.author = arguments.get("author") != null ? arguments.get("author") : "";
@@ -75,6 +76,7 @@ public class Reference {
         this.institution = arguments.get("institution") != null ? arguments.get("institution") : "";
         this.organization = arguments.get("organization") != null ? arguments.get("organization") : "";
         this.school = arguments.get("school") != null ? arguments.get("school") : "";
+        this.school = arguments.get("booktitle") != null ? arguments.get("booktitle") : "";
     }
 
     private Map<String, String> extractArguments(String[] args) {
@@ -171,11 +173,11 @@ public class Reference {
     }
 
     public String getType() {
-        return refType;
+        return this.type;
     }
 
     public void setType(String type) {
-        this.refType = type;
+        this.type = type;
     }
 
     public String getName() {
@@ -296,6 +298,14 @@ public class Reference {
 
     public void setRefType(String refType) {
         this.refType = refType;
+    }
+
+    public String getBooktitle() {
+        return booktitle;
+    }
+
+    public void setBooktitle(String booktitle) {
+        this.booktitle = booktitle;
     }
 
     public String getBibtex() {
