@@ -31,7 +31,7 @@ public class GetBibtexTest {
     @Autowired
     ReferenceRepository referenceRepository;
 
-    String getbibtexPath = "http://localhost:8080/references";
+    String getbibtexPath = "http://localhost:8080/getbibtex/";
 
     @BeforeClass
     public static void setUpClass() {
@@ -68,15 +68,15 @@ public class GetBibtexTest {
 
     @Test
     public void getBibtexFileDoesNotContainUnAddedFields() {
-        String file = downloadFile(getbibtexPath);
-        assertFalse(file.contains("volume"));
-        assertFalse(file.contains("number"));
-        assertFalse(file.contains("series"));
-        assertFalse(file.contains("address"));
-        assertFalse(file.contains("edition"));
-        assertFalse(file.contains("month"));
-        assertFalse(file.contains("note"));
-        assertFalse(file.contains("key"));
+        String fileString = downloadFile(getbibtexPath);
+        assertFalse(fileString.contains("volume"));
+        assertFalse(fileString.contains("number"));
+        assertFalse(fileString.contains("series"));
+        assertFalse(fileString.contains("address"));
+        assertFalse(fileString.contains("edition"));
+        assertFalse(fileString.contains("month"));
+        assertFalse(fileString.contains("note"));
+        assertFalse(fileString.contains("key"));
     }
 
     private String downloadFile(String path) {
