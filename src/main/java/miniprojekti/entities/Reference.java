@@ -341,4 +341,11 @@ public class Reference {
         return bibtex;
     }
 
+    public boolean validate() {
+        if (title.equals("")) {
+            return false;
+        }
+        return true;
+    }
+
 }

@@ -33,7 +33,7 @@ Feature: References pages display right content
     And form is submitted
     And form is filled with value: "authorWithOtherFieldsEmpty" for "author"
     And form is submitted
-    Then page displays content: "Add an article reference"
+    Then page displays content: "Add a book reference"
 
   Scenario: Add article reference page is accessible from references page
     Given references is visited
@@ -70,7 +70,7 @@ Feature: References pages display right content
     And form is submitted
     And form is filled with value: "authorWithOtherFieldsEmpty" for "author"
     And form is submitted
-    Then page displays content: "Add a book reference"
+    Then page displays content: "Add an article reference"
 
   Scenario: Add inproceedings reference page is accessible from references page
     Given references is visited
@@ -105,4 +105,4 @@ Feature: References pages display right content
     And form is submitted
     And form is filled with value: "authorWithOtherFieldsEmpty" for "author"
     And form is submitted
-    Then page displays content: "Add an inproceedings reference"
+    Then page displays content: "Add a inproceedings reference"
