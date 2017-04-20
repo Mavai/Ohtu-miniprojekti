@@ -310,7 +310,7 @@ public class Reference {
 
     public String getBibtex() {
         String bibtex = "";
-        bibtex += "@" + getType() + "{" + getName() + ",\n";
+        bibtex += "@" + getRefType() + "{" + getName() + ",\n";
         bibtex += getAuthor() != null && !getAuthor().equals("") ? " author    = \"" + getAuthor() + "\",\n" : "";
         bibtex += getTitle() != null && !getTitle().equals("") ? " title     = \"" + getTitle() + "\",\n" : "";
         bibtex += getPublisher() != null && !getPublisher().equals("") ? " publisher = \"" + getPublisher() + "\",\n" : "";
@@ -324,8 +324,18 @@ public class Reference {
         bibtex += getPages() != null && !getPages().equals("") ? " pages     = \"" + getPages() + "\",\n" : "";
         bibtex += getNote() != null && !getNote().equals("") ? " note       = \"" + getNote() + "\",\n" : "";
         bibtex += getKey() != null && !getKey().equals("") ? " key          = \"" + getKey() + "\",\n" : "";
-        bibtex += getPublisher() != null && !getPublisher().equals("") ? " publisher = \"" + getPublisher() + "\",\n" : "";
         bibtex += getSeries() != null && !getSeries().equals("") ? " series   = \"" + getSeries() + "\",\n" : "";
+        bibtex += getAddress() != null && !getAddress().equals("") ? " address   = \"" + getAddress() + "\",\n" : "";
+        bibtex += getEdition() != null && !getEdition().equals("") ? " edition   = \"" + getEdition() + "\",\n" : "";
+        bibtex += getAnnote() != null && !getAnnote().equals("") ? " annote   = \"" + getAnnote() + "\",\n" : "";
+        bibtex += getChapter() != null && !getChapter().equals("") ? " chapter   = \"" + getChapter() + "\",\n" : "";
+        bibtex += getCrossref() != null && !getCrossref().equals("") ? " crossref   = \"" + getCrossref() + "\",\n" : "";
+        bibtex += getEditor() != null && !getEditor().equals("") ? " editor   = \"" + getEditor() + "\",\n" : "";
+        bibtex += getHowpublished() != null && !getHowpublished().equals("") ? " howpublished   = \"" + getHowpublished() + "\",\n" : "";
+        bibtex += getInstitution() != null && !getInstitution().equals("") ? " institution   = \"" + getInstitution() + "\",\n" : "";
+        bibtex += getOrganization() != null && !getOrganization().equals("") ? " organization   = \"" + getOrganization() + "\",\n" : "";
+        bibtex += getSchool() != null && !getSchool().equals("") ? " school   = \"" + getSchool() + "\",\n" : "";
+        bibtex += getBooktitle() != null && !getBooktitle().equals("") ? " booktitle   = \"" + getBooktitle() + "\",\n" : "";
         bibtex = bibtex.substring(0, bibtex.length() - 2);
         bibtex += "\n}\n\n";
         return bibtex;
