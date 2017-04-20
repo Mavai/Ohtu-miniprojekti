@@ -27,7 +27,6 @@ Feature: References pages display right content
     Then page displays content: "testAuthor"
     And page displays content: "testTitle"
 
-  #
   Scenario: Book with empty fields will not be added
     Given references is visited
     When type: "Book" is selected
