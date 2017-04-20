@@ -83,7 +83,7 @@ public class MainController {
         return new HttpEntity<byte[]>(data, header  );
     }
 
-    @RequestMapping(value= "/requestbibtex", method = RequestMethod.POST)
+    @RequestMapping(value= "/requestbibtex", method = RequestMethod.POST )
     public String requestBibtex(Model model, @RequestParam String filename) {
         return "redirect:/getbibtex/" + filename;
     }
@@ -97,6 +97,8 @@ public class MainController {
         bibtex = bibtex.replaceAll("Ä", "{\\\\"+"\"A}");
         bibtex = bibtex.replaceAll("ö", "{\\\\"+"\"o}");
         bibtex = bibtex.replaceAll("Ö", "{\\\\"+"\"O}");
+        bibtex = bibtex.replaceAll("å", "{\\\\"+"\"aa}");
+        bibtex = bibtex.replaceAll("Å", "{\\\\"+"\"AA}");
         return bibtex;
     }
 
