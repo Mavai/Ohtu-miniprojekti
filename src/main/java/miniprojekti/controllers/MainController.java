@@ -41,8 +41,12 @@ public class MainController {
 
     @RequestMapping(value = "/save")
     public String addNew(Reference reference) {
-        refRepo.save(reference);
-        return "redirect:/references";
+        if (reference.validate()) {
+            refRepo.save(reference);
+            return "redirect:/references";
+        } else {
+            return "redirect:/references/create/" + reference.getRefType();
+        }
     }
 
     @RequestMapping(value = "/references", method = RequestMethod.POST)
