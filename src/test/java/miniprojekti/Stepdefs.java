@@ -8,12 +8,14 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.validation.constraints.AssertFalse;
 import miniprojekti.repositories.ReferenceRepository;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
@@ -56,7 +58,7 @@ public class Stepdefs {
 
     @Given("^book is added with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
     public void book_is_added(String name, String author, String title, String year, String publisher) throws Throwable {
-        selectType("book");
+        selectType("Book");
         submitForm();
         fillInputWithValue(name, "name");
         fillInputWithValue(author, "author");
@@ -100,7 +102,7 @@ public class Stepdefs {
 
     @When("^getbibtex file named \"([^\"]*)\" is downloaded$")
     public void getbibtex_file_is_downloaded(String file) throws Throwable {
-        WebElement fileNameInput = DriverFactory.getInstance().getDriver().findElement(By.name("fileName"));
+        WebElement fileNameInput = DriverFactory.getInstance().getDriver().findElement(By.name("filename"));
         fileNameInput.sendKeys(file);
         WebElement getBibtexButton = DriverFactory.getInstance().getDriver().findElement(By.id("submitBibtex"));
         getBibtexButton.submit();
