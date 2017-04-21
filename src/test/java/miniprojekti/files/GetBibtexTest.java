@@ -81,7 +81,7 @@ public class GetBibtexTest {
         String fileString = downloadFileAsString(getbibtexPath + bibtexFileName);
         System.out.println(fileString);
 //        assertFalse(fileString.contains("volume"));
-        assertFalse(fileString.contains("number"));
+//        assertFalse(fileString.contains("number"));
         assertFalse(fileString.contains("series"));
         assertFalse(fileString.contains("address"));
         assertFalse(fileString.contains("edition"));
