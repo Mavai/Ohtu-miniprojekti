@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<!--
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:include="base :: header"></head>
+    <body>
+        
+        <table th:fragment="articleTable">
+            <caption>Article references</caption>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Journal</th>
+                <th>Year</th>
+                <th>Volume</th>
+                <th>Number</th>
+                <th>Pages</th>
+                <th>Month</th>
+                <th>Note</th>
+                <th>Key</th>
+            </tr>
+            <tr th:each="reference : ${articleReferences}">
+                <td><span th:text="${reference.name}"></span></td>
+                <td><span th:text="${reference.author}"></span></td>
+                <td><span th:text="${reference.title}"></span></td>
+                <td><span th:text="${reference.journal}"></span></td>
+                <td><span th:text="${reference.year}"></span></td>
+                <td><span th:text="${reference.volume}"></span></td>
+                <td><span th:text="${reference.number}"></span></td>
+                <td><span th:text="${reference.pages}"></span></td>
+                <td><span th:text="${reference.month}"></span></td>
+                <td><span th:text="${reference.note}"></span></td>
+                <td><span th:text="${reference.key}"></span></td>
+            </tr>
+        </table>
+
+        <table th:fragment="bookTable">
+            <caption>Book references</caption>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Editor</th>
+                <th>Title</th>
+                <th>Publisher</th>
+                <th>Year</th>
+                <th>Volume</th>
+                <th>Number</th>
+                <th>Series</th>
+                <th>Address</th>
+                <th>Edition</th>
+                <th>Month</th>
+                <th>Note</th>
+                <th>Key</th>
+            </tr>
+            <tr th:each="reference : ${bookReferences}">
+                <td><span th:text="${reference.name}"></span></td>
+                <td><span th:text="${reference.author}"></span></td>
+                <td><span th:text="${reference.editor}"></span></td>
+                <td><span th:text="${reference.title}"></span></td>
+                <td><span th:text="${reference.publisher}"></span></td>
+                <td><span th:text="${reference.year}"></span></td>
+                <td><span th:text="${reference.volume}"></span></td>
+                <td><span th:text="${reference.number}"></span></td>
+                <td><span th:text="${reference.series}"></span></td>
+                <td><span th:text="${reference.address}"></span></td>
+                <td><span th:text="${reference.edition}"></span></td>
+                <td><span th:text="${reference.month}"></span></td>
+                <td><span th:text="${reference.note}"></span></td>
+                <td><span th:text="${reference.key}"></span></td>
+            </tr>
+        </table>
+        
+        <table th:fragment="bookletTable">
+            <caption>Booklet references</caption>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Howpublished</th>
+                <th>Year</th>
+                <th>Address</th>
+                <th>Month</th>
+                <th>Note</th>
+                <th>Key</th>
+            </tr>
+            <tr th:each="reference : ${bookletReferences}">
+                <td><span th:text="${reference.name}"></span></td>
+                <td><span th:text="${reference.author}"></span></td>
+                <td><span th:text="${reference.title}"></span></td>
+                <td><span th:text="${reference.howpublished}"></span></td>
+                <td><span th:text="${reference.year}"></span></td>
+                <td><span th:text="${reference.address}"></span></td>
+                <td><span th:text="${reference.month}"></span></td>
+                <td><span th:text="${reference.note}"></span></td>
+                <td><span th:text="${reference.key}"></span></td>
+            </tr>
+        </table>
+        
+        <table th:fragment="inbookTable">
+            <caption>Inbook references</caption>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Editor</th>
+                <th>Title</th>
+                <th>Publisher</th>
+                <th>Chapter</th>
+                <th>Pages</th>
+                <th>Year</th>
+                <th>Volume</th>
+                <th>Number</th>
+                <th>Series</th>
+                <th>Type</th>
+                <th>Address</th>
+                <th>Edition</th>
+                <th>Month</th>
+                <th>Note</th>
+                <th>Key</th>
+            </tr>
+            <tr th:each="reference : ${inbookReferences}">
+                <td><span th:text="${reference.name}"></span></td>
+                <td><span th:text="${reference.author}"></span></td>
+                <td><span th:text="${reference.editor}"></span></td>
+                <td><span th:text="${reference.title}"></span></td>
+                <td><span th:text="${reference.publisher}"></span></td>
+                <td><span th:text="${reference.chapter}"></span></td>
+                <td><span th:text="${reference.pages}"></span></td>
+                <td><span th:text="${reference.year}"></span></td>
+                <td><span th:text="${reference.volume}"></span></td>
+                <td><span th:text="${reference.number}"></span></td>
+                <td><span th:text="${reference.series}"></span></td>
+                <td><span th:text="${reference.type}"></span></td>
+                <td><span th:text="${reference.address}"></span></td>
+                <td><span th:text="${reference.edition}"></span></td>
+                <td><span th:text="${reference.month}"></span></td>
+                <td><span th:text="${reference.note}"></span></td>
+                <td><span th:text="${reference.key}"></span></td>
+            </tr>
+        </table>
+        
+        <table th:fragment="incollectionTable">
+            <caption>Incollection references</caption>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Booktitle</th>
+                <th>Publisher</th>
+                <th>Year</th>
+                <th>Editor</th>
+                <th>Volume</th>
+                <th>Number</th>
+                <th>Series</th>
+                <th>Type</th>
+                <th>Chapter</th>
+                <th>Pages</th>
+                <th>Address</th>
+                <th>Edition</th>
+                <th>Month</th>
+                <th>Note</th>
+                <th>Key</th>
+            </tr>
+            <tr th:each="reference : ${incollectionReferences}">
+                <td><span th:text="${reference.name}"></span></td>
+                <td><span th:text="${reference.author}"></span></td>
+                <td><span th:text="${reference.title}"></span></td>
+                <td><span th:text="${reference.booktitle}"></span></td>
+                <td><span th:text="${reference.publisher}"></span></td>
+                <td><span th:text="${reference.year}"></span></td>
+                <td><span th:text="${reference.editor}"></span></td>
+                <td><span th:text="${reference.volume}"></span></td>
+                <td><span th:text="${reference.number}"></span></td>
+                <td><span th:text="${reference.series}"></span></td>
+                <td><span th:text="${reference.type}"></span></td>
+                <td><span th:text="${reference.chapter}"></span></td>
+                <td><span th:text="${reference.pages}"></span></td>
+                <td><span th:text="${reference.address}"></span></td>
+                <td><span th:text="${reference.edition}"></span></td>
+                <td><span th:text="${reference.month}"></span></td>
+                <td><span th:text="${reference.note}"></span></td>
+                <td><span th:text="${reference.key}"></span></td>
+            </tr>
+        </table>
+        
+        <table th:fragment="inproceedingsTable">
+            <caption>Inproceedings references</caption>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Booktitle</th>
+                <th>Year</th>
+                <th>Editor</th>
+                <th>Volume</th>
+                <th>Number</th>
+                <th>Series</th>
+                <th>Pages</th>
+                <th>Address</th>
+                <th>Organization</th>
+                <th>Publisher</th>
+                <th>Month</th>
+                <th>Note</th>
+                <th>Key</th>
+            </tr>
+            <tr th:each="reference : ${inproceedingsReferences}">
+                <td><span th:text="${reference.name}"></span></td>
+                <td><span th:text="${reference.author}"></span></td>
+                <td><span th:text="${reference.title}"></span></td>
+                <td><span th:text="${reference.booktitle}"></span></td>
+                <td><span th:text="${reference.year}"></span></td>
+                <td><span th:text="${reference.editor}"></span></td>
+                <td><span th:text="${reference.volume}"></span></td>
+                <td><span th:text="${reference.number}"></span></td>
+                <td><span th:text="${reference.series}"></span></td>
+                <td><span th:text="${reference.pages}"></span></td>
+                <td><span th:text="${reference.address}"></span></td>
+                <td><span th:text="${reference.organization}"></span></td>
+                <td><span th:text="${reference.publisher}"></span></td>
+                <td><span th:text="${reference.month}"></span></td>
+                <td><span th:text="${reference.note}"></span></td>
+                <td><span th:text="${reference.key}"></span></td>
+            </tr>
+        </table>
+        
+        <table th:fragment="manualTable">
+            <caption>Manual references</caption>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Organization</th>
+                <th>Address</th>
+                <th>Edition</th>
+                <th>Month</th>
+                <th>Note</th>
+                <th>Key</th>
+            </tr>
+            <tr th:each="reference : ${manualReferences}">
+                <td><span th:text="${reference.name}"></span></td>
+                <td><span th:text="${reference.author}"></span></td>
+                <td><span th:text="${reference.title}"></span></td>
+                <td><span th:text="${reference.organization}"></span></td>
+                <td><span th:text="${reference.address}"></span></td>
+                <td><span th:text="${reference.edition}"></span></td>
+                <td><span th:text="${reference.month}"></span></td>
+                <td><span th:text="${reference.note}"></span></td>
+                <td><span th:text="${reference.key}"></span></td>
+            </tr>
+        </table>
+        
+        <table th:fragment="mastersthesisTable">
+            <caption>Master's thesis references</caption>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Title</th>
+                <th>School</th>
+                <th>Year</th>
+                <th>Type</th>
+                <th>Address</th>
+                <th>Month</th>
+                <th>Note</th>
+                <th>Key</th>
+            </tr>
+            <tr th:each="reference : ${mastersthesisReferences}">
+                <td><span th:text="${reference.name}"></span></td>
+                <td><span th:text="${reference.author}"></span></td>
+                <td><span th:text="${reference.title}"></span></td>
+                <td><span th:text="${reference.school}"></span></td>
+                <td><span th:text="${reference.year}"></span></td>
+                <td><span th:text="${reference.type}"></span></td>
+                <td><span th:text="${reference.address}"></span></td>
+                <td><span th:text="${reference.month}"></span></td>
+                <td><span th:text="${reference.note}"></span></td>
+                <td><span th:text="${reference.key}"></span></td>
+            </tr>
+        </table>
+        
+        <table th:fragment="miscTable">
+            <caption>Misc references</caption>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Howpublished</th>
+                <th>Year</th>
+                <th>Month</th>
+                <th>Note</th>
+                <th>Key</th>
+            </tr>
+            <tr th:each="reference : ${inproceedingsReferences}">
+                <td><span th:text="${reference.name}"></span></td>
+                <td><span th:text="${reference.author}"></span></td>
+                <td><span th:text="${reference.title}"></span></td>
+                <td><span th:text="${reference.howpublished}"></span></td>
+                <td><span th:text="${reference.year}"></span></td>
+                <td><span th:text="${reference.month}"></span></td>
+                <td><span th:text="${reference.note}"></span></td>
+                <td><span th:text="${reference.key}"></span></td>
+            </tr>
+        </table>
+        
+        <table th:fragment="phdthesisTable">
+            <caption>Ph.D. thesis references</caption>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Title</th>
+                <th>School</th>
+                <th>Year</th>
+                <th>Type</th>
+                <th>Address</th>
+                <th>Month</th>
+                <th>Note</th>
+                <th>Key</th>
+            </tr>
+            <tr th:each="reference : ${phdthesisReferences}">
+                <td><span th:text="${reference.name}"></span></td>
+                <td><span th:text="${reference.author}"></span></td>
+                <td><span th:text="${reference.title}"></span></td>
+                <td><span th:text="${reference.school}"></span></td>
+                <td><span th:text="${reference.year}"></span></td>
+                <td><span th:text="${reference.type}"></span></td>
+                <td><span th:text="${reference.address}"></span></td>
+                <td><span th:text="${reference.month}"></span></td>
+                <td><span th:text="${reference.note}"></span></td>
+                <td><span th:text="${reference.key}"></span></td>
+            </tr>
+        </table>
+        
+        <table th:fragment="proceedingsTable">
+            <caption>Proceedings references</caption>
+            <tr>
+                <th>Name</th>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Editor</th>
+                <th>Volume</th>
+                <th>Number</th>
+                <th>Series</th>
+                <th>Address</th>
+                <th>Organization</th>
+                <th>Publisher</th>
+                <th>Month</th>
+                <th>Note</th>
+                <th>Key</th>
+            </tr>
+            <tr th:each="reference : ${proceedingsReferences}">
+                <td><span th:text="${reference.name}"></span></td>
+                <td><span th:text="${reference.title}"></span></td>
+                <td><span th:text="${reference.year}"></span></td>
+                <td><span th:text="${reference.editor}"></span></td>
+                <td><span th:text="${reference.volume}"></span></td>
+                <td><span th:text="${reference.number}"></span></td>
+                <td><span th:text="${reference.series}"></span></td>
+                <td><span th:text="${reference.address}"></span></td>
+                <td><span th:text="${reference.organization}"></span></td>
+                <td><span th:text="${reference.publisher}"></span></td>
+                <td><span th:text="${reference.month}"></span></td>
+                <td><span th:text="${reference.note}"></span></td>
+                <td><span th:text="${reference.key}"></span></td>
+            </tr>
+        </table>
+        
+        <table th:fragment="techreportTable">
+            <caption>Tech report references</caption>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Institution</th>
+                <th>Year</th>
+                <th>Type</th>
+                <th>Number</th>
+                <th>Pages</th>
+                <th>Address</th>
+                <th>Month</th>
+                <th>Note</th>
+                <th>Key</th>
+            </tr>
+            <tr th:each="reference : ${techreportReferences}">
+                <td><span th:text="${reference.name}"></span></td>
+                <td><span th:text="${reference.author}"></span></td>
+                <td><span th:text="${reference.title}"></span></td>
+                <td><span th:text="${reference.institution}"></span></td>
+                <td><span th:text="${reference.year}"></span></td>
+                <td><span th:text="${reference.type}"></span></td>
+                <td><span th:text="${reference.number}"></span></td>
+                <td><span th:text="${reference.pages}"></span></td>
+                <td><span th:text="${reference.address}"></span></td>
+                <td><span th:text="${reference.month}"></span></td>
+                <td><span th:text="${reference.note}"></span></td>
+                <td><span th:text="${reference.key}"></span></td>
+            </tr>
+        </table>
+        
+        <table th:fragment="unpublishedTable">
+            <caption>Unpublished references</caption>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Month</th>
+                <th>Note</th>
+                <th>Key</th>
+            </tr>
+            <tr th:each="reference : ${unpublishedReferences}">
+                <td><span th:text="${reference.name}"></span></td>
+                <td><span th:text="${reference.author}"></span></td>
+                <td><span th:text="${reference.title}"></span></td>
+                <td><span th:text="${reference.year}"></span></td>
+                <td><span th:text="${reference.month}"></span></td>
+                <td><span th:text="${reference.note}"></span></td>
+                <td><span th:text="${reference.key}"></span></td>
+            </tr>
+        </table>
+    </body>
+</html>
