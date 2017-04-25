@@ -105,10 +105,10 @@ public class MainController {
         return "redirect:/getbibtex/" + filename;
     }
 
-    @RequestMapping(value = "/destroy", method = RequestMethod.DELETE)
-    public String destroy(@RequestParam Long id) {
-        refRepo.findOne(id);
-        return "redirect: /referen";
+    @RequestMapping(value= "/destroy", method = RequestMethod.POST)
+    public String destroy(Model model, @RequestParam Long id) {
+        refRepo.delete(id);
+        return "redirect:/references";
     }
 
     public String generateBibtex() {
