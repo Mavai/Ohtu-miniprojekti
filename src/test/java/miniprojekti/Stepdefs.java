@@ -60,70 +60,100 @@ public class Stepdefs {
     @When("^book with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\" is added$")
     public void book_is_added(String name, String author, String title, String year, String publisher) throws Throwable {
         selectType("Book");
-        submitForm();
+        submitButtonWithId("submit");
         fillInputWithValue(name, "name");
         fillInputWithValue(author, "author");
         fillInputWithValue(title, "title");
-        fillInputWithValue(year, "year");
         fillInputWithValue(publisher, "publisher");
-        submitForm();
+        fillInputWithValue(year, "year");
+        submitButtonWithId("submit");
     }
 
     @When("^book with author: \"([^\"]*)\" is added$")
     public void book_is_added_with_author(String author) {
         selectType("Book");
-        submitForm();
+        submitButtonWithId("submit");
         fillInputWithValue(author, "author");
-        submitForm();
+        submitButtonWithId("submit");
+    }
+
+    @When("^book named \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
+    public void book_is_edited(String oldName, String newName, String author, String title, String year, String publisher) {
+
+    }
+    
+    @When("^book named \"([^\"]*)\" is deleted$")
+    public void book_is_deleted(String name) {
+        submitButtonWithId(name);
     }
 
     @Given("^article is added with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", journal: \"([^\"]*)\", year: \"([^\"]*)\" and volume: \"([^\"]*)\"$")
     @When("^article with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", journal: \"([^\"]*)\", year: \"([^\"]*)\" and volume: \"([^\"]*)\" is added$")
     public void article_is_added(String name, String author, String title, String journal, String year, String volume) throws Throwable {
         selectType("Article");
-        submitForm();
+        submitButtonWithId("submit");
         fillInputWithValue(name, "name");
         fillInputWithValue(author, "author");
         fillInputWithValue(title, "title");
         fillInputWithValue(journal, "journal");
         fillInputWithValue(year, "year");
         fillInputWithValue(volume, "volume");
-        submitForm();
+        submitButtonWithId("submit");
     }
 
     @When("^article with author: \"([^\"]*)\" is added$")
     public void article_is_added_with_author(String author) {
         selectType("Article");
-        submitForm();
+        submitButtonWithId("submit");
         fillInputWithValue(author, "author");
-        submitForm();
+        submitButtonWithId("submit");
+    }
+
+    @When("^article named \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
+    public void article_is_edited(String oldName, String newName, String author, String title, String year, String publisher) {
+
+    }
+    
+    @When("^article named \"([^\"]*)\" is deleted$")
+    public void article_is_deleted(String name) {
+        submitButtonWithId(name);
     }
 
     @Given("^inproceedings is added with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", book title: \"([^\"]*)\" and year: \"([^\"]*)\"$")
     @When("^inproceedings with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", book title: \"([^\"]*)\" and year: \"([^\"]*)\" is added$")
     public void inproceedings_is_added(String name, String author, String title, String bookTitle, String year) throws Throwable {
         selectType("Inproceedings");
-        submitForm();
+        submitButtonWithId("submit");
         fillInputWithValue(name, "name");
         fillInputWithValue(author, "author");
         fillInputWithValue(title, "title");
         fillInputWithValue(bookTitle, "booktitle");
         fillInputWithValue(year, "year");
-        submitForm();
+        submitButtonWithId("submit");
     }
 
     @When("^inproceedings with author: \"([^\"]*)\" is added$")
     public void inproceedings_is_added_with_author(String author) {
         selectType("Inproceedings");
-        submitForm();
+        submitButtonWithId("submit");
         fillInputWithValue(author, "author");
-        submitForm();
+        submitButtonWithId("submit");
+    }
+
+    @When("^inproceedings named \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", book title: \"([^\"]*)\" and year: \"([^\"]*)\"$")
+    public void inproceedings_is_edited(String oldName, String newName, String author, String title, String bookTitle, String year) {
+
+    }
+    
+    @When("^inproceedings named \"([^\"]*)\" is deleted$")
+    public void inproceedings_is_deleted(String name) {
+        submitButtonWithId(name);
     }
 
     @When("^type: \"([^\"]*)\" is selected$")
     public void type_is_selected(String type) throws Throwable {
         selectType(type);
-        submitForm();
+        submitButtonWithId("submit");
     }
 
     private void selectType(String type) {
@@ -145,11 +175,11 @@ public class Stepdefs {
 
     @When("^form is submitted$")
     public void form_is_submitted() throws Throwable {
-        submitForm();
+        submitButtonWithId("submit");
     }
 
-    private void submitForm() {
-        WebElement submit = DriverFactory.getInstance().getDriver().findElement(By.id("submit"));
+    private void submitButtonWithId(String id) {
+        WebElement submit = DriverFactory.getInstance().getDriver().findElement(By.id(id));
         submit.submit();
     }
 
