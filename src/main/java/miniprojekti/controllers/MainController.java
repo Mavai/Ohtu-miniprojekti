@@ -43,6 +43,14 @@ public class MainController {
         model.addAttribute("reference", new Reference(type));
         return "add_" + type;
     }
+    
+    @RequestMapping(value = "/references/edit/{id}", method = RequestMethod.GET)
+    public String showEditForm(Model model, @PathVariable Long id) {
+        Reference ref = refRepo.findOne(id);
+        model.addAttribute("reference", ref);
+        System.out.println("KIISSSSSSSSSSSSSSSSSSSSSSSSSSSAAAAAAAAAAAAAAAAAAAAAAAAA " + id.getClass());
+        return "add_" + ref.getRefType();
+    }
 
     @RequestMapping(value = "/save")
     public String addNew(Reference reference) {
@@ -106,6 +114,12 @@ public class MainController {
     @RequestMapping(value= "/requestbibtex", method = RequestMethod.POST )
     public String requestBibtex(Model model, @RequestParam String filename) {
         return "redirect:/getbibtex/" + filename;
+    }
+
+    @RequestMapping(value = "/destroy", method = RequestMethod.DELETE)
+    public String destroy(@RequestParam Long id) {
+        refRepo.findOne(id);
+        return "redirect: /referen";
     }
 
     public String generateBibtex() {

@@ -5,8 +5,6 @@
 <head th:include="base :: header"></head>
 
 <body>
-
-
 <table class="table table-bordered">
     <tr>
         <th>Type</th>
@@ -22,6 +20,8 @@
         <th>Month</th>
         <th>Note</th>
         <th>Key</th>
+        <th></th>
+        <th></th>
     </tr>
     <tr th:each="reference : ${references}">
         <td><span th:text="${reference.refType}"></span></td>
@@ -37,8 +37,16 @@
         <td><span th:text="${reference.month}"></span></td>
         <td><span th:text="${reference.note}"></span></td>
         <td><span th:text="${reference.key}"></span></td>
+        <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+        <td>
+            <form th:action="@{/destroy}" method="DELETE">
+                <input type="hidden" th:value="${reference.id}"></input>
+                <button type="submit" class="btn btn-primary">Delete</button>
+            </form>
+        </td>
     </tr>
 </table>
+
 
 <h2>Create a new reference</h2>
 

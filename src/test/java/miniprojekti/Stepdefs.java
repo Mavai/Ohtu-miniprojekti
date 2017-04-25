@@ -57,20 +57,104 @@ public class Stepdefs {
     }
 
     @Given("^book is added with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
+    @When("^book with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\" is added$")
     public void book_is_added(String name, String author, String title, String year, String publisher) throws Throwable {
         selectType("Book");
-        submitForm();
+        submitButtonWithId("submit");
         fillInputWithValue(name, "name");
         fillInputWithValue(author, "author");
         fillInputWithValue(title, "title");
-        fillInputWithValue(year, "year");
         fillInputWithValue(publisher, "publisher");
-        submitForm();
+        fillInputWithValue(year, "year");
+        submitButtonWithId("submit");
+    }
+
+    @When("^book with author: \"([^\"]*)\" is added$")
+    public void book_is_added_with_author(String author) {
+        selectType("Book");
+        submitButtonWithId("submit");
+        fillInputWithValue(author, "author");
+        submitButtonWithId("submit");
+    }
+
+    @When("^book named \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
+    public void book_is_edited(String oldName, String newName, String author, String title, String year, String publisher) {
+
+    }
+
+    @Given("^book with name: \"([^\"]*)\" is deleted$")
+    @When("^book named \"([^\"]*)\" is deleted$")
+    public void book_is_deleted(String name) {
+        submitButtonWithId(name);
+    }
+
+    @Given("^article is added with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", journal: \"([^\"]*)\", year: \"([^\"]*)\" and volume: \"([^\"]*)\"$")
+    @When("^article with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", journal: \"([^\"]*)\", year: \"([^\"]*)\" and volume: \"([^\"]*)\" is added$")
+    public void article_is_added(String name, String author, String title, String journal, String year, String volume) throws Throwable {
+        selectType("Article");
+        submitButtonWithId("submit");
+        fillInputWithValue(name, "name");
+        fillInputWithValue(author, "author");
+        fillInputWithValue(title, "title");
+        fillInputWithValue(journal, "journal");
+        fillInputWithValue(year, "year");
+        fillInputWithValue(volume, "volume");
+        submitButtonWithId("submit");
+    }
+
+    @When("^article with author: \"([^\"]*)\" is added$")
+    public void article_is_added_with_author(String author) {
+        selectType("Article");
+        submitButtonWithId("submit");
+        fillInputWithValue(author, "author");
+        submitButtonWithId("submit");
+    }
+
+    @When("^article named \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
+    public void article_is_edited(String oldName, String newName, String author, String title, String year, String publisher) {
+
+    }
+
+    @When("^article named \"([^\"]*)\" is deleted$")
+    public void article_is_deleted(String name) {
+        submitButtonWithId(name);
+    }
+
+    @Given("^inproceedings is added with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", book title: \"([^\"]*)\" and year: \"([^\"]*)\"$")
+    @When("^inproceedings with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", book title: \"([^\"]*)\" and year: \"([^\"]*)\" is added$")
+    public void inproceedings_is_added(String name, String author, String title, String bookTitle, String year) throws Throwable {
+        selectType("Inproceedings");
+        submitButtonWithId("submit");
+        fillInputWithValue(name, "name");
+        fillInputWithValue(author, "author");
+        fillInputWithValue(title, "title");
+        fillInputWithValue(bookTitle, "booktitle");
+        fillInputWithValue(year, "year");
+        submitButtonWithId("submit");
+    }
+
+    @When("^inproceedings with author: \"([^\"]*)\" is added$")
+    public void inproceedings_is_added_with_author(String author) {
+        selectType("Inproceedings");
+        submitButtonWithId("submit");
+        fillInputWithValue(author, "author");
+        submitButtonWithId("submit");
+    }
+
+    @When("^inproceedings named \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", book title: \"([^\"]*)\" and year: \"([^\"]*)\"$")
+    public void inproceedings_is_edited(String oldName, String newName, String author, String title, String bookTitle, String year) {
+
+    }
+
+    @When("^inproceedings named \"([^\"]*)\" is deleted$")
+    public void inproceedings_is_deleted(String name) {
+        submitButtonWithId(name);
     }
 
     @When("^type: \"([^\"]*)\" is selected$")
     public void type_is_selected(String type) throws Throwable {
         selectType(type);
+        submitButtonWithId("submit");
     }
 
     private void selectType(String type) {
@@ -92,11 +176,11 @@ public class Stepdefs {
 
     @When("^form is submitted$")
     public void form_is_submitted() throws Throwable {
-        submitForm();
+        submitButtonWithId("submit");
     }
 
-    private void submitForm() {
-        WebElement submit = DriverFactory.getInstance().getDriver().findElement(By.id("submit"));
+    private void submitButtonWithId(String id) {
+        WebElement submit = DriverFactory.getInstance().getDriver().findElement(By.id(id));
         submit.submit();
     }
 
@@ -130,12 +214,62 @@ public class Stepdefs {
         assertTrue(downloadedFile.contains(content));
     }
 
-    @Then("^page displays add a book reference content$")
-    public void page_displays_add_a_book_reference_content() throws Throwable {
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("author"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("title"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("year"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("publisher"));
+    @Then("^file does not contain content: \"([^\"]*)\"$")
+    public void file_does_not_contain_content(String content) throws Throwable {
+        assertFalse(downloadedFile.contains(content));
     }
 
+    @Then("^page displays add a book reference content$")
+    public void page_displays_add_a_book_reference_content() throws Throwable {
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Add a book reference"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Reference name"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Author"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Title"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Publisher"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Year"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Volume"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Number"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Series"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Address"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Edition"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Month"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Note"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Key"));
+    }
+
+    @Then("^page displays add an article reference content$")
+    public void page_displays_add_an_article_reference_content() throws Throwable {
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Add an article reference"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Reference name"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Author"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Title"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Journal"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Year"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Volume"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Number"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Pages"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Month"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Note"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Key"));
+    }
+
+    @Then("^page displays add an inproceedings reference content$")
+    public void page_displays_add_an_inproceedings_reference_content() throws Throwable {
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Add an inproceedings reference"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Reference name"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Author"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Title"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Book Title"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Editor"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Volume"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Number"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Series"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Pages"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Address"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Month"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Organization"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Publisher"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Note"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Key"));
+    }
 }
