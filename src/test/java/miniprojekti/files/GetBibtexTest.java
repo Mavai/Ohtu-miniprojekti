@@ -45,16 +45,18 @@ public class GetBibtexTest {
     @Before
     public void setUp() {
         Reference book = new Reference("book");
-        book.setName("referenceName");
-        book.setAuthor("authorName");
-        book.setTitle("bookTitle");
-        book.setYear("1234");
-        book.setPublisher("publisherName");
+        //book.setName("referenceNameForGetBibtexTest");
+        book.setAuthor("authorNameForGetBibtexTest");
+        book.setEditor("editorNameForGetBibtexTest");
+        book.setTitle("bookTitleForGetBibtexTest");
+        book.setYear("4321");
+        book.setPublisher("publisherNameForGetBibtexTest");
         referenceRepository.save(book);
 
         Reference scandinavianArticle = new Reference("article");
-        scandinavianArticle.setName("äö");
+        //scandinavianArticle.setName("äö");
         scandinavianArticle.setAuthor("äuthör");
+        scandinavianArticle.setEditor("editor");
         scandinavianArticle.setTitle("title");
         scandinavianArticle.setJournal("jöurnäl");
         scandinavianArticle.setYear("1999");
@@ -69,11 +71,13 @@ public class GetBibtexTest {
     @Test
     public void getBibtexFileContainsSavedBook() {
         String fileString = downloadFileAsString(getbibtexPath + bibtexFileName);
-        assertTrue(fileString.contains("referenceName"));
-        assertTrue(fileString.contains("authorName"));
-        assertTrue(fileString.contains("bookTitle"));
-        assertTrue(fileString.contains("1234"));
-        assertTrue(fileString.contains("publisherName"));
+        System.out.println(fileString);
+        assertTrue(fileString.contains("referenceNameForGetBibtexTest"));
+        assertTrue(fileString.contains("authorNameForGetBibtexTest"));
+        assertTrue(fileString.contains("editorNameForGetBibtexTest"));
+        assertTrue(fileString.contains("bookTitleForGetBibtexTest"));
+        assertTrue(fileString.contains("4321"));
+        assertTrue(fileString.contains("publisherNameForGetBibtexTest"));
     }
 
     @Test

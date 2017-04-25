@@ -56,13 +56,14 @@ public class Stepdefs {
         DriverFactory.getInstance().getDriver().get(getbibtexPath);
     }
 
-    @Given("^book is added with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
-    @When("^book with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\" is added$")
-    public void book_is_added(String name, String author, String title, String year, String publisher) throws Throwable {
+    @Given("^book is added with name: \"([^\"]*)\", author: \"([^\"]*)\", editor: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
+    @When("^book with name: \"([^\"]*)\", author: \"([^\"]*)\", editor: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\" is added$")
+    public void book_is_added(String name, String author, String editor, String title, String year, String publisher) throws Throwable {
         selectType("Book");
         submitButtonWithId("submit");
         fillInputWithValue(name, "name");
         fillInputWithValue(author, "author");
+        fillInputWithValue(editor, "editor");
         fillInputWithValue(title, "title");
         fillInputWithValue(publisher, "publisher");
         fillInputWithValue(year, "year");
@@ -77,15 +78,23 @@ public class Stepdefs {
         submitButtonWithId("submit");
     }
 
-    @When("^book named \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
-    public void book_is_edited(String oldName, String newName, String author, String title, String year, String publisher) {
-
+    @Given("^book with name \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", editor: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
+    @When("^book named \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", editor: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
+    public void book_is_edited(String oldName, String newName, String author, String editor, String title, String year, String publisher) {
+        submitButtonWithId("edit" + oldName);
+        fillInputWithValue(newName, "name");
+        fillInputWithValue(author, "author");
+        fillInputWithValue(editor, "editor");
+        fillInputWithValue(title, "title");
+        fillInputWithValue(year, "year");
+        fillInputWithValue(publisher, "publisher");
+        submitButtonWithId("submit");
     }
 
     @Given("^book with name: \"([^\"]*)\" is deleted$")
     @When("^book named \"([^\"]*)\" is deleted$")
     public void book_is_deleted(String name) {
-        submitButtonWithId(name);
+        submitButtonWithId("delete" + name);
     }
 
     @Given("^article is added with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", journal: \"([^\"]*)\", year: \"([^\"]*)\" and volume: \"([^\"]*)\"$")
@@ -112,12 +121,18 @@ public class Stepdefs {
 
     @When("^article named \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
     public void article_is_edited(String oldName, String newName, String author, String title, String year, String publisher) {
-
+        submitButtonWithId("edit" + oldName);
+        fillInputWithValue(newName, "name");
+        fillInputWithValue(author, "author");
+        fillInputWithValue(title, "title");
+        fillInputWithValue(year, "year");
+        fillInputWithValue(publisher, "publisher");
+        submitButtonWithId("submit");
     }
 
     @When("^article named \"([^\"]*)\" is deleted$")
     public void article_is_deleted(String name) {
-        submitButtonWithId(name);
+        submitButtonWithId("delete" + name);
     }
 
     @Given("^inproceedings is added with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", book title: \"([^\"]*)\" and year: \"([^\"]*)\"$")
@@ -143,12 +158,18 @@ public class Stepdefs {
 
     @When("^inproceedings named \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", book title: \"([^\"]*)\" and year: \"([^\"]*)\"$")
     public void inproceedings_is_edited(String oldName, String newName, String author, String title, String bookTitle, String year) {
-
+        submitButtonWithId("edit" + oldName);
+        fillInputWithValue(newName, "name");
+        fillInputWithValue(author, "author");
+        fillInputWithValue(title, "title");
+        fillInputWithValue(bookTitle, "booktitle");
+        fillInputWithValue(year, "year");
+        submitButtonWithId("submit");
     }
 
     @When("^inproceedings named \"([^\"]*)\" is deleted$")
     public void inproceedings_is_deleted(String name) {
-        submitButtonWithId(name);
+        submitButtonWithId("delete" + name);
     }
 
     @When("^type: \"([^\"]*)\" is selected$")

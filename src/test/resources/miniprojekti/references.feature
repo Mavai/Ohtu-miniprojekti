@@ -11,9 +11,9 @@ Feature: References pages display right content
 
   Scenario: References page displays added book
     Given references is visited
-    When book with name: "referenceName", author: "testAuthor", title: "testTitle", year: "1955" and publisher: "testPublisher" is added
-    Then page displays content: "testAuthor"
-    And page displays content: "testTitle"
+    When book with name: "referenceNameForBookReferenceFeature", author: "testAuthorForBookReferenceFeature", editor: "testEditorForBookReferenceFeature", title: "testTitleForBookReferenceFeature", year: "1955" and publisher: "testPublisherForBookReferenceFeature" is added
+    Then page displays content: "testAuthorForBookReferenceFeature"
+    And page displays content: "testTitleForBookReferenceFeature"
 
   Scenario: Book with empty fields will not be added
     Given references is visited
@@ -22,14 +22,14 @@ Feature: References pages display right content
 
   Scenario: Book can be edited
     Given references is visited
-    And book is added with name: "referenceNameForBookToBeEdited", author: "uneditedAuthor", title: "uneditedTitle", year: "1234" and publisher: "publisherToBeEdited"
-    When book named "referenceNameForBookToBeEdited" is edited with name: "newReferenceNameForBook", author: "newAuthorForBook", title: "newTitleForBook", year: "1984" and publisher: "newPublisher"
-    Then page displays content: "newAuthorForBook"
-    And page displays content: "newTitleForBook"
+    And book is added with name: "referenceNameForBookToBeEditedForBookReferenceFeature", author: "uneditedAuthorForBookReferenceFeature", editor: "uneditedEditorForBookReferenceFeature", title: "uneditedTitleForBookReferenceFeature", year: "1234" and publisher: "publisherToBeEditedForBookReferenceFeature"
+    When book named "referenceNameForBookToBeEditedForBookReferenceFeature" is edited with name: "newReferenceNameForBookForBookReferenceFeature", author: "newAuthorForBookForBookReferenceFeature", editor: "newEditorForBookForBookReferenceFeature", title: "newTitleForBookForBookReferenceFeature", year: "1984" and publisher: "newPublisherForBookReferenceFeature"
+    Then page displays content: "newAuthorForBookForBookReferenceFeature"
+    And page displays content: "newTitleForBookForBookReferenceFeature"
 
   Scenario: Book can be deleted
     Given references is visited
-    And book is added with name: "referenceNameForBookToBeDeleted", author: "authorForBookToBeDeleted", title: "titleForBookToBeDeleted", year: "2011" and publisher: "publisherForBookToBeDeleted"
+    And book is added with name: "referenceNameForBookToBeDeleted", author: "authorForBookToBeDeleted", editor: "editorForBookToBeDeleted", title: "titleForBookToBeDeleted", year: "2011" and publisher: "publisherForBookToBeDeleted"
     When book named "referenceNameForBookToBeDeleted" is deleted
     Then page does not display content: "authorForBookToBeDeleted"
     And page does not display content: "titleForBookToBeDeleted"
@@ -41,9 +41,9 @@ Feature: References pages display right content
 
   Scenario: References page displays added article
     Given references is visited
-    When article with name: "referenceName", author: "testAuthor", title: "testTitle", journal: "testJournal", year: "1955" and volume: "1" is added
-    Then page displays content: "testAuthor"
-    And page displays content: "testTitle"
+    When article with name: "referenceNameForArticleReferenceFeature", author: "testAuthorForArticleReferenceFeature", title: "testTitleForArticleReferenceFeature", journal: "testJournalForArticleReferenceFeature", year: "1955" and volume: "1" is added
+    Then page displays content: "testAuthorForArticleReferenceFeature"
+    And page displays content: "testTitleForArticleReferenceFeature"
 
   Scenario: Article with empty fields will not be added
     Given references is visited
@@ -71,7 +71,7 @@ Feature: References pages display right content
 
   Scenario: References page displays added inproceedings
     Given references is visited
-    When inproceedings with name: "referenceName", author: "testAuthor", title: "testTitle", book title: "testBooktitle" and year: "1955" is added
+    When inproceedings with name: "referenceNameForInproceedingsReferenceFeature", author: "testAuthorForInproceedingsReferenceFeature", title: "testTitleForInproceedingsReferenceFeature", book title: "testBooktitleForInproceedingsReferenceFeature" and year: "1955" is added
     Then page displays content: "testAuthor"
     And page displays content: "testTitle"
 
