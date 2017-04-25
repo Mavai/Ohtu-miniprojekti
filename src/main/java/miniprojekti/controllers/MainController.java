@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MainController {
@@ -27,7 +28,7 @@ public class MainController {
     @Autowired
     ReferenceRepository refRepo;
     
-    @RequestMapping(value = "*")
+    @RequestMapping(value = "/")
     public String index(Model model) {
         return "redirect:/references";
     }
@@ -114,9 +115,10 @@ public class MainController {
         return "redirect:/getbibtex/" + filename;
     }
 
-    @RequestMapping(value= "/destroy", method = RequestMethod.POST)
-    public String destroy(Model model, @RequestParam Long id) {
-        refRepo.delete(id);
+    @RequestMapping(value = "/destroy/{id}", method = RequestMethod.GET)
+    public String destroy(@PathVariable Long id) {
+        Reference deleted = refRepo.findOne(id);
+        refRepo.delete(deleted);
         return "redirect:/references";
     }
 
