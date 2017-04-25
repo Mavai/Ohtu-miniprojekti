@@ -26,7 +26,12 @@ public class MainController {
 
     @Autowired
     ReferenceRepository refRepo;
-
+    
+    @RequestMapping(value = "*")
+    public String index(Model model) {
+        return "redirect:/references";
+    }
+    
     @RequestMapping(value = "/references", method = RequestMethod.GET)
     public String get(Model model) {
         model.addAttribute("references", refRepo.findAll());
