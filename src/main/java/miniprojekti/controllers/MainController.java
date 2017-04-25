@@ -60,9 +60,7 @@ public class MainController {
             } catch (Exception e) {
                 reference.setName(reference.getName()+"2");
                 refRepo.save(reference);
-            }
-        
-        // generoi uniikki avain, jos sitä ei ole annettu
+            }        
             if (reference.getName().equals("")) {
                 generateKey(reference);
                 refRepo.save(reference);
