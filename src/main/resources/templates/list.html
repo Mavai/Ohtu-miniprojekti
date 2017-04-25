@@ -2,81 +2,87 @@
 <!--
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head th:include="base :: header"></head>
+<head th:include="base :: header"></head>
 
-    <body>
+<body>
+<table class="table table-bordered">
+    <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Title</th>
+        <th>Publisher</th>
+        <th>Year</th>
+        <th>Number</th>
+        <th>Series</th>
+        <th>Address</th>
+        <th>Edition</th>
+        <th>Month</th>
+        <th>Note</th>
+        <th>Key</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr th:each="reference : ${references}">
+        <td><span th:text="${reference.refType}"></span></td>
+        <td><span th:text="${reference.name}"></span></td>
+        <td><span th:text="${reference.author}"></span></td>
+        <td><span th:text="${reference.title}"></span></td>
+        <td><span th:text="${reference.publisher}"></span></td>
+        <td><span th:text="${reference.year}"></span></td>
+        <td><span th:text="${reference.number}"></span></td>
+        <td><span th:text="${reference.series}"></span></td>
+        <td><span th:text="${reference.address}"></span></td>
+        <td><span th:text="${reference.edition}"></span></td>
+        <td><span th:text="${reference.month}"></span></td>
+        <td><span th:text="${reference.note}"></span></td>
+        <td><span th:text="${reference.key}"></span></td>
+        <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+        <td>
+            <form th:action="@{/destroy}" method="DELETE">
+                <input type="hidden" th:value="${reference.id}"></input>
+                <button type="submit" class="btn btn-primary">Delete</button>
+            </form>
+        </td>
+    </tr>
+</table>
 
 
-        <table class="table table-bordered">
-            <tr>
-                <th>Type</th>
-                <th>Name</th>
-                <th>Author</th>
-                <th>Title</th>
-                <th>Publisher</th>
-                <th>Year</th>
-                <th>Number</th>
-                <th>Series</th>
-                <th>Address</th>
-                <th>Edition</th>
-                <th>Month</th>
-                <th>Note</th>
-                <th>Key</th>
-                <th></th>
-            </tr>
-            <tr th:each="reference : ${references}">
-                <td><span th:text="${reference.refType}"></span></td>
-                <td><span th:text="${reference.name}"></span></td>
-                <td><span th:text="${reference.author}"></span></td>
-                <td><span th:text="${reference.title}"></span></td>
-                <td><span th:text="${reference.publisher}"></span></td>
-                <td><span th:text="${reference.year}"></span></td>
-                <td><span th:text="${reference.number}"></span></td>
-                <td><span th:text="${reference.series}"></span></td>
-                <td><span th:text="${reference.address}"></span></td>
-                <td><span th:text="${reference.edition}"></span></td>
-                <td><span th:text="${reference.month}"></span></td>
-                <td><span th:text="${reference.note}"></span></td>
-                <td><span th:text="${reference.key}"></span></td>
-                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-            </tr>
-        </table>
+<h2>Create a new reference</h2>
 
-        <h2>Create a new reference</h2>
+<form class="form-inline" th:action="@{/references}" method="POST">
+    <div class="form-group">
+        <label for="type">Type:</label>
+        <select class="form-control" id="type" name="type">
+            <option value="article">Article</option>
+            <option value="book">Book</option>
+            <option value="booklet">Booklet</option>
+            <option value="conference">Conference</option>
+            <option value="inbook">Inbook</option>
+            <option value="incollection">Incollection</option>
+            <option value="inproceedings">Inproceedings</option>
+            <option value="manual">Manual</option>
+            <option value="mastersthesis">Master's thesis</option>
+            <option value="misc">Misc</option>
+            <option value="phdthesis">Ph.D. thesis</option>
+            <option value="proceedings">Proceedings</option>
+            <option value="techreport">Tech report</option>
+            <option value="unpublished">Unpublished</option>
+        </select>
+    </div>
+    <button id="submit" type="submit" class="btn btn-primary">Create</button>
+</form>
 
-        <form class="form-inline" th:action="@{/references}" method="POST">
-            <div class="form-group">
-                <label for="type">Type:</label>
-                <select class="form-control" id="type" name="type">
-                    <option value="article">Article</option>
-                    <option value="book">Book</option>
-                    <option value="booklet">Booklet</option>
-                    <option value="conference">Conference</option>
-                    <option value="inbook">Inbook</option>
-                    <option value="incollection">Incollection</option>
-                    <option value="inproceedings">Inproceedings</option>
-                    <option value="manual">Manual</option>
-                    <option value="mastersthesis">Master's thesis</option>
-                    <option value="misc">Misc</option>
-                    <option value="phdthesis">Ph.D. thesis</option>
-                    <option value="proceedings">Proceedings</option>
-                    <option value="techreport">Tech report</option>
-                    <option value="unpublished">Unpublished</option>
-                </select>
-            </div>
-            <button id="submit" type="submit" class="btn btn-primary">Create</button>
-        </form>
+<h2>Get bibtex-file</h2>
+<form class="form-inline" th:action="@{/requestbibtex}" method="POST">
+    <label class="control-label col-sm-2" for="filename">Filename:</label>
+    <div class="col-sm-10">
+        <input type="text" id="filename" name="filename" required="required"/>
+    </div>
+    <button id="submitBibtex" type="submit" class="btn btn-primary">Get</button>
+</form>
 
-        <h2>Get bibtex-file</h2>
-        <form class="form-inline" th:action="@{/requestbibtex}" method="POST">
-            <label class="control-label col-sm-2" for="filename">Filename:</label>
-            <div class="col-sm-10">
-                <input type="text" id="filename" name="filename" required="required"/>
-            </div>
-            <button id="submitBibtex" type="submit" class="btn btn-primary">Get</button>
-        </form>
-
-        <script src="http://code.jquery.com/jquery.js"></script>
-        <script src="webjars/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    </body>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="webjars/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+</body>
 </html>
