@@ -47,7 +47,18 @@ public class MainController {
     @RequestMapping(value = "/save")
     public String addNew(Reference reference) {
         if (reference.validate()) {
-            refRepo.save(reference);
+            try {
+                refRepo.save(reference);
+            } catch (Exception e) {
+                reference.setName(reference.getName()+"2");
+                refRepo.save(reference);
+            }
+        
+        // generoi uniikki avain, jos sitä ei ole annettu
+            if (reference.getName().equals("")) {
+                generateKey(reference);
+                refRepo.save(reference);
+            }
             return "redirect:/references";
         } else {
             return "redirect:/references/create/" + reference.getRefType();
@@ -110,5 +121,20 @@ public class MainController {
         bibtex = bibtex.replaceAll("Å", "{\\\\"+"\"AA}");
         return bibtex;
     }
+
+    public void generateKey(Reference reference) {
+        String title = reference.getTitle();
+        String key;
+        int length = title.length();
+
+        if (length < 5) {
+            key = title;
+        } else {
+            key = title.substring(0,5);
+        }
+        key += reference.getId();
+        reference.setName(key);
+    }
+
 
 }

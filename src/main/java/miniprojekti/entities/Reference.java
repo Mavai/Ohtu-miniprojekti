@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Column;
 
 @Entity
 public class Reference {
@@ -21,6 +22,7 @@ public class Reference {
 
     String refType;
     String type;
+    @Column(unique=true)
     String name;
     String author;
     String title;
