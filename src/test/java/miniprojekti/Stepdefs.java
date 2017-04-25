@@ -81,7 +81,8 @@ public class Stepdefs {
     public void book_is_edited(String oldName, String newName, String author, String title, String year, String publisher) {
 
     }
-    
+
+    @Given("^book with name: \"([^\"]*)\" is deleted$")
     @When("^book named \"([^\"]*)\" is deleted$")
     public void book_is_deleted(String name) {
         submitButtonWithId(name);
@@ -113,7 +114,7 @@ public class Stepdefs {
     public void article_is_edited(String oldName, String newName, String author, String title, String year, String publisher) {
 
     }
-    
+
     @When("^article named \"([^\"]*)\" is deleted$")
     public void article_is_deleted(String name) {
         submitButtonWithId(name);
@@ -144,7 +145,7 @@ public class Stepdefs {
     public void inproceedings_is_edited(String oldName, String newName, String author, String title, String bookTitle, String year) {
 
     }
-    
+
     @When("^inproceedings named \"([^\"]*)\" is deleted$")
     public void inproceedings_is_deleted(String name) {
         submitButtonWithId(name);
@@ -211,6 +212,11 @@ public class Stepdefs {
     @Then("^file contains content: \"([^\"]*)\"$")
     public void file_contains_content(String content) throws Throwable {
         assertTrue(downloadedFile.contains(content));
+    }
+
+    @Then("^file does not contain content: \"([^\"]*)\"$")
+    public void file_does_not_contain_content(String content) throws Throwable {
+        assertFalse(downloadedFile.contains(content));
     }
 
     @Then("^page displays add a book reference content$")
