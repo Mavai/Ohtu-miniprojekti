@@ -5,7 +5,7 @@
     <head th:include="base :: header"></head>
     <body>
         <div class="container">
-            <h2>Add a inproceedings reference</h2>
+            <h2>Add an inproceedings reference</h2>
 
             <form class="form-horizontal" id="ref-form" role="form" th:action="@{/save}" method="post" th:object="${reference}">
                 <input type="hidden" th:value="${reference.refType}"
