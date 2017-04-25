@@ -19,6 +19,8 @@
                 <th>Month</th>
                 <th>Note</th>
                 <th>Key</th>
+                <th></th>
+                <th></th>
             </tr>
             <tr th:each="reference : ${articleReferences}">
                 <td><span th:text="${reference.name}"></span></td>
@@ -32,6 +34,8 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
+                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
 
@@ -52,6 +56,8 @@
                 <th>Month</th>
                 <th>Note</th>
                 <th>Key</th>
+                <th></th>
+                <th></th>
             </tr>
             <tr th:each="reference : ${bookReferences}">
                 <td><span th:text="${reference.name}"></span></td>
@@ -68,6 +74,8 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
+                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
         
@@ -83,6 +91,8 @@
                 <th>Month</th>
                 <th>Note</th>
                 <th>Key</th>
+                <th></th>
+                <th></th>
             </tr>
             <tr th:each="reference : ${bookletReferences}">
                 <td><span th:text="${reference.name}"></span></td>
@@ -94,6 +104,8 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
+                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
         
@@ -117,6 +129,8 @@
                 <th>Month</th>
                 <th>Note</th>
                 <th>Key</th>
+                <th></th>
+                <th></th>
             </tr>
             <tr th:each="reference : ${inbookReferences}">
                 <td><span th:text="${reference.name}"></span></td>
@@ -136,6 +150,8 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
+                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
         
@@ -160,6 +176,8 @@
                 <th>Month</th>
                 <th>Note</th>
                 <th>Key</th>
+                <th></th>
+                <th></th>
             </tr>
             <tr th:each="reference : ${incollectionReferences}">
                 <td><span th:text="${reference.name}"></span></td>
@@ -180,6 +198,8 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
+                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
         
@@ -202,6 +222,8 @@
                 <th>Month</th>
                 <th>Note</th>
                 <th>Key</th>
+                <th></th>
+                <th></th>
             </tr>
             <tr th:each="reference : ${inproceedingsReferences}">
                 <td><span th:text="${reference.name}"></span></td>
@@ -220,6 +242,8 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
+                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
         
@@ -235,6 +259,8 @@
                 <th>Month</th>
                 <th>Note</th>
                 <th>Key</th>
+                <th></th>
+                <th></th>
             </tr>
             <tr th:each="reference : ${manualReferences}">
                 <td><span th:text="${reference.name}"></span></td>
@@ -246,6 +272,8 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
+                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
         
@@ -262,6 +290,8 @@
                 <th>Month</th>
                 <th>Note</th>
                 <th>Key</th>
+                <th></th>
+                <th></th>
             </tr>
             <tr th:each="reference : ${mastersthesisReferences}">
                 <td><span th:text="${reference.name}"></span></td>
@@ -274,6 +304,8 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
+                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
         
@@ -288,6 +320,8 @@
                 <th>Month</th>
                 <th>Note</th>
                 <th>Key</th>
+                <th></th>
+                <th></th>
             </tr>
             <tr th:each="reference : ${inproceedingsReferences}">
                 <td><span th:text="${reference.name}"></span></td>
@@ -298,6 +332,8 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
+                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
         
@@ -314,6 +350,8 @@
                 <th>Month</th>
                 <th>Note</th>
                 <th>Key</th>
+                <th></th>
+                <th></th>
             </tr>
             <tr th:each="reference : ${phdthesisReferences}">
                 <td><span th:text="${reference.name}"></span></td>
@@ -326,6 +364,8 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
+                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
         
@@ -345,6 +385,8 @@
                 <th>Month</th>
                 <th>Note</th>
                 <th>Key</th>
+                <th></th>
+                <th></th>
             </tr>
             <tr th:each="reference : ${proceedingsReferences}">
                 <td><span th:text="${reference.name}"></span></td>
@@ -360,6 +402,8 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
+                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
         
@@ -378,6 +422,8 @@
                 <th>Month</th>
                 <th>Note</th>
                 <th>Key</th>
+                <th></th>
+                <th></th>
             </tr>
             <tr th:each="reference : ${techreportReferences}">
                 <td><span th:text="${reference.name}"></span></td>
@@ -392,6 +438,8 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
+                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
         
@@ -405,6 +453,8 @@
                 <th>Month</th>
                 <th>Note</th>
                 <th>Key</th>
+                <th></th>
+                <th></th>
             </tr>
             <tr th:each="reference : ${unpublishedReferences}">
                 <td><span th:text="${reference.name}"></span></td>
@@ -414,6 +464,8 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
+                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
     </body>
