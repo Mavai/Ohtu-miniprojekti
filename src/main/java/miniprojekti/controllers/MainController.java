@@ -43,6 +43,14 @@ public class MainController {
         model.addAttribute("reference", new Reference(type));
         return "add_" + type;
     }
+    
+    @RequestMapping(value = "/references/edit/{id}", method = RequestMethod.GET)
+    public String showEditForm(Model model, @PathVariable Long id) {
+        Reference ref = refRepo.findOne(id);
+        model.addAttribute("reference", ref);
+        System.out.println("KIISSSSSSSSSSSSSSSSSSSSSSSSSSSAAAAAAAAAAAAAAAAAAAAAAAAA " + id.getClass());
+        return "add_" + ref.getRefType();
+    }
 
     @RequestMapping(value = "/save")
     public String addNew(Reference reference) {
