@@ -3,47 +3,49 @@
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head th:include="base :: header"></head>
-
-    <body>
-        <table class="table table-bordered">
-            <tr>
-                <th>Type</th>
-                <th>Name</th>
-                <th>Author</th>
-                <th>Title</th>
-                <th>Publisher</th>
-                <th>Year</th>
-                <th>Number</th>
-                <th>Series</th>
-                <th>Address</th>
-                <th>Edition</th>
-                <th>Month</th>
-                <th>Note</th>
-                <th>Key</th>
-                <th>Id</th>
-                <th></th>
-                <th></th>
-            </tr>
-            <tr th:each="reference : ${references}">
-                <td><span th:text="${reference.refType}"></span></td>
-                <td><span th:text="${reference.name}"></span></td>
-                <td><span th:text="${reference.author}"></span></td>
-                <td><span th:text="${reference.title}"></span></td>
-                <td><span th:text="${reference.publisher}"></span></td>
-                <td><span th:text="${reference.year}"></span></td>
-                <td><span th:text="${reference.number}"></span></td>
-                <td><span th:text="${reference.series}"></span></td>
-                <td><span th:text="${reference.address}"></span></td>
-                <td><span th:text="${reference.edition}"></span></td>
-                <td><span th:text="${reference.month}"></span></td>
-                <td><span th:text="${reference.note}"></span></td>
-                <td><span th:text="${reference.key}"></span></td>
-                <td><span th:text="${reference.id}"></span></td>
-                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
-            </tr>
-        </table>
-
+    
+<body>
+<table class="table table-bordered">
+    <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Title</th>
+        <th>Publisher</th>
+        <th>Year</th>
+        <th>Number</th>
+        <th>Series</th>
+        <th>Address</th>
+        <th>Edition</th>
+        <th>Month</th>
+        <th>Note</th>
+        <th>Key</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr th:each="reference : ${references}">
+        <td><span th:text="${reference.refType}"></span></td>
+        <td><span th:text="${reference.name}"></span></td>
+        <td><span th:text="${reference.author}"></span></td>
+        <td><span th:text="${reference.title}"></span></td>
+        <td><span th:text="${reference.publisher}"></span></td>
+        <td><span th:text="${reference.year}"></span></td>
+        <td><span th:text="${reference.number}"></span></td>
+        <td><span th:text="${reference.series}"></span></td>
+        <td><span th:text="${reference.address}"></span></td>
+        <td><span th:text="${reference.edition}"></span></td>
+        <td><span th:text="${reference.month}"></span></td>
+        <td><span th:text="${reference.note}"></span></td>
+        <td><span th:text="${reference.key}"></span></td>
+        <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+        <td>
+            <form class="form" th:action="@{/destroy}" method="POST">
+                <input type="hidden" name="id" th:attr="value = ${reference.id}"></input>
+                <button th:id="${reference.name}" type="submit" class="btn btn-danger btn-xs">Delete</button>
+            </form>
+        </td>
+    </tr>
+</table>
 
         <h2>Create a new reference</h2>
 
