@@ -38,12 +38,7 @@
         <td><span th:text="${reference.note}"></span></td>
         <td><span th:text="${reference.key}"></span></td>
         <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-        <td>
-            <form class="form" th:action="@{/destroy}" method="POST">
-                <input type="hidden" name="id" th:attr="value = ${reference.id}"></input>
-                <button th:id="${reference.name}" type="submit" class="btn btn-danger btn-xs">Delete</button>
-            </form>
-        </td>
+        <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
     </tr>
 </table>
 
