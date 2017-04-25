@@ -41,7 +41,7 @@
         <td>
             <form class="form" th:action="@{/destroy}" method="POST">
                 <input type="hidden" name="id" th:attr="value = ${reference.id}"></input>
-                <button th:id="${reference.name}" type="submit" class="btn btn-danger btn-xs">Delete</button>
+                <button th:id="'delete' + ${reference.name}" type="submit" class="btn btn-danger btn-xs">Delete</button>
             </form>
         </td>
     </tr>

@@ -56,13 +56,14 @@ public class Stepdefs {
         DriverFactory.getInstance().getDriver().get(getbibtexPath);
     }
 
-    @Given("^book is added with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
-    @When("^book with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\" is added$")
-    public void book_is_added(String name, String author, String title, String year, String publisher) throws Throwable {
+    @Given("^book is added with name: \"([^\"]*)\", author: \"([^\"]*)\", editor: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
+    @When("^book with name: \"([^\"]*)\", author: \"([^\"]*)\", editor: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\" is added$")
+    public void book_is_added(String name, String author, String editor, String title, String year, String publisher) throws Throwable {
         selectType("Book");
         submitButtonWithId("submit");
         fillInputWithValue(name, "name");
         fillInputWithValue(author, "author");
+        fillInputWithValue(editor, "editor");
         fillInputWithValue(title, "title");
         fillInputWithValue(publisher, "publisher");
         fillInputWithValue(year, "year");
@@ -77,12 +78,13 @@ public class Stepdefs {
         submitButtonWithId("submit");
     }
 
-    @Given("^book with name \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
-    @When("^book named \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
-    public void book_is_edited(String oldName, String newName, String author, String title, String year, String publisher) {
+    @Given("^book with name \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", editor: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
+    @When("^book named \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", editor: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
+    public void book_is_edited(String oldName, String newName, String author, String editor, String title, String year, String publisher) {
         submitButtonWithId("edit" + oldName);
         fillInputWithValue(newName, "name");
         fillInputWithValue(author, "author");
+        fillInputWithValue(editor, "editor");
         fillInputWithValue(title, "title");
         fillInputWithValue(year, "year");
         fillInputWithValue(publisher, "publisher");
