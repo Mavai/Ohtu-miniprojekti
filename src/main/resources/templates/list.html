@@ -6,20 +6,20 @@
     
 <body>
     
-    <table class="table table-bordered" th:include="tables :: articleTable"></table>
-    <table class="table table-bordered" th:include="tables :: bookTable"></table>
-    <table class="table table-bordered" th:include="tables :: bookletTable"></table>
-    <table class="table table-bordered" th:include="tables :: conferenceTable"></table>
-    <table class="table table-bordered" th:include="tables :: inbookTable"></table>
-    <table class="table table-bordered" th:include="tables :: incollectionTable"></table>
-    <table class="table table-bordered" th:include="tables :: inproceedingsTable"></table>
-    <table class="table table-bordered" th:include="tables :: manualTable"></table>
-    <table class="table table-bordered" th:include="tables :: mastersthesisTable"></table>
-    <table class="table table-bordered" th:include="tables :: miscTable"></table>
-    <table class="table table-bordered" th:include="tables :: phdthesisTable"></table>
-    <table class="table table-bordered" th:include="tables :: proceedingsTable"></table>
-    <table class="table table-bordered" th:include="tables :: techreportTable"></table>
-    <table class="table table-bordered" th:include="tables :: unpublishedTable"></table>
+    <table class="table table-bordered" th:if="${not #lists.isEmpty(articleReferences)}" th:include="tables :: articleTable"></table>
+    <table class="table table-bordered" th:if="${not #lists.isEmpty(bookReferences)}" th:include="tables :: bookTable"></table>
+    <table class="table table-bordered" th:if="${not #lists.isEmpty(bookletReferences)}" th:include="tables :: bookletTable"></table>
+    <table class="table table-bordered" th:if="${not #lists.isEmpty(conferenceReferences)}" th:include="tables :: conferenceTable"></table>
+    <table class="table table-bordered" th:if="${not #lists.isEmpty(inbookReferences)}" th:include="tables :: inbookTable"></table>
+    <table class="table table-bordered" th:if="${not #lists.isEmpty(incollectionReferences)}" th:include="tables :: incollectionTable"></table>
+    <table class="table table-bordered" th:if="${not #lists.isEmpty(inproceedingsReferences)}" th:include="tables :: inproceedingsTable"></table>
+    <table class="table table-bordered" th:if="${not #lists.isEmpty(manualReferences)}" th:include="tables :: manualTable"></table>
+    <table class="table table-bordered" th:if="${not #lists.isEmpty(mastersthesisReferences)}" th:include="tables :: mastersthesisTable"></table>
+    <table class="table table-bordered" th:if="${not #lists.isEmpty(miscReferences)}" th:include="tables :: miscTable"></table>
+    <table class="table table-bordered" th:if="${not #lists.isEmpty(phdthesisReferences)}" th:include="tables :: phdthesisTable"></table>
+    <table class="table table-bordered" th:if="${not #lists.isEmpty(proceedingsReferences)}" th:include="tables :: proceedingsTable"></table>
+    <table class="table table-bordered" th:if="${not #lists.isEmpty(techreportReferences)}" th:include="tables :: techreportTable"></table>
+    <table class="table table-bordered" th:if="${not #lists.isEmpty(unpublishedReferences)}" th:include="tables :: unpublishedTable"></table>
 
         <h2>Create a new reference</h2>
 
