@@ -15,14 +15,15 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.validation.constraints.AssertFalse;
+
 import static org.junit.Assert.*;
 
 /**
  *
  * @author markovai
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest
 public class ReferenceTest {
     
     public ReferenceTest() {
@@ -52,9 +53,19 @@ public class ReferenceTest {
         assertEquals("book", ref.getType());
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void titleValidationWOrks() {
+        Reference ref = new Reference("name:nimi", "author:kirjoittaja", "type:book");
+        assertFalse(ref.validate());
+    }
+
+    @Test
+    public void getBibTextWorksWithScandinavian() {
+        Reference ref = new Reference("name:name", "author:äuthör", "refType:böök");
+        String tex = ref.getBibtex();
+        String bibtex = "@b{\\\"o}{\\\"o}k{name,\n author    = \"{\\\"a}uth{\\\"o}r\"\n}\n\n";
+        assertEquals(bibtex, ref.getBibtex());
+    }
+
+
 }
