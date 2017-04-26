@@ -45,7 +45,7 @@ public class GetBibtexTest {
     @Before
     public void setUp() {
         Reference book = new Reference("book");
-        //book.setName("referenceNameForGetBibtexTest");
+        book.setName("referenceNameForGetBibtexTest");
         book.setAuthor("authorNameForGetBibtexTest");
         book.setEditor("editorNameForGetBibtexTest");
         book.setTitle("bookTitleForGetBibtexTest");
@@ -54,7 +54,7 @@ public class GetBibtexTest {
         referenceRepository.save(book);
 
         Reference scandinavianArticle = new Reference("article");
-        //scandinavianArticle.setName("äö");
+        scandinavianArticle.setName("äö");
         scandinavianArticle.setAuthor("äuthör");
         scandinavianArticle.setEditor("editor");
         scandinavianArticle.setTitle("title");

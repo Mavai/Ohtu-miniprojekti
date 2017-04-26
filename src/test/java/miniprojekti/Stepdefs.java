@@ -94,7 +94,7 @@ public class Stepdefs {
     @Given("^book with name: \"([^\"]*)\" is deleted$")
     @When("^book named \"([^\"]*)\" is deleted$")
     public void book_is_deleted(String name) {
-        submitButtonWithId("delete" + name);
+        clickLinkWithId("delete" + name);
     }
 
     @Given("^article is added with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", journal: \"([^\"]*)\", year: \"([^\"]*)\" and volume: \"([^\"]*)\"$")
@@ -132,7 +132,7 @@ public class Stepdefs {
 
     @When("^article named \"([^\"]*)\" is deleted$")
     public void article_is_deleted(String name) {
-        submitButtonWithId("delete" + name);
+        clickLinkWithId("delete" + name);
     }
 
     @Given("^inproceedings is added with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", book title: \"([^\"]*)\" and year: \"([^\"]*)\"$")
@@ -169,7 +169,7 @@ public class Stepdefs {
 
     @When("^inproceedings named \"([^\"]*)\" is deleted$")
     public void inproceedings_is_deleted(String name) {
-        submitButtonWithId("delete" + name);
+        clickLinkWithId("delete" + name);
     }
 
     @When("^type: \"([^\"]*)\" is selected$")
@@ -203,6 +203,11 @@ public class Stepdefs {
     private void submitButtonWithId(String id) {
         WebElement submit = DriverFactory.getInstance().getDriver().findElement(By.id(id));
         submit.submit();
+    }
+
+    private void clickLinkWithId(String id) {
+        WebElement link = DriverFactory.getInstance().getDriver().findElement(By.id(id));
+        link.click();
     }
 
     @When("^getbibtex file named \"([^\"]*)\" is downloaded$")
