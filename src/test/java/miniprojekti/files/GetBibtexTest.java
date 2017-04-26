@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.validation.constraints.AssertTrue;
+
 import miniprojekti.entities.Reference;
 import miniprojekti.repositories.ReferenceRepository;
 import org.junit.After;
@@ -33,6 +33,7 @@ public class GetBibtexTest {
 
     String getbibtexPath = "http://localhost:8080/getbibtex/";
     String bibtexFileName = "bibtex";
+    private static Boolean initialized = false;
 
     @BeforeClass
     public static void setUpClass() {
@@ -44,6 +45,14 @@ public class GetBibtexTest {
 
     @Before
     public void setUp() {
+        if (!initialized) {
+            referenceRepository.save(new Reference("name:referenceNameForGetBibtexTest", "author:authorNameForGetBibtexTest",
+                    "editor:editorNameForGetBibtexTest", "title:bookTitleForGetBibtexTest", "year:4321", "publisher:publisherNameForGetBibtexTest"));
+
+            referenceRepository.save(new Reference("name:äö", "author:äuthör", "editor:editor", "title:title", "journal:jöurnäl", "year:1999", "volume:5"));
+
+            initialized = true;
+        }
     }
 
     @After
@@ -52,15 +61,8 @@ public class GetBibtexTest {
 
     @Test
     public void getBibtexFileContainsSavedBook() {
-        Reference book = new Reference("book");
-        book.setName("referenceNameForGetBibtexTest");
-        book.setAuthor("authorNameForGetBibtexTest");
-        book.setEditor("editorNameForGetBibtexTest");
-        book.setTitle("bookTitleForGetBibtexTest");
-        book.setYear("4321");
-        book.setPublisher("publisherNameForGetBibtexTest");
-        referenceRepository.save(book);
         String fileString = downloadFileAsString(getbibtexPath + bibtexFileName);
+
         System.out.println(fileString);
         assertTrue(fileString.contains("referenceNameForGetBibtexTest"));
         assertTrue(fileString.contains("authorNameForGetBibtexTest"));
@@ -72,14 +74,6 @@ public class GetBibtexTest {
 
     @Test
     public void getBibtexFileDoesNotContainUnAddedFields() {
-        Reference book = new Reference("book");
-        book.setName("referenceNameForGetBibtexTest2");
-        book.setAuthor("authorNameForGetBibtexTest");
-        book.setEditor("editorNameForGetBibtexTest");
-        book.setTitle("bookTitleForGetBibtexTest");
-        book.setYear("4321");
-        book.setPublisher("publisherNameForGetBibtexTest");
-        referenceRepository.save(book);
         String fileString = downloadFileAsString(getbibtexPath + bibtexFileName);
         System.out.println(fileString);
         assertFalse(fileString.contains("number"));
@@ -93,15 +87,6 @@ public class GetBibtexTest {
 
     @Test
     public void getBibtexFileDoesNotContainScandinavianLetters() {
-        Reference scandinavianArticle = new Reference("article");
-        scandinavianArticle.setName("äö");
-        scandinavianArticle.setAuthor("äuthör");
-        scandinavianArticle.setEditor("editor");
-        scandinavianArticle.setTitle("title");
-        scandinavianArticle.setJournal("jöurnäl");
-        scandinavianArticle.setYear("1999");
-        scandinavianArticle.setVolume("5");
-        referenceRepository.save(scandinavianArticle);
         String fileString = downloadFileAsString(getbibtexPath + bibtexFileName);
         assertFalse(fileString.contains("ä"));
         assertFalse(fileString.contains("Ä"));
