@@ -35,7 +35,20 @@ public class MainController {
     
     @RequestMapping(value = "/references", method = RequestMethod.GET)
     public String get(Model model) {
-        model.addAttribute("references", refRepo.findAll());
+        model.addAttribute("articleReferences", refRepo.findByRefType("article"));
+        model.addAttribute("bookReferences", refRepo.findByRefType("book"));
+        model.addAttribute("bookletReferences", refRepo.findByRefType("booklet"));
+        model.addAttribute("conferenceReferences", refRepo.findByRefType("conference"));
+        model.addAttribute("inbookReferences", refRepo.findByRefType("inbook"));
+        model.addAttribute("incollectionReferences", refRepo.findByRefType("incollection"));
+        model.addAttribute("inproceedingsReferences", refRepo.findByRefType("inproceedings"));
+        model.addAttribute("manualReferences", refRepo.findByRefType("manual"));
+        model.addAttribute("mastersthesisReferences", refRepo.findByRefType("mastersthesis"));
+        model.addAttribute("miscReferences", refRepo.findByRefType("misc"));
+        model.addAttribute("phdthesisReferences", refRepo.findByRefType("phdthesis"));
+        model.addAttribute("proceedingsReferences", refRepo.findByRefType("proceedings"));
+        model.addAttribute("techreportReferences", refRepo.findByRefType("techreport"));
+        model.addAttribute("unpublishedReferences", refRepo.findByRefType("unpublished"));
         return "list";
     }
 
