@@ -5,42 +5,21 @@
     <head th:include="base :: header"></head>
     
 <body>
-<table class="table table-bordered">
-    <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Author</th>
-        <th>Title</th>
-        <th>Publisher</th>
-        <th>Year</th>
-        <th>Number</th>
-        <th>Series</th>
-        <th>Address</th>
-        <th>Edition</th>
-        <th>Month</th>
-        <th>Note</th>
-        <th>Key</th>
-        <th></th>
-        <th></th>
-    </tr>
-    <tr th:each="reference : ${references}">
-        <td><span th:text="${reference.refType}"></span></td>
-        <td><span th:text="${reference.name}"></span></td>
-        <td><span th:text="${reference.author}"></span></td>
-        <td><span th:text="${reference.title}"></span></td>
-        <td><span th:text="${reference.publisher}"></span></td>
-        <td><span th:text="${reference.year}"></span></td>
-        <td><span th:text="${reference.number}"></span></td>
-        <td><span th:text="${reference.series}"></span></td>
-        <td><span th:text="${reference.address}"></span></td>
-        <td><span th:text="${reference.edition}"></span></td>
-        <td><span th:text="${reference.month}"></span></td>
-        <td><span th:text="${reference.note}"></span></td>
-        <td><span th:text="${reference.key}"></span></td>
-        <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-        <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
-    </tr>
-</table>
+    
+    <table class="table table-bordered" th:include="tables :: articleTable"></table>
+    <table class="table table-bordered" th:include="tables :: bookTable"></table>
+    <table class="table table-bordered" th:include="tables :: bookletTable"></table>
+    <table class="table table-bordered" th:include="tables :: conferenceTable"></table>
+    <table class="table table-bordered" th:include="tables :: inbookTable"></table>
+    <table class="table table-bordered" th:include="tables :: incollectionTable"></table>
+    <table class="table table-bordered" th:include="tables :: inproceedingsTable"></table>
+    <table class="table table-bordered" th:include="tables :: manualTable"></table>
+    <table class="table table-bordered" th:include="tables :: mastersthesisTable"></table>
+    <table class="table table-bordered" th:include="tables :: miscTable"></table>
+    <table class="table table-bordered" th:include="tables :: phdthesisTable"></table>
+    <table class="table table-bordered" th:include="tables :: proceedingsTable"></table>
+    <table class="table table-bordered" th:include="tables :: techreportTable"></table>
+    <table class="table table-bordered" th:include="tables :: unpublishedTable"></table>
 
         <h2>Create a new reference</h2>
 
