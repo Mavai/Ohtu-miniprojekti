@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head th:include="base :: header"></head>
     <body>
-        
+
         <table th:fragment="articleTable">
             <caption>Article references</caption>
             <tr>
@@ -34,8 +34,8 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
-                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
 
@@ -74,11 +74,11 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
-                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
-        
+
         <table th:fragment="bookletTable">
             <caption>Booklet references</caption>
             <tr>
@@ -104,11 +104,11 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
-                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
-        
+
         <table th:fragment="inbookTable">
             <caption>Inbook references</caption>
             <tr>
@@ -150,11 +150,11 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
-                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
-        
+
         <table th:fragment="incollectionTable">
             <caption>Incollection references</caption>
             <tr>
@@ -198,11 +198,11 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
-                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
-        
+
         <table th:fragment="inproceedingsTable">
             <caption>Inproceedings references</caption>
             <tr>
@@ -242,11 +242,11 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
-                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
-        
+
         <table th:fragment="manualTable">
             <caption>Manual references</caption>
             <tr>
@@ -272,11 +272,11 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
-                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
-        
+
         <table th:fragment="mastersthesisTable">
             <caption>Master's thesis references</caption>
             <tr>
@@ -304,11 +304,11 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
-                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
-        
+
         <table th:fragment="miscTable">
             <caption>Misc references</caption>
             <tr>
@@ -332,11 +332,11 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
-                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
-        
+
         <table th:fragment="phdthesisTable">
             <caption>Ph.D. thesis references</caption>
             <tr>
@@ -364,11 +364,11 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
-                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
-        
+
         <table th:fragment="proceedingsTable">
             <caption>Proceedings references</caption>
             <tr>
@@ -402,11 +402,11 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
-                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
-        
+
         <table th:fragment="techreportTable">
             <caption>Tech report references</caption>
             <tr>
@@ -438,11 +438,11 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
-                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
-        
+
         <table th:fragment="unpublishedTable">
             <caption>Unpublished references</caption>
             <tr>
@@ -464,8 +464,8 @@
                 <td><span th:text="${reference.month}"></span></td>
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
-                <td><a th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
             </tr>
         </table>
     </body>

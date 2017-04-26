@@ -16,31 +16,37 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.validation.constraints.AssertFalse;
+import miniprojekti.repositories.ReferenceRepository;
 
 import static org.junit.Assert.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
  * @author markovai
  */
-@SpringBootTest
+//@RunWith(SpringRunner.class)
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class ReferenceTest {
     
+    @Autowired
+    ReferenceRepository referenceRepository;
+
     public ReferenceTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -67,7 +73,13 @@ public class ReferenceTest {
         assertEquals(bibtex, ref.getBibtex());
     }
 
-
-
-
+//    @Test
+//    public void nameIsGeneratedCorrectlyWhenItsEmpty() {
+//        Reference ref = new Reference("author:authorForMisc", "title:title", "refType:misc");
+//        System.out.println(ref.getBibtex());
+//        referenceRepository.save(ref);
+//        String tex = ref.getBibtex();
+//        String bibtex = "@misc{title" + ref.getId() + ",\n author    = \"authorForMisc\",\n title    = \"title\"}\n\n";
+//        assertEquals(bibtex, ref.getBibtex());
+//    }
 }

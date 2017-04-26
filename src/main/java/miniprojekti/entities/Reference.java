@@ -78,7 +78,7 @@ public class Reference {
         this.institution = arguments.get("institution") != null ? arguments.get("institution") : "";
         this.organization = arguments.get("organization") != null ? arguments.get("organization") : "";
         this.school = arguments.get("school") != null ? arguments.get("school") : "";
-        this.school = arguments.get("booktitle") != null ? arguments.get("booktitle") : "";
+        this.booktitle = arguments.get("booktitle") != null ? arguments.get("booktitle") : "";
     }
 
     private Map<String, String> extractArguments(String[] args) {

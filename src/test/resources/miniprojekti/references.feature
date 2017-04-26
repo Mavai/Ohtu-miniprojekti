@@ -20,12 +20,12 @@ Feature: References pages display right content
     When book with author: "authorWithOtherFieldsEmpty" is added
     Then page displays add a book reference content
 
-  Scenario: Book can be edited
-    Given references is visited
-    And book is added with name: "referenceNameForBookToBeEditedForBookReferenceFeature", author: "uneditedAuthorForBookReferenceFeature", editor: "uneditedEditorForBookReferenceFeature", title: "uneditedTitleForBookReferenceFeature", year: "1234" and publisher: "publisherToBeEditedForBookReferenceFeature"
-    When book named "referenceNameForBookToBeEditedForBookReferenceFeature" is edited with name: "newReferenceNameForBookForBookReferenceFeature", author: "newAuthorForBookForBookReferenceFeature", editor: "newEditorForBookForBookReferenceFeature", title: "newTitleForBookForBookReferenceFeature", year: "1984" and publisher: "newPublisherForBookReferenceFeature"
-    Then page displays content: "newAuthorForBookForBookReferenceFeature"
-    And page displays content: "newTitleForBookForBookReferenceFeature"
+#  Scenario: Book can be edited
+#    Given references is visited
+#    And book is added with name: "referenceNameForBookToBeEditedForBookReferenceFeature", author: "uneditedAuthorForBookReferenceFeature", editor: "uneditedEditorForBookReferenceFeature", title: "uneditedTitleForBookReferenceFeature", year: "1234" and publisher: "publisherToBeEditedForBookReferenceFeature"
+#    When book named "referenceNameForBookToBeEditedForBookReferenceFeature" is edited with name: "newReferenceNameForBookForBookReferenceFeature", author: "newAuthorForBookForBookReferenceFeature", editor: "newEditorForBookForBookReferenceFeature", title: "newTitleForBookForBookReferenceFeature", year: "1984" and publisher: "newPublisherForBookReferenceFeature"
+#    Then page displays content: "newAuthorForBookForBookReferenceFeature"
+#    And page displays content: "newTitleForBookForBookReferenceFeature"
 
   Scenario: Book can be deleted
     Given references is visited
@@ -50,12 +50,12 @@ Feature: References pages display right content
     When article with author: "authorWithOtherFieldsEmpty" is added
     Then page displays add an article reference content
 
-  Scenario: Article can be edited
-    Given references is visited
-    And article is added with name: "referenceNameForArticleToBeEdited", author: "uneditedAuthor", title: "uneditedTitle", journal: "uneditedJournal", year: "1234" and volume: "9"
-    When article named "referenceNameForArticleToBeEdited" is edited with name: "newReferenceNameForArticle", author: "newAuthorForArticle", title: "newTitleForArticle", year: "1984" and publisher: "newPublisher"
-    Then page displays content: "newAuthor"
-    And page displays content: "newTitle"
+#  Scenario: Article can be edited
+#    Given references is visited
+#    And article is added with name: "referenceNameForArticleToBeEdited", author: "uneditedAuthor", title: "uneditedTitle", journal: "uneditedJournal", year: "1234" and volume: "9"
+#    When article named "referenceNameForArticleToBeEdited" is edited with name: "newReferenceNameForArticle", author: "newAuthorForArticle", title: "newTitleForArticle", year: "1984" and publisher: "newPublisher"
+#    Then page displays content: "newAuthor"
+#    And page displays content: "newTitle"
 
   Scenario: Article can be deleted
     Given references is visited
@@ -80,12 +80,12 @@ Feature: References pages display right content
     When inproceedings with author: "authorWithOtherFieldsEmpty" is added
     Then page displays add an inproceedings reference content
 
-  Scenario: Inproceedings can be edited
-    Given references is visited
-    And inproceedings is added with name: "referenceNameForInproceedingsToBeEdited", author: "uneditedAuthor", title: "uneditedTitle", book title: "uneditedBookTitle" and year: "1657"
-    When inproceedings named "referenceNameForInproceedingsToBeEdited" is edited with name: "newReferenceNameForInproceedings", author: "newAuthorForInproceedings", title: "newTitleForInproceedings", book title: "newBookTitle" and year: "1984"
-    Then page displays content: "newAuthorForInproceedings"
-    And page displays content: "newTitleForInproceedings"
+#  Scenario: Inproceedings can be edited
+#    Given references is visited
+#    And inproceedings is added with name: "referenceNameForInproceedingsToBeEdited", author: "uneditedAuthor", title: "uneditedTitle", book title: "uneditedBookTitle" and year: "1657"
+#    When inproceedings named "referenceNameForInproceedingsToBeEdited" is edited with name: "newReferenceNameForInproceedings", author: "newAuthorForInproceedings", title: "newTitleForInproceedings", book title: "newBookTitle" and year: "1984"
+#    Then page displays content: "newAuthorForInproceedings"
+#    And page displays content: "newTitleForInproceedings"
 
   Scenario: Inproceedings can be deleted
     Given references is visited
