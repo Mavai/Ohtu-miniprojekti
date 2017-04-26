@@ -93,7 +93,7 @@ public class GetBibtexTest {
         assertFalse(fileString.contains("note"));
         assertFalse(fileString.contains("key"));
     }
-    
+
     @Test
     public void getBibtexFileDoesNotContainScandinavianLetters() {
         String fileString = downloadFileAsString(getbibtexPath + bibtexFileName);
