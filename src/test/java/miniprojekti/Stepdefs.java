@@ -81,7 +81,7 @@ public class Stepdefs {
     @Given("^book with name: \"([^\"]*)\" is deleted$")
     @When("^book named \"([^\"]*)\" is deleted$")
     public void book_is_deleted(String name) {
-        clickLinkWithId("delete" + name);
+        submitButtonWithId("delete" + name);
     }
 
     @Given("^article is added with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", journal: \"([^\"]*)\", year: \"([^\"]*)\" and volume: \"([^\"]*)\"$")
@@ -141,7 +141,7 @@ public class Stepdefs {
 
     @When("^article named \"([^\"]*)\" is deleted$")
     public void article_is_deleted(String name) {
-        clickLinkWithId("delete" + name);
+        submitButtonWithId("delete" + name);
     }
 
     @When("^inproceedings with author: \"([^\"]*)\" is added$")
@@ -165,7 +165,7 @@ public class Stepdefs {
 
     @When("^inproceedings named \"([^\"]*)\" is deleted$")
     public void inproceedings_is_deleted(String name) {
-        clickLinkWithId("delete" + name);
+        submitButtonWithId("delete" + name);
     }
 
     @When("^getbibtex file named \"([^\"]*)\" is downloaded$")

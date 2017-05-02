@@ -70,4 +70,27 @@ public class ReferenceTest {
         assertEquals(bibtex, ref.getBibtex());
     }
 
+    @Test
+    public void referenceNameIsGeneratedCorrectlyWhenTitlesSizeIsOver4() {
+        Reference ref = new Reference("author:authorName1", "title:theTitle", "refType:article");
+        refService.save(ref);
+        String bibtex = "@article{theTi" + ref.getId() + ",\n author    = \"authorName1\",\n title     = \"theTitle\"\n}\n\n";
+        assertEquals(bibtex, ref.getBibtex());
+    }
+
+    @Test
+    public void referenceNameIsGeneratedCorrectlyWhenTitlesSizeIs4() {
+        Reference ref = new Reference("author:authorName2", "title:qwert", "refType:article");
+        refService.save(ref);
+        String bibtex = "@article{qwert" + ref.getId() + ",\n author    = \"authorName2\",\n title     = \"qwert\"\n}\n\n";
+        assertEquals(bibtex, ref.getBibtex());
+    }
+
+    @Test
+    public void referenceNameIsGeneratedCorrectlyWhenTitlesSizeIsLessThan4() {
+        Reference ref = new Reference("author:authorName3", "title:asd", "refType:article");
+        refService.save(ref);
+        String bibtex = "@article{asd" + ref.getId() + ",\n author    = \"authorName3\",\n title     = \"asd\"\n}\n\n";
+        assertEquals(bibtex, ref.getBibtex());
+    }
 }
