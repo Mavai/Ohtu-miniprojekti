@@ -42,7 +42,6 @@ public class Stepdefs {
 
     @After
     public void shutdown_server() {
-        //DriverFactory.getInstance().removeDriver();
 
     }
 

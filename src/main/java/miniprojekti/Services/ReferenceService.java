@@ -17,6 +17,7 @@ import java.util.List;
  */
 @Component
 public class ReferenceService {
+    private int uniqueNum = 0;
 
     @Autowired
     private ReferenceRepository refRepo;
@@ -34,7 +35,7 @@ public class ReferenceService {
             try {
                 refRepo.save(reference);
             } catch (Exception e) {
-                reference.setName(reference.getName() + "2");
+                reference.setName(reference.getName() + uniqueNum++);
                 refRepo.save(reference);
             }
             if (reference.getName().equals("")) {
@@ -84,6 +85,12 @@ public class ReferenceService {
         map.put("techreportReferences", refRepo.findByRefType("techreport"));
         map.put("unpublishedReferences", refRepo.findByRefType("unpublished"));
         return map;
+    }
+
+    public void deleteAll() {
+        for (Reference ref: refRepo.findAll()) {
+            refRepo.delete(ref);
+        }
     }
 
 }
