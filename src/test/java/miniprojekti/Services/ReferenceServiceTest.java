@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
  */
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class ReferenceServiceTest {
     @Autowired
     ReferenceService refService;
@@ -33,5 +33,5 @@ public class ReferenceServiceTest {
         String bibtex = "@misc{title" + ref.getId() + ",\n author    = \"authorForMisc\",\n title     = \"title\"\n}\n\n";
         assertEquals(bibtex, ref.getBibtex());
     }
-    
+
 }
