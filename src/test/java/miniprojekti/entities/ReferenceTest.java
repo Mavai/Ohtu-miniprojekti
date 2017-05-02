@@ -4,18 +4,12 @@
  * and open the template in the editor.
  */
 package miniprojekti.entities;
-
-import miniprojekti.entities.Reference;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
-import javax.validation.constraints.AssertFalse;
 import miniprojekti.repositories.ReferenceRepository;
 
 import static org.junit.Assert.*;
@@ -25,8 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author markovai
  */
-//@RunWith(SpringRunner.class)
-//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest()
 public class ReferenceTest {
     
     @Autowired
