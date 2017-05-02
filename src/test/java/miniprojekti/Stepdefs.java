@@ -169,12 +169,11 @@ public class Stepdefs {
     }
 
     @When("^getbibtex file named \"([^\"]*)\" is downloaded$")
-    public void getbibtex_file_is_downloaded(String file) throws Throwable {
+    public void getbibtex_file_is_downloaded(String fileName) throws Throwable {
         WebElement fileNameInput = DriverFactory.getInstance().getDriver().findElement(By.name("filename"));
-        fileNameInput.sendKeys(file);
-        WebElement getBibtexButton = DriverFactory.getInstance().getDriver().findElement(By.id("submitBibtex"));
-        getBibtexButton.submit();
-        URL url = new URL(getbibtexPath + "/" + file);
+        fileNameInput.sendKeys(fileName);
+        submitButtonWithId("submitBibtex");
+        URL url = new URL(getbibtexPath + "/" + fileName);
         downloadedFileString = new Scanner(url.openStream()).useDelimiter("\\A").next();
     }
 
