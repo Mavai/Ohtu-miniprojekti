@@ -5,7 +5,7 @@ package miniprojekti.controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.HashMap;
 import miniprojekti.Services.ReferenceService;
 import miniprojekti.entities.RefField;
 import miniprojekti.entities.Reference;
@@ -95,6 +95,39 @@ public class MainController {
     public String destroy(@PathVariable Long id) {
         refService.delete(id);
         return "redirect:/references";
+    }
+
+    public String generateBibtex() {
+        String bibtex = "";
+        for (Reference r : refRepo.findAll()) {
+            bibtex += r.getBibtex();
+        }
+        return bibtex;
+    }
+
+    public void generateKey(Reference reference) {
+        String title = reference.getTitle();
+        String key;
+        int length = title.length();
+
+        if (length < 5) {
+            key = title;
+        } else {
+            key = title.substring(0,5);
+        }
+        key += reference.getId();
+        reference.setName(key);
+    }
+
+    @RequestMapping(value="test", method=RequestMethod.GET)
+    public String testHashMap(Model model) {
+        HashMap<String, Boolean[]> map = new HashMap<String, Boolean[]>();
+        map.put("testi", new Boolean[] {true, true});
+        map.put("testi2", new Boolean[] {true, true});
+        map.put("testi3", new Boolean[] {false, false});
+        map.put("testi4", new Boolean[] {true, true});
+        model.addAttribute("testmap", map);
+        return "test";
     }
 
 }
