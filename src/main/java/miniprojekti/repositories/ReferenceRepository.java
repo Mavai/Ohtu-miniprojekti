@@ -13,4 +13,6 @@ public interface ReferenceRepository extends CrudRepository<Reference, Long> {
 
     List<Reference> findByRefType(String refType);
 
+    Reference findByName(String name);
+
 }
