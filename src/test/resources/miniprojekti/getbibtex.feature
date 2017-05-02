@@ -1,13 +1,5 @@
 Feature: Bibtex file can be downloaded
 
-  #  Scenario: Added book is found on bibtex page
-  #    Given references is visited
-  #    And book is added
-  #    And getbibtex is visited
-  #    Then page displays content: "authorName"
-  #    And page displays content: "titleOfTheBook"
-  #    And page displays content: "1994"
-  #    And page displays content: "publisherName"
   Scenario: Added books bibtex file can be downloaded from bibtex page
     Given references is visited
     And book is added with name: "referenceNameForGetBibtexFeature", author: "authorNameForGetBibtexFeature", editor: "editorNameForGetBibtexFeature", title: "titleOfTheBookForGetBibtexFeature", year: "1994" and publisher: "publisherNameForGetBibtexFeature"
@@ -19,7 +11,7 @@ Feature: Bibtex file can be downloaded
     And file contains content: "1994"
     And file contains content: "publisherNameForGetBibtexFeature"
 
-Scenario: Edited books new fields are found in downloaded bibtex file
+  Scenario: Edited books new fields are found in downloaded bibtex file
     Given references is visited
     And And book is added with name: "referenceToBeEditedForGetBibtexFeature", author: "authorToBeEdited"ForGetBibtexFeature, editor: "editorToBeEditedForGetBibtexFeature", title: "titleToBeEditedForGetBibtexFeature", year: "1555" and publisher: "publisherToBeEditedForGetBibtexFeature"
     And book with name "referenceToBeEditedForGetBibtexFeature" is edited with name: "newNameForGetBibtexFeature", author: "newAuthorForGetBibtexFeature", editor: "newEditorForGetBibtexFeature", title: "newTitleForGetBibtexFeature", year: "1111" and publisher: "newPublisherForGetBibtexFeature"

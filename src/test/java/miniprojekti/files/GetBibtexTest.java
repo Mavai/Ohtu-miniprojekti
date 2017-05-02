@@ -81,7 +81,6 @@ public class GetBibtexTest {
         assertFalse(fileString.contains("address"));
         assertFalse(fileString.contains("edition"));
         assertFalse(fileString.contains("month"));
-        assertFalse(fileString.contains("note"));
         assertFalse(fileString.contains("key"));
     }
 

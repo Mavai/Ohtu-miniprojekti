@@ -4,26 +4,30 @@
  * and open the template in the editor.
  */
 package miniprojekti.entities;
+
+import miniprojekti.Services.ReferenceService;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import miniprojekti.repositories.ReferenceRepository;
-
 import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  *
  * @author markovai
  */
-@SpringBootTest()
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class ReferenceTest {
-    
+
     @Autowired
-    ReferenceRepository referenceRepository;
+    ReferenceService refService;
 
     public ReferenceTest() {
     }
@@ -66,13 +70,4 @@ public class ReferenceTest {
         assertEquals(bibtex, ref.getBibtex());
     }
 
-//    @Test
-//    public void nameIsGeneratedCorrectlyWhenItsEmpty() {
-//        Reference ref = new Reference("author:authorForMisc", "title:title", "refType:misc");
-//        System.out.println(ref.getBibtex());
-//        referenceRepository.save(ref);
-//        String tex = ref.getBibtex();
-//        String bibtex = "@misc{title" + ref.getId() + ",\n author    = \"authorForMisc\",\n title    = \"title\"}\n\n";
-//        assertEquals(bibtex, ref.getBibtex());
-//    }
 }
