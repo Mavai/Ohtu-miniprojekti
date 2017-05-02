@@ -83,14 +83,7 @@ public class MainController {
 
     @RequestMapping(value = "/getbibtex/{filename}", method = RequestMethod.GET)
     public HttpEntity<byte[]> getBibtex(Model model, @PathVariable String filename) throws IOException {
-       String bibtex = refService.generateBibtex();
-
-        byte[] data = bibtex.getBytes();
-        HttpHeaders header = new HttpHeaders();
-        header.setContentType(MediaType.TEXT_PLAIN);
-        header.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+filename+".bib");
-        header.setContentLength(data.length);
-        return new HttpEntity<byte[]>(data, header  );
+        return refService.makeFile(filename);
     }
 
     @RequestMapping(value= "/requestbibtex", method = RequestMethod.POST )
@@ -100,26 +93,8 @@ public class MainController {
 
     @RequestMapping(value = "/destroy/{id}", method = RequestMethod.POST)
     public String destroy(@PathVariable Long id) {
-        Reference deleted = refRepo.findOne(id);
-        refRepo.delete(deleted);
+        refService.delete(id);
         return "redirect:/references";
     }
-
-
-//    public void generateKey(Reference reference) {
-//        String title = reference.getTitle();
-//        String key;
-//        int length = title.length();
-//
-//        if (length < 5) {
-//            key = title;
-//        } else {
-//            key = title.substring(0,5);
-//        }
-//        key += reference.getId();
-//        reference.setName(key);
-//    }
-
-
 
 }

@@ -34,4 +34,21 @@ public class ReferenceServiceTest {
         assertEquals(bibtex, ref.getBibtex());
     }
 
+    @Test
+    public void saveWorks() {
+        Reference ref = new Reference("name:foo", "refType:bar", "title:foobar");
+        refService.save(ref);
+        Reference retrieved = referenceRepository.findByName("foo");
+        assertNotNull(retrieved);
+        assertEquals("foobar" ,retrieved.getTitle());
+    }
+
+    @Test
+    public void deleteWorks() {
+        Reference ref = new Reference("name:foo", "refType:bar", "title:foobar");
+        refService.save(ref);
+        refService.delete(ref.getId());
+        Reference retrieved = referenceRepository.findByName("foo");
+        assertNull(retrieved);
+    }
 }
