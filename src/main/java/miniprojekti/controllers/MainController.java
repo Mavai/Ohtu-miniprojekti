@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.HashMap;
+import miniprojekti.Services.RefTypes;
 import miniprojekti.Services.ReferenceService;
 import miniprojekti.entities.RefField;
 import miniprojekti.entities.Reference;
@@ -95,6 +96,15 @@ public class MainController {
         map.put("testi2", new Boolean[] {true, true});
         map.put("testi3", new Boolean[] {false, false});
         map.put("testi4", new Boolean[] {true, true});
+        model.addAttribute("testmap", map);
+        return "test";
+    }
+    
+    @RequestMapping(value="test2", method=RequestMethod.GET)
+    public String testTypeMaps(Model model) {
+        RefTypes rt = new RefTypes();
+        HashMap<String, Boolean[]> map = rt.getTypeMap("book");
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + map);
         model.addAttribute("testmap", map);
         return "test";
     }
