@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
  */
 
 @RunWith(SpringRunner.class)
-@SpringBootTest()
+@SpringBootTest
 public class ReferenceServiceTest {
     @Autowired
     ReferenceService refService;
