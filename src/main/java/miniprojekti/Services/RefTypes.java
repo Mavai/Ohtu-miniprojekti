@@ -50,6 +50,7 @@ private generateBook() {
     map.put("organization", new Boolean[] {true, true});
     map.put("school", new Boolean[] {true, true});
     map.put("booktitle", new Boolean[] {true, true});
+    map.put("type", new Boolean[] {true, true});
 }
 
 private generateArticle() {
@@ -78,6 +79,7 @@ private generateArticle() {
     map.put("organization", new Boolean[] {true, true});
     map.put("school", new Boolean[] {true, true});
     map.put("booktitle", new Boolean[] {true, true});
+    map.put("type", new Boolean[] {true, true});
 }
 
 private generateBooklet() {
@@ -106,6 +108,7 @@ private generateBooklet() {
     map.put("organization", new Boolean[] {true, true});
     map.put("school", new Boolean[] {true, true});
     map.put("booktitle", new Boolean[] {true, true});
+    map.put("type", new Boolean[] {true, true});
 }
 
 private generateConference() {
@@ -134,6 +137,7 @@ private generateConference() {
     map.put("organization", new Boolean[] {true, true});
     map.put("school", new Boolean[] {true, true});
     map.put("booktitle", new Boolean[] {true, true});
+    map.put("type", new Boolean[] {true, true});
 }
 
 private generateInbook() {
@@ -162,6 +166,7 @@ private generateInbook() {
     map.put("organization", new Boolean[] {true, true});
     map.put("school", new Boolean[] {true, true});
     map.put("booktitle", new Boolean[] {true, true});
+    map.put("type", new Boolean[] {true, true});
 }
 
 private generateIncollection() {
@@ -190,6 +195,7 @@ private generateIncollection() {
     map.put("organization", new Boolean[] {true, true});
     map.put("school", new Boolean[] {true, true});
     map.put("booktitle", new Boolean[] {true, true});
+    map.put("type", new Boolean[] {true, true});
 }
 
 private generateInproceedings() {
@@ -218,6 +224,7 @@ private generateInproceedings() {
     map.put("organization", new Boolean[] {true, true});
     map.put("school", new Boolean[] {true, true});
     map.put("booktitle", new Boolean[] {true, true});
+    map.put("type", new Boolean[] {true, true});
 }
 
 private generateManual() {
@@ -246,6 +253,7 @@ private generateManual() {
     map.put("organization", new Boolean[] {true, true});
     map.put("school", new Boolean[] {true, true});
     map.put("booktitle", new Boolean[] {true, true});
+    map.put("type", new Boolean[] {true, true});
 }
 
 private generateMastersthesis() {
@@ -274,6 +282,7 @@ private generateMastersthesis() {
     map.put("organization", new Boolean[] {true, true});
     map.put("school", new Boolean[] {true, true});
     map.put("booktitle", new Boolean[] {true, true});
+    map.put("type", new Boolean[] {true, true});
 }
 
 private generateMisc() {
@@ -302,6 +311,7 @@ private generateMisc() {
     map.put("organization", new Boolean[] {true, true});
     map.put("school", new Boolean[] {true, true});
     map.put("booktitle", new Boolean[] {true, true});
+    map.put("type", new Boolean[] {true, true});
 }
 
 private generatePhdthesis() {
@@ -330,6 +340,7 @@ private generatePhdthesis() {
     map.put("organization", new Boolean[] {true, true});
     map.put("school", new Boolean[] {true, true});
     map.put("booktitle", new Boolean[] {true, true});
+    map.put("type", new Boolean[] {true, true});
 }
 
 private generateProceedings() {
@@ -358,6 +369,7 @@ private generateProceedings() {
     map.put("organization", new Boolean[] {true, true});
     map.put("school", new Boolean[] {true, true});
     map.put("booktitle", new Boolean[] {true, true});
+    map.put("type", new Boolean[] {true, true});
 }
 
 private generateTechreport() {
@@ -386,6 +398,7 @@ private generateTechreport() {
     map.put("organization", new Boolean[] {false, false});
     map.put("school", new Boolean[] {false, false});
     map.put("booktitle", new Boolean[] {false, false});
+    map.put("type", new Boolean[] {true, false});
 }
 
 private generateUnpublished() {
@@ -414,6 +427,7 @@ private generateUnpublished() {
     map.put("organization", new Boolean[] {false, false});
     map.put("school", new Boolean[] {false, false});
     map.put("booktitle", new Boolean[] {false, false});
+    map.put("type", new Boolean[] {false, false});
 }
 
 
