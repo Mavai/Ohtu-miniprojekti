@@ -365,27 +365,27 @@ private generateTechreport() {
     map.put("name", new Boolean[] {true, true});
     map.put("author", new Boolean[] {true, true});
     map.put("title", new Boolean[] {true, true});
-    map.put("journal", new Boolean[] {true, true});
+    map.put("journal", new Boolean[] {false, false});
     map.put("year", new Boolean[] {true, true});
-    map.put("volume", new Boolean[] {true, true});
-    map.put("number", new Boolean[] {true, true});
-    map.put("pages", new Boolean[] {true, true});
-    map.put("month", new Boolean[] {true, true});
-    map.put("note", new Boolean[] {true, true});
-    map.put("key", new Boolean[] {true, true});
-    map.put("publisher", new Boolean[] {true, true});
-    map.put("series", new Boolean[] {true, true});
-    map.put("address", new Boolean[] {true, true});
-    map.put("edition", new Boolean[] {true, true});
-    map.put("annote", new Boolean[] {true, true});
-    map.put("chapter", new Boolean[] {true, true});
-    map.put("crossref", new Boolean[] {true, true});
-    map.put("editor", new Boolean[] {true, true});
-    map.put("howpublished", new Boolean[] {true, true});
+    map.put("volume", new Boolean[] {false, false});
+    map.put("number", new Boolean[] {true, false});
+    map.put("pages", new Boolean[] {false, false});
+    map.put("month", new Boolean[] {true, false});
+    map.put("note", new Boolean[] {true, false});
+    map.put("key", new Boolean[] {true, false});
+    map.put("publisher", new Boolean[] {false, false});
+    map.put("series", new Boolean[] {false, false});
+    map.put("address", new Boolean[] {true, false});
+    map.put("edition", new Boolean[] {false, false});
+    map.put("annote", new Boolean[] {false, false});
+    map.put("chapter", new Boolean[] {false, false});
+    map.put("crossref", new Boolean[] {false, false});
+    map.put("editor", new Boolean[] {false, false});
+    map.put("howpublished", new Boolean[] {false, false});
     map.put("institution", new Boolean[] {true, true});
-    map.put("organization", new Boolean[] {true, true});
-    map.put("school", new Boolean[] {true, true});
-    map.put("booktitle", new Boolean[] {true, true});
+    map.put("organization", new Boolean[] {false, false});
+    map.put("school", new Boolean[] {false, false});
+    map.put("booktitle", new Boolean[] {false, false});
 }
 
 private generateUnpublished() {
