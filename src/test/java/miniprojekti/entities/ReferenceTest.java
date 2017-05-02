@@ -22,8 +22,6 @@ import org.springframework.test.context.junit4.SpringRunner;
  *
  * @author markovai
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest()
 public class ReferenceTest {
 
     @Autowired
@@ -73,13 +71,5 @@ public class ReferenceTest {
         assertEquals(bibtex, ref.getBibtex());
     }
 
-    @Test
-    public void nameIsGeneratedCorrectlyWhenItsEmpty() {
-        Reference ref = new Reference("author:authorForMisc", "title:title", "refType:misc");
-        System.out.println(ref.getBibtex());
-        refService.save(ref);
-        String tex = ref.getBibtex();
-        String bibtex = "@misc{title" + ref.getId() + ",\n author    = \"authorForMisc\",\n title     = \"title\"\n}\n\n";
-        assertEquals(bibtex, ref.getBibtex());
-    }
+
 }
