@@ -73,21 +73,7 @@ public class MainController {
 
     @RequestMapping(value = "/save")
     public String addNew(Reference reference) {
-        if (reference.validate()) {
-            try {
-                refRepo.save(reference);
-            } catch (Exception e) {
-                reference.setName(reference.getName()+"2");
-                refRepo.save(reference);
-            }        
-            if (reference.getName().equals("")) {
-                generateKey(reference);
-                refRepo.save(reference);
-            }
-            return "redirect:/references";
-        } else {
-            return "redirect:/references/create/" + reference.getRefType();
-        }
+        return refService.save(reference);
     }
 
     @RequestMapping(value = "/references", method = RequestMethod.POST)
@@ -120,19 +106,20 @@ public class MainController {
     }
 
 
-    public void generateKey(Reference reference) {
-        String title = reference.getTitle();
-        String key;
-        int length = title.length();
+//    public void generateKey(Reference reference) {
+//        String title = reference.getTitle();
+//        String key;
+//        int length = title.length();
+//
+//        if (length < 5) {
+//            key = title;
+//        } else {
+//            key = title.substring(0,5);
+//        }
+//        key += reference.getId();
+//        reference.setName(key);
+//    }
 
-        if (length < 5) {
-            key = title;
-        } else {
-            key = title.substring(0,5);
-        }
-        key += reference.getId();
-        reference.setName(key);
-    }
 
 
 }
