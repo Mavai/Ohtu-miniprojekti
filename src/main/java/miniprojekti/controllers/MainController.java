@@ -4,6 +4,7 @@ package miniprojekti.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.HashMap;
 import miniprojekti.Services.ReferenceService;
@@ -40,20 +41,7 @@ public class MainController {
     
     @RequestMapping(value = "/references", method = RequestMethod.GET)
     public String get(Model model) {
-        model.addAttribute("articleReferences", refRepo.findByRefType("article"));
-        model.addAttribute("bookReferences", refRepo.findByRefType("book"));
-        model.addAttribute("bookletReferences", refRepo.findByRefType("booklet"));
-        model.addAttribute("conferenceReferences", refRepo.findByRefType("conference"));
-        model.addAttribute("inbookReferences", refRepo.findByRefType("inbook"));
-        model.addAttribute("incollectionReferences", refRepo.findByRefType("incollection"));
-        model.addAttribute("inproceedingsReferences", refRepo.findByRefType("inproceedings"));
-        model.addAttribute("manualReferences", refRepo.findByRefType("manual"));
-        model.addAttribute("mastersthesisReferences", refRepo.findByRefType("mastersthesis"));
-        model.addAttribute("miscReferences", refRepo.findByRefType("misc"));
-        model.addAttribute("phdthesisReferences", refRepo.findByRefType("phdthesis"));
-        model.addAttribute("proceedingsReferences", refRepo.findByRefType("proceedings"));
-        model.addAttribute("techreportReferences", refRepo.findByRefType("techreport"));
-        model.addAttribute("unpublishedReferences", refRepo.findByRefType("unpublished"));
+        model.addAllAttributes(refService.findAllByRefType());
         return "list";
     }
 
@@ -67,13 +55,16 @@ public class MainController {
     public String showEditForm(Model model, @PathVariable Long id) {
         Reference ref = refRepo.findOne(id);
         model.addAttribute("reference", ref);
-        System.out.println("KIISSSSSSSSSSSSSSSSSSSSSSSSSSSAAAAAAAAAAAAAAAAAAAAAAAAA " + id.getClass());
         return "add_" + ref.getRefType();
     }
 
     @RequestMapping(value = "/save")
     public String addNew(Reference reference) {
-        return refService.save(reference);
+        if (refService.save(reference)) {
+            return "redirect:/references";
+        } else {
+            return "redirect:/references/create/" + reference.getRefType();
+        }
     }
 
     @RequestMapping(value = "/references", method = RequestMethod.POST)
@@ -95,28 +86,6 @@ public class MainController {
     public String destroy(@PathVariable Long id) {
         refService.delete(id);
         return "redirect:/references";
-    }
-
-    public String generateBibtex() {
-        String bibtex = "";
-        for (Reference r : refRepo.findAll()) {
-            bibtex += r.getBibtex();
-        }
-        return bibtex;
-    }
-
-    public void generateKey(Reference reference) {
-        String title = reference.getTitle();
-        String key;
-        int length = title.length();
-
-        if (length < 5) {
-            key = title;
-        } else {
-            key = title.substring(0,5);
-        }
-        key += reference.getId();
-        reference.setName(key);
     }
 
     @RequestMapping(value="test", method=RequestMethod.GET)
