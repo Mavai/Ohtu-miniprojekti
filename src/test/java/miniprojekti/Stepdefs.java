@@ -68,7 +68,7 @@ public class Stepdefs {
     @Given("^book with name \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", editor: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
     @When("^book named \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", editor: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
     public void book_is_edited(String oldName, String newName, String author, String editor, String title, String year, String publisher) {
-        submitButtonWithId("edit" + oldName);
+        clickLinkWithId("edit" + oldName);
         fillInputWithValue(newName, "name");
         fillInputWithValue(author, "author");
         fillInputWithValue(editor, "editor");
@@ -127,14 +127,15 @@ public class Stepdefs {
         submitButtonWithId("submit");
     }
 
-    @When("^article named \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
-    public void article_is_edited(String oldName, String newName, String author, String title, String year, String publisher) {
-        submitButtonWithId("edit" + oldName);
+    @When("^article named \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", journal: \"([^\"]*)\", year: \"([^\"]*)\" and volume: \"([^\"]*)\"$")
+    public void article_is_edited(String oldName, String newName, String author, String title, String journal, String year, String volume) {
+        clickLinkWithId("edit" + oldName);
         fillInputWithValue(newName, "name");
         fillInputWithValue(author, "author");
         fillInputWithValue(title, "title");
+        fillInputWithValue(journal, "journal");
         fillInputWithValue(year, "year");
-        fillInputWithValue(publisher, "publisher");
+        fillInputWithValue(volume, "volume");
         submitButtonWithId("submit");
     }
 
@@ -153,7 +154,7 @@ public class Stepdefs {
 
     @When("^inproceedings named \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", book title: \"([^\"]*)\" and year: \"([^\"]*)\"$")
     public void inproceedings_is_edited(String oldName, String newName, String author, String title, String bookTitle, String year) {
-        submitButtonWithId("edit" + oldName);
+        clickLinkWithId("edit" + oldName);
         fillInputWithValue(newName, "name");
         fillInputWithValue(author, "author");
         fillInputWithValue(title, "title");
