@@ -5,6 +5,8 @@ package miniprojekti.controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import miniprojekti.Services.ReferenceService;
 import miniprojekti.entities.RefField;
 import miniprojekti.entities.Reference;
 import miniprojekti.entities.Type;
@@ -24,6 +26,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MainController {
+
+    @Autowired
+    ReferenceService refService;
 
     @Autowired
     ReferenceRepository refRepo;
@@ -68,21 +73,7 @@ public class MainController {
 
     @RequestMapping(value = "/save")
     public String addNew(Reference reference) {
-        if (reference.validate()) {
-            try {
-                refRepo.save(reference);
-            } catch (Exception e) {
-                reference.setName(reference.getName()+"2");
-                refRepo.save(reference);
-            }        
-            if (reference.getName().equals("")) {
-                generateKey(reference);
-                refRepo.save(reference);
-            }
-            return "redirect:/references";
-        } else {
-            return "redirect:/references/create/" + reference.getRefType();
-        }
+        return refService.save(reference);
     }
 
     @RequestMapping(value = "/references", method = RequestMethod.POST)
@@ -92,28 +83,7 @@ public class MainController {
 
     @RequestMapping(value = "/getbibtex/{filename}", method = RequestMethod.GET)
     public HttpEntity<byte[]> getBibtex(Model model, @PathVariable String filename) throws IOException {
-       String bibtex = generateBibtex();
-/*        for (Reference r : refRepo.findAll()) {
-            bibtex += "@" + r.getType() + "{" + r.getName() + ",\n";
-            bibtex += r.getAuthor() != null && !r.getAuthor().equals("") ? " author    = \"" + r.getAuthor() + "\",\n" : "";
-            bibtex += r.getTitle() != null && !r.getTitle().equals("") ? " title     = \"" + r.getTitle() + "\",\n" : "";
-            bibtex += r.getPublisher() != null && !r.getPublisher().equals("") ? " publisher = \"" + r.getPublisher() + "\",\n" : "";
-            bibtex += r.getYear() != null && !r.getYear().equals("") ? " year      = \"" + r.getYear() + "\",\n" : "";
-            bibtex += r.getMonth() != null && !r.getMonth().equals("") ? " month     = \"" + r.getMonth() + "\",\n" : "";
-            bibtex += r.getAddress() != null && !r.getAddress().equals("") ? " address   = \"" + r.getAddress() + "\",\n" : "";
-            bibtex += r.getEdition() != null && !r.getEdition().equals("") ? " edition   = \"" + r.getEdition() + "\",\n" : "";
-            bibtex += r.getJournal() != null && !r.getJournal().equals("") ? " journal   = \"" + r.getJournal() + "\",\n" : "";
-            bibtex += r.getVolume() != null && !r.getVolume().equals("") ? " volume    = \"" + r.getVolume() + "\",\n" : "";
-            bibtex += r.getNumber() != null && !r.getNumber().equals("") ? " number    = \"" + r.getNumber() + "\",\n" : "";
-            bibtex += r.getPages() != null && !r.getPages().equals("") ? " pages     = \"" + r.getPages() + "\",\n" : "";
-            bibtex += r.getNote() != null && !r.getNote().equals("") ? " note       = \"" + r.getNote() + "\",\n" : "";
-            bibtex += r.getKey() != null && !r.getKey().equals("") ? " key          = \"" + r.getKey() + "\",\n" : "";
-            bibtex += r.getPublisher() != null && !r.getPublisher().equals("") ? " publisher = \"" + r.getPublisher() + "\",\n" : "";
-            bibtex += r.getSeries() != null && !r.getSeries().equals("") ? " series   = \"" + r.getSeries() + "\",\n" : "";
-            bibtex = bibtex.substring(0, bibtex.length() - 2);
-            bibtex += "\n}\n\n";
-            bibtex += r.getBibtex();
-        }*/
+       String bibtex = refService.generateBibtex();
 
         byte[] data = bibtex.getBytes();
         HttpHeaders header = new HttpHeaders();
@@ -135,27 +105,21 @@ public class MainController {
         return "redirect:/references";
     }
 
-    public String generateBibtex() {
-        String bibtex = "";
-        for (Reference r : refRepo.findAll()) {
-            bibtex += r.getBibtex();
-        }
-        return bibtex;
-    }
 
-    public void generateKey(Reference reference) {
-        String title = reference.getTitle();
-        String key;
-        int length = title.length();
+//    public void generateKey(Reference reference) {
+//        String title = reference.getTitle();
+//        String key;
+//        int length = title.length();
+//
+//        if (length < 5) {
+//            key = title;
+//        } else {
+//            key = title.substring(0,5);
+//        }
+//        key += reference.getId();
+//        reference.setName(key);
+//    }
 
-        if (length < 5) {
-            key = title;
-        } else {
-            key = title.substring(0,5);
-        }
-        key += reference.getId();
-        reference.setName(key);
-    }
 
 
 }

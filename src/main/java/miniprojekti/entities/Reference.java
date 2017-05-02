@@ -355,4 +355,18 @@ public class Reference {
         }
         return true;
     }
+
+    public void generateKey() {
+        String title = getTitle();
+        String key;
+        int length = title.length();
+
+        if (length < 5) {
+            key = title;
+        } else {
+            key = title.substring(0,5);
+        }
+        key += getId();
+        setName(key);
+    }
 }
