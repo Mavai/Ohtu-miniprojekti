@@ -98,7 +98,7 @@ public class MainController {
         return "redirect:/getbibtex/" + filename;
     }
 
-    @RequestMapping(value = "/destroy/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/destroy/{id}", method = RequestMethod.POST)
     public String destroy(@PathVariable Long id) {
         Reference deleted = refRepo.findOne(id);
         refRepo.delete(deleted);

@@ -35,7 +35,10 @@
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
                 <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><form th:action="@{/destroy/} + ${reference.id}" method="post">
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">Destroy</button>
+                    </form>
+                </td>
             </tr>
         </table>
 
@@ -75,7 +78,10 @@
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
                 <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><form th:action="@{/destroy/} + ${reference.id}" method="post">
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">Destroy</button>
+                    </form>
+                </td>
             </tr>
         </table>
 
@@ -105,7 +111,57 @@
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
                 <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><form th:action="@{/destroy/} + ${reference.id}" method="post">
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">Destroy</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+        <table th:fragment="conferenceTable">
+            <caption>Conference references</caption>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Booktitle</th>
+                <th>Year</th>
+                <th>Editor</th>
+                <th>Volume</th>
+                <th>Number</th>
+                <th>Series</th>
+                <th>Pages</th>
+                <th>Address</th>
+                <th>Organization</th>
+                <th>Publisher</th>
+                <th>Month</th>
+                <th>Note</th>
+                <th>Key</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr th:each="reference : ${conferenceReferences}">
+                <td><span th:text="${reference.name}"></span></td>
+                <td><span th:text="${reference.author}"></span></td>
+                <td><span th:text="${reference.title}"></span></td>
+                <td><span th:text="${reference.booktitle}"></span></td>
+                <td><span th:text="${reference.year}"></span></td>
+                <td><span th:text="${reference.editor}"></span></td>
+                <td><span th:text="${reference.volume}"></span></td>
+                <td><span th:text="${reference.number}"></span></td>
+                <td><span th:text="${reference.series}"></span></td>
+                <td><span th:text="${reference.pages}"></span></td>
+                <td><span th:text="${reference.address}"></span></td>
+                <td><span th:text="${reference.organization}"></span></td>
+                <td><span th:text="${reference.publisher}"></span></td>
+                <td><span th:text="${reference.month}"></span></td>
+                <td><span th:text="${reference.note}"></span></td>
+                <td><span th:text="${reference.key}"></span></td>
+                <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
+                <td><form th:action="@{/destroy/} + ${reference.id}" method="post">
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">Destroy</button>
+                    </form>
+                </td>
             </tr>
         </table>
 
@@ -151,7 +207,10 @@
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
                 <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><form th:action="@{/destroy/} + ${reference.id}" method="post">
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">Destroy</button>
+                    </form>
+                </td>
             </tr>
         </table>
 
@@ -199,7 +258,10 @@
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
                 <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><form th:action="@{/destroy/} + ${reference.id}" method="post">
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">Destroy</button>
+                    </form>
+                </td>
             </tr>
         </table>
 
@@ -243,51 +305,10 @@
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
                 <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
-            </tr>
-        </table>
-        
-        <table th:fragment="conferenceTable">
-            <caption>Conference references</caption>
-            <tr>
-                <th>Name</th>
-                <th>Author</th>
-                <th>Title</th>
-                <th>Booktitle</th>
-                <th>Year</th>
-                <th>Editor</th>
-                <th>Volume</th>
-                <th>Number</th>
-                <th>Series</th>
-                <th>Pages</th>
-                <th>Address</th>
-                <th>Organization</th>
-                <th>Publisher</th>
-                <th>Month</th>
-                <th>Note</th>
-                <th>Key</th>
-                <th></th>
-                <th></th>
-            </tr>
-            <tr th:each="reference : ${conferenceReferences}">
-                <td><span th:text="${reference.name}"></span></td>
-                <td><span th:text="${reference.author}"></span></td>
-                <td><span th:text="${reference.title}"></span></td>
-                <td><span th:text="${reference.booktitle}"></span></td>
-                <td><span th:text="${reference.year}"></span></td>
-                <td><span th:text="${reference.editor}"></span></td>
-                <td><span th:text="${reference.volume}"></span></td>
-                <td><span th:text="${reference.number}"></span></td>
-                <td><span th:text="${reference.series}"></span></td>
-                <td><span th:text="${reference.pages}"></span></td>
-                <td><span th:text="${reference.address}"></span></td>
-                <td><span th:text="${reference.organization}"></span></td>
-                <td><span th:text="${reference.publisher}"></span></td>
-                <td><span th:text="${reference.month}"></span></td>
-                <td><span th:text="${reference.note}"></span></td>
-                <td><span th:text="${reference.key}"></span></td>
-                <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><form th:action="@{/destroy/} + ${reference.id}" method="post">
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">Destroy</button>
+                    </form>
+                </td>
             </tr>
         </table>
 
@@ -317,7 +338,10 @@
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
                 <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><form th:action="@{/destroy/} + ${reference.id}" method="post">
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">Destroy</button>
+                    </form>
+                </td>
             </tr>
         </table>
 
@@ -349,7 +373,10 @@
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
                 <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><form th:action="@{destroy/} + ${reference.id}" method="post">
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">Destroy</button>
+                    </form>
+                </td>
             </tr>
         </table>
 
@@ -359,7 +386,7 @@
                 <th>Name</th>
                 <th>Author</th>
                 <th>Title</th>
-                <th>Howpublished</th>
+                <th>How published</th>
                 <th>Year</th>
                 <th>Month</th>
                 <th>Note</th>
@@ -377,7 +404,10 @@
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
                 <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><form th:action="@{/destroy/} + ${reference.id}" method="post">
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">Destroy</button>
+                    </form>
+                </td>
             </tr>
         </table>
 
@@ -409,7 +439,10 @@
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
                 <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><form th:action="@{/destroy/} + ${reference.id}" method="post">
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">Destroy</button>
+                    </form>
+                </td>
             </tr>
         </table>
 
@@ -447,7 +480,10 @@
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
                 <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><form th:action="@{/destroy/} + ${reference.id}" method="post">
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">Destroy</button>
+                    </form>
+                </td>
             </tr>
         </table>
 
@@ -483,7 +519,10 @@
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
                 <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><form th:action="@{/destroy/} + ${reference.id}" method="post">
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">Destroy</button>
+                    </form>
+                </td>
             </tr>
         </table>
 
@@ -509,7 +548,10 @@
                 <td><span th:text="${reference.note}"></span></td>
                 <td><span th:text="${reference.key}"></span></td>
                 <td><a th:id="'edit' + ${reference.name}" th:href="@{'/references/edit/' + ${reference.id}}">Edit</a></td>
-                <td><a th:id="'delete' + ${reference.name}" th:href="@{'/destroy/' + ${reference.id}}">Delete</a></td>
+                <td><form th:action="@{/destroy/} + ${reference.id}" method="post">
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">Destroy</button>
+                    </form>
+                </td>
             </tr>
         </table>
     </body>
