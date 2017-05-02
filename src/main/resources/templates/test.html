@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>index</title>
+</head>
+<body>
+    <p th:each="entry: ${testmap}">
+  <span th:text="'Key: ' + ${entry.key} + ', Value: ' + ${entry.value[0]} + ' ' + ${entry.value[1]}"></span>
+</p>
+</body>
+
+</html>

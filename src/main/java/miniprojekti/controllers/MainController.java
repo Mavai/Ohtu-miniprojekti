@@ -5,6 +5,7 @@ package miniprojekti.controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 import miniprojekti.entities.RefField;
 import miniprojekti.entities.Reference;
 import miniprojekti.entities.Type;
@@ -155,6 +156,17 @@ public class MainController {
         }
         key += reference.getId();
         reference.setName(key);
+    }
+
+    @RequestMapping(value="test", method=RequestMethod.GET)
+    public String testHashMap(Model model) {
+        HashMap<String, Boolean[]> map = new HashMap<String, Boolean[]>();
+        map.put("testi", new Boolean[] {true, true});
+        map.put("testi2", new Boolean[] {true, true});
+        map.put("testi3", new Boolean[] {false, false});
+        map.put("testi4", new Boolean[] {true, true});
+        model.addAttribute("testmap", map);
+        return "test";
     }
 
 
