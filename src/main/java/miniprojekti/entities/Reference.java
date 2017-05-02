@@ -22,7 +22,7 @@ public class Reference {
 
     String refType;
     String type;
-    @Column(unique=true)
+    @Column(unique = true)
     String name;
     String author;
     String title;
@@ -340,12 +340,12 @@ public class Reference {
         bibtex += getBooktitle() != null && !getBooktitle().equals("") ? " booktitle   = \"" + getBooktitle() + "\",\n" : "";
         bibtex = bibtex.substring(0, bibtex.length() - 2);
         bibtex += "\n}\n\n";
-        bibtex = bibtex.replaceAll("ä", "{\\\\"+"\"a}");
-        bibtex = bibtex.replaceAll("Ä", "{\\\\"+"\"A}");
-        bibtex = bibtex.replaceAll("ö", "{\\\\"+"\"o}");
-        bibtex = bibtex.replaceAll("Ö", "{\\\\"+"\"O}");
-        bibtex = bibtex.replaceAll("å", "{\\\\"+"\"aa}");
-        bibtex = bibtex.replaceAll("Å", "{\\\\"+"\"AA}");
+        bibtex = bibtex.replaceAll("ä", "{\\\\" + "\"a}");
+        bibtex = bibtex.replaceAll("Ä", "{\\\\" + "\"A}");
+        bibtex = bibtex.replaceAll("ö", "{\\\\" + "\"o}");
+        bibtex = bibtex.replaceAll("Ö", "{\\\\" + "\"O}");
+        bibtex = bibtex.replaceAll("å", "{\\\\" + "\"aa}");
+        bibtex = bibtex.replaceAll("Å", "{\\\\" + "\"AA}");
         return bibtex;
     }
 
