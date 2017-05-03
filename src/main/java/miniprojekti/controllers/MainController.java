@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import miniprojekti.Services.RefTypes;
 import miniprojekti.Services.ReferenceService;
@@ -62,6 +63,7 @@ public class MainController {
 
     @RequestMapping(value = "/save")
     public String addNew(Reference reference) {
+        System.out.println(reference.getBibtex());
         if (refService.save(reference)) {
             return "redirect:/references";
         } else {
@@ -94,24 +96,24 @@ public class MainController {
     public String testHashMap(Model model) {
         Reference ref = new Reference();
         model.addAttribute("reference", ref);
-        HashMap<String, Boolean[]> map = new HashMap<String, Boolean[]>();
+        LinkedHashMap<String, Boolean[]> map = new LinkedHashMap<String, Boolean[]>();
         map.put("testi", new Boolean[]{true, true});
         map.put("testi2", new Boolean[]{true, true});
         map.put("testi3", new Boolean[]{false, false});
         map.put("testi4", new Boolean[]{true, true});
         model.addAttribute("testmap", map);
-        return "test2";
+        return "test";
     }
 
     @RequestMapping(value = "test2", method = RequestMethod.GET)
     public String testTypeMaps(Model model) {
-        Reference ref = new Reference();
+        Reference ref = new Reference("book");
         RefTypes rt = new RefTypes();
-        HashMap<String, Boolean[]> map = rt.getTypeMap("book");
+        LinkedHashMap<String, Boolean[]> map = rt.getTypeMap("book");
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + map);
         model.addAttribute("testmap", map);
         model.addAttribute("reference", ref);
-        return "test";
+        return "test2";
     }
 
 }

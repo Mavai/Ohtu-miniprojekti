@@ -1,11 +1,13 @@
 package miniprojekti.Services;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class RefTypes {
 
-    private HashMap<String, HashMap<String, Boolean[]>> types;
+    private HashMap<String, LinkedHashMap<String, Boolean[]>> types;
 
+    // tyyppien generoinnit voisi siirtää omiin metodeihin, iso konstruktori näyttää rumalta
     public RefTypes() {
         types = new HashMap();
         types.put("article", generateReference());
@@ -52,7 +54,7 @@ public class RefTypes {
     }
     
     private void setIsField(String... fields) {
-        HashMap<String, Boolean[]> map = types.get(fields[0]);
+        LinkedHashMap<String, Boolean[]> map = types.get(fields[0]);
         
         map.get("name")[0] = true;
         
@@ -62,7 +64,7 @@ public class RefTypes {
     }
 
     private void setIsRequired(String... fields) {
-        HashMap<String, Boolean[]> map = types.get(fields[0]);
+        LinkedHashMap<String, Boolean[]> map = types.get(fields[0]);
         
         map.get("name")[1] = true;
         
@@ -71,8 +73,8 @@ public class RefTypes {
         }
     }
 
-    private HashMap generateReference() {
-        HashMap<String, Boolean[]> map = new HashMap();
+    private LinkedHashMap generateReference() {
+        LinkedHashMap<String, Boolean[]> map = new LinkedHashMap();
         map.put("name", new Boolean[]{false, false});
         map.put("author", new Boolean[]{false, false});
         map.put("title", new Boolean[]{false, false});
@@ -101,11 +103,11 @@ public class RefTypes {
         return map;
     }
     
-    public HashMap<String, Boolean[]> getTypeMap(String type) {
+    public LinkedHashMap<String, Boolean[]> getTypeMap(String type) {
         return types.get(type);
     }
 
-    public HashMap<String, HashMap<String, Boolean[]>> getTypes() {
+    public HashMap<String, LinkedHashMap<String, Boolean[]>> getTypes() {
         return types;
     }
 
