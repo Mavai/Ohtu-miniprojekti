@@ -105,7 +105,11 @@ public class RefTypes {
         return types.get(type);
     }
 
-//    public RefTypes() {
+    public HashMap<String, HashMap<String, Boolean[]>> getTypes() {
+        return types;
+    }
+
+    //    public RefTypes() {
 //        this.types = new HashMap<>();
 //        types.put("article", generateArticle());
 //        types.put("book", generateBook());

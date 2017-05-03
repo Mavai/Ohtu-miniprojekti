@@ -55,7 +55,18 @@ public class ReferenceServiceTest {
         refService.save(ref1);
         refService.save(ref2);
         assertNotNull(referenceRepository.findByName("foo"));
-        assertNotNull(referenceRepository.findByName("foo0"));
+        assertNotNull(referenceRepository.findByName("foo2"));
+    }
+
+    public void saveWorksMultipleWithDuplicateNames() {
+        Reference ref1 = new Reference("name:foo2", "refType:unpublished", "title:foobar");
+        Reference ref2 = new Reference("name:foo2", "refType:unpublished", "title:foobar");
+        Reference ref3 = new Reference("name:foo2", "refType:unpublished", "title:foobar");
+        refService.save(ref1);
+        refService.save(ref2);
+        refService.save(ref3);
+        assertNotNull(referenceRepository.findByName("foo"));
+        assertNotNull(referenceRepository.findByName("foo2"));
     }
 
     @Test
