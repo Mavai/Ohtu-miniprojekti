@@ -13,9 +13,7 @@ import miniprojekti.Services.RefTypes;
 import miniprojekti.Services.ReferenceService;
 import miniprojekti.entities.RefField;
 import miniprojekti.entities.Reference;
-import miniprojekti.entities.Type;
 import miniprojekti.repositories.ReferenceRepository;
-import miniprojekti.repositories.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -26,7 +24,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MainController {

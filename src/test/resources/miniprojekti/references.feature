@@ -28,7 +28,13 @@ Feature: References pages display right content
     Given references is visited
     And book is added with name: "referenceNameForBookToBeEditedForBookReferenceFeature", author: "uneditedAuthorForBookReferenceFeature", editor: "uneditedEditorForBookReferenceFeature", title: "uneditedTitleForBookReferenceFeature", year: "1234" and publisher: "publisherToBeEditedForBookReferenceFeature"
     When book named "referenceNameForBookToBeEditedForBookReferenceFeature" is edited with name: "newReferenceNameForBookForBookReferenceFeature", author: "newAuthorForBookForBookReferenceFeature", editor: "newEditorForBookForBookReferenceFeature", title: "newTitleForBookForBookReferenceFeature", year: "1984" and publisher: "newPublisherForBookReferenceFeature"
-    Then page displays content: "newReferenceNameForBookForBookReferenceFeature"
+    Then page does not display content: "referenceNameForBookToBeEditedForBookReferenceFeature"
+    And page does not display content: "uneditedAuthorForBookReferenceFeature"
+    And page does not display content: "uneditedEditorForBookReferenceFeature"
+    And page does not display content: "uneditedTitleForBookReferenceFeature"
+    And page does not display content: "1234"
+    And page does not display content: "publisherToBeEditedForBookReferenceFeature"
+    And page displays content: "newReferenceNameForBookForBookReferenceFeature"
     And page displays content: "newAuthorForBookForBookReferenceFeature"
     And page displays content: "newTitleForBookForBookReferenceFeature"
     And page displays content: "newEditorForBookForBookReferenceFeature"
@@ -68,9 +74,15 @@ Feature: References pages display right content
 
   Scenario: Article can be edited
     Given references is visited
-    And article is added with name: "referenceNameForArticleToBeEdited", author: "uneditedAuthor", title: "uneditedTitle", journal: "uneditedJournal", year: "1234" and volume: "9"
+    And article is added with name: "referenceNameForArticleToBeEdited", author: "uneditedAuthorForArticleToBeEdited", title: "uneditedTitleForArticleToBeEdited", journal: "uneditedJournalForArticleToBeEdited", year: "2111" and volume: "912"
     When article named "referenceNameForArticleToBeEdited" is edited with name: "newReferenceNameForArticle", author: "newAuthorForArticle", title: "newTitleForArticle", journal: "newJournalForArticle", year: "1984" and volume: "101"
-    Then page displays content: "newReferenceNameForArticle"
+    Then page does not display content: "referenceNameForArticleToBeEdited"
+    And page does not display content: "uneditedAuthorForArticleToBeEdited"
+    And page does not display content: "uneditedTitleForArticleToBeEdited"
+    And page does not display content: "uneditedJournalForArticleToBeEdited"
+    And page does not display content: "2111"
+    And page does not display content: "912"
+    And page displays content: "newReferenceNameForArticle"
     And page displays content: "newAuthorForArticle"
     And page displays content: "newTitleForArticle"
     And page displays content: "newJournalForArticle"
@@ -109,9 +121,14 @@ Feature: References pages display right content
 
   Scenario: Inproceedings can be edited
     Given references is visited
-    And inproceedings is added with name: "referenceNameForInproceedingsToBeEdited", author: "uneditedAuthor", title: "uneditedTitle", book title: "uneditedBookTitle" and year: "1657"
+    And inproceedings is added with name: "referenceNameForInproceedingsToBeEdited", author: "uneditedAuthorForInproceedingsToBeEdited", title: "uneditedTitleForInproceedingsToBeEdited", book title: "uneditedBookTitleForInproceedingsToBeEdited" and year: "1657"
     When inproceedings named "referenceNameForInproceedingsToBeEdited" is edited with name: "newReferenceNameForInproceedings", author: "newAuthorForInproceedings", title: "newTitleForInproceedings", book title: "newBookTitle" and year: "1984"
-    Then page displays content: "newReferenceNameForInproceedings"
+    Then page does not display content: "referenceNameForInproceedingsToBeEdited"
+    And page does not display content: "uneditedAuthorForInproceedingsToBeEdited"
+    And page does not display content: "uneditedTitleForInproceedingsToBeEdited"
+    And page does not display content: "uneditedBookTitleForInproceedingsToBeEdited"
+    And page does not display content: "1657"
+    And page displays content: "newReferenceNameForInproceedings"
     And page displays content: "newAuthorForInproceedings"
     And page displays content: "newTitleForInproceedings"
     And page displays content: "newBookTitle"

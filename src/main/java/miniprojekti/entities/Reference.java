@@ -22,7 +22,7 @@ public class Reference {
 
     String refType;
     String type;
-    @Column(unique=true)
+    @Column(unique = true)
     String name;
     String author;
     String title;
