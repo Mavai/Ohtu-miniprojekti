@@ -90,4 +90,43 @@ public class ReferenceServiceTest {
         refService.save(ref4);
         assertEquals(4, refService.findAllByRefType().get("unpublishedReferences").size());
     }
+    
+    @Test
+    public void generatedBibtexContainsSavedBook() {
+        refService.save(new Reference("name:referenceNameForGetBibtexTest", "author:authorNameForGetBibtexTest",
+                "editor:editorNameForGetBibtexTest", "title:bookTitleForGetBibtexTest", "year:4321", "publisher:publisherNameForGetBibtexTest"));
+
+        String bibtex = refService.generateBibtex();
+        assertTrue(bibtex.contains("referenceNameForGetBibtexTest"));
+        assertTrue(bibtex.contains("authorNameForGetBibtexTest"));
+        assertTrue(bibtex.contains("editorNameForGetBibtexTest"));
+        assertTrue(bibtex.contains("bookTitleForGetBibtexTest"));
+        assertTrue(bibtex.contains("4321"));
+        assertTrue(bibtex.contains("publisherNameForGetBibtexTest"));
+    }
+
+    @Test
+    public void generatedBibtexDoesNotContainUnAddedFields() {
+        refService.save(new Reference("name:referenceNameForGetBibtexTest", "author:authorNameForGetBibtexTest",
+                "editor:editorNameForGetBibtexTest", "title:bookTitleForGetBibtexTest", "year:4321", "publisher:publisherNameForGetBibtexTest"));
+
+        String bibtex = refService.generateBibtex();
+        assertFalse(bibtex.contains("number"));
+        assertFalse(bibtex.contains("series"));
+        assertFalse(bibtex.contains("address"));
+        assertFalse(bibtex.contains("edition"));
+        assertFalse(bibtex.contains("month"));
+        assertFalse(bibtex.contains("key"));
+    }
+
+    @Test
+    public void generatedBibtexDoesNotContainScandinavianLetters() {
+        refService.save(new Reference("name:äö", "author:äuthör", "editor:editor", "title:title", "journal:jöurnäl", "year:1999", "volume:5"));
+
+        String fileString = refService.generateBibtex();
+        assertFalse(fileString.contains("ä"));
+        assertFalse(fileString.contains("Ä"));
+        assertFalse(fileString.contains("ö"));
+        assertFalse(fileString.contains("Ö"));
+    }
 }
