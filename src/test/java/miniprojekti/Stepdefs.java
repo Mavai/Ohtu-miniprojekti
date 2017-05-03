@@ -38,22 +38,16 @@ public class Stepdefs {
 
     String referencesPath = "http://localhost:8080/references";
     String getbibtexPath = "http://localhost:8080/getbibtex";
-    String downloadedFile;
+    String downloadedFileString;
 
     @After
     public void shutdown_server() {
-        //DriverFactory.getInstance().removeDriver();
 
     }
 
     @Given("references is visited$")
     public void references_is_visited() throws Throwable {
         DriverFactory.getInstance().getDriver().get(referencesPath);
-    }
-
-    @Given("^getbibtex is visited$")
-    public void getbibtex_is_visited() throws Throwable {
-        DriverFactory.getInstance().getDriver().get(getbibtexPath);
     }
 
     @Given("^book is added with name: \"([^\"]*)\", author: \"([^\"]*)\", editor: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
@@ -70,18 +64,10 @@ public class Stepdefs {
         submitButtonWithId("submit");
     }
 
-    @When("^book with author: \"([^\"]*)\" is added$")
-    public void book_is_added_with_author(String author) {
-        selectType("Book");
-        submitButtonWithId("submit");
-        fillInputWithValue(author, "author");
-        submitButtonWithId("submit");
-    }
-
     @Given("^book with name \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", editor: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
     @When("^book named \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", editor: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
     public void book_is_edited(String oldName, String newName, String author, String editor, String title, String year, String publisher) {
-        submitButtonWithId("edit" + oldName);
+        clickLinkWithId("edit" + oldName);
         fillInputWithValue(newName, "name");
         fillInputWithValue(author, "author");
         fillInputWithValue(editor, "editor");
@@ -94,7 +80,7 @@ public class Stepdefs {
     @Given("^book with name: \"([^\"]*)\" is deleted$")
     @When("^book named \"([^\"]*)\" is deleted$")
     public void book_is_deleted(String name) {
-        clickLinkWithId("delete" + name);
+        submitButtonWithId("delete" + name);
     }
 
     @Given("^article is added with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", journal: \"([^\"]*)\", year: \"([^\"]*)\" and volume: \"([^\"]*)\"$")
@@ -111,30 +97,6 @@ public class Stepdefs {
         submitButtonWithId("submit");
     }
 
-    @When("^article with author: \"([^\"]*)\" is added$")
-    public void article_is_added_with_author(String author) {
-        selectType("Article");
-        submitButtonWithId("submit");
-        fillInputWithValue(author, "author");
-        submitButtonWithId("submit");
-    }
-
-    @When("^article named \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", year: \"([^\"]*)\" and publisher: \"([^\"]*)\"$")
-    public void article_is_edited(String oldName, String newName, String author, String title, String year, String publisher) {
-        submitButtonWithId("edit" + oldName);
-        fillInputWithValue(newName, "name");
-        fillInputWithValue(author, "author");
-        fillInputWithValue(title, "title");
-        fillInputWithValue(year, "year");
-        fillInputWithValue(publisher, "publisher");
-        submitButtonWithId("submit");
-    }
-
-    @When("^article named \"([^\"]*)\" is deleted$")
-    public void article_is_deleted(String name) {
-        clickLinkWithId("delete" + name);
-    }
-
     @Given("^inproceedings is added with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", book title: \"([^\"]*)\" and year: \"([^\"]*)\"$")
     @When("^inproceedings with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", book title: \"([^\"]*)\" and year: \"([^\"]*)\" is added$")
     public void inproceedings_is_added(String name, String author, String title, String bookTitle, String year) throws Throwable {
@@ -148,6 +110,39 @@ public class Stepdefs {
         submitButtonWithId("submit");
     }
 
+    @When("^book with author: \"([^\"]*)\" is added$")
+    public void book_is_added_with_author(String author) {
+        selectType("Book");
+        submitButtonWithId("submit");
+        fillInputWithValue(author, "author");
+        submitButtonWithId("submit");
+    }
+
+    @When("^article with author: \"([^\"]*)\" is added$")
+    public void article_is_added_with_author(String author) {
+        selectType("Article");
+        submitButtonWithId("submit");
+        fillInputWithValue(author, "author");
+        submitButtonWithId("submit");
+    }
+
+    @When("^article named \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", journal: \"([^\"]*)\", year: \"([^\"]*)\" and volume: \"([^\"]*)\"$")
+    public void article_is_edited(String oldName, String newName, String author, String title, String journal, String year, String volume) {
+        clickLinkWithId("edit" + oldName);
+        fillInputWithValue(newName, "name");
+        fillInputWithValue(author, "author");
+        fillInputWithValue(title, "title");
+        fillInputWithValue(journal, "journal");
+        fillInputWithValue(year, "year");
+        fillInputWithValue(volume, "volume");
+        submitButtonWithId("submit");
+    }
+
+    @When("^article named \"([^\"]*)\" is deleted$")
+    public void article_is_deleted(String name) {
+        submitButtonWithId("delete" + name);
+    }
+
     @When("^inproceedings with author: \"([^\"]*)\" is added$")
     public void inproceedings_is_added_with_author(String author) {
         selectType("Inproceedings");
@@ -158,7 +153,7 @@ public class Stepdefs {
 
     @When("^inproceedings named \"([^\"]*)\" is edited with name: \"([^\"]*)\", author: \"([^\"]*)\", title: \"([^\"]*)\", book title: \"([^\"]*)\" and year: \"([^\"]*)\"$")
     public void inproceedings_is_edited(String oldName, String newName, String author, String title, String bookTitle, String year) {
-        submitButtonWithId("edit" + oldName);
+        clickLinkWithId("edit" + oldName);
         fillInputWithValue(newName, "name");
         fillInputWithValue(author, "author");
         fillInputWithValue(title, "title");
@@ -169,60 +164,22 @@ public class Stepdefs {
 
     @When("^inproceedings named \"([^\"]*)\" is deleted$")
     public void inproceedings_is_deleted(String name) {
-        clickLinkWithId("delete" + name);
+        submitButtonWithId("delete" + name);
+    }
+
+    @When("^getbibtex file named \"([^\"]*)\" is downloaded$")
+    public void getbibtex_file_is_downloaded(String fileName) throws Throwable {
+        WebElement fileNameInput = DriverFactory.getInstance().getDriver().findElement(By.name("filename"));
+        fileNameInput.sendKeys(fileName);
+        submitButtonWithId("submitBibtex");
+        URL url = new URL(getbibtexPath + "/" + fileName);
+        downloadedFileString = new Scanner(url.openStream()).useDelimiter("\\A").next();
     }
 
     @When("^type: \"([^\"]*)\" is selected$")
     public void type_is_selected(String type) throws Throwable {
         selectType(type);
         submitButtonWithId("submit");
-    }
-
-    private void selectType(String type) {
-        WebElement selectElement = DriverFactory.getInstance().getDriver().findElement(By.name("type"));
-        Select select = new Select(selectElement);
-        select.selectByVisibleText(type);
-
-    }
-
-    @When("^form is filled with value: \"([^\"]*)\" for \"([^\"]*)\"$")
-    public void form_is_filled_with_value(String value, String field) throws Throwable {
-        fillInputWithValue(value, field);
-    }
-
-    private void fillInputWithValue(String value, String input) {
-        WebElement fieldElement = DriverFactory.getInstance().getDriver().findElement(By.id(input));
-        fieldElement.sendKeys(value);
-    }
-
-    @When("^form is submitted$")
-    public void form_is_submitted() throws Throwable {
-        submitButtonWithId("submit");
-    }
-
-    private void submitButtonWithId(String id) {
-        WebElement submit = DriverFactory.getInstance().getDriver().findElement(By.id(id));
-        submit.submit();
-    }
-
-    private void clickLinkWithId(String id) {
-        WebElement link = DriverFactory.getInstance().getDriver().findElement(By.id(id));
-        link.click();
-    }
-
-    @When("^getbibtex file named \"([^\"]*)\" is downloaded$")
-    public void getbibtex_file_is_downloaded(String file) throws Throwable {
-        WebElement fileNameInput = DriverFactory.getInstance().getDriver().findElement(By.name("filename"));
-        fileNameInput.sendKeys(file);
-        WebElement getBibtexButton = DriverFactory.getInstance().getDriver().findElement(By.id("submitBibtex"));
-        getBibtexButton.submit();
-        URL url = new URL(getbibtexPath + "/" + file);
-        downloadedFile = new Scanner(url.openStream()).useDelimiter("\\A").next();
-    }
-
-    @Then("^page displays create a new reference$")
-    public void page_displays_create_a_new_reference() throws Throwable {
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Create a new reference"));
     }
 
     @Then("^page displays content: \"([^\"]*)\"$")
@@ -237,12 +194,12 @@ public class Stepdefs {
 
     @Then("^file contains content: \"([^\"]*)\"$")
     public void file_contains_content(String content) throws Throwable {
-        assertTrue(downloadedFile.contains(content));
+        assertTrue(downloadedFileString.contains(content));
     }
 
     @Then("^file does not contain content: \"([^\"]*)\"$")
     public void file_does_not_contain_content(String content) throws Throwable {
-        assertFalse(downloadedFile.contains(content));
+        assertFalse(downloadedFileString.contains(content));
     }
 
     @Then("^page displays add a book reference content$")
@@ -297,5 +254,27 @@ public class Stepdefs {
         assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Publisher"));
         assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Note"));
         assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Key"));
+    }
+
+    private void selectType(String type) {
+        WebElement selectElement = DriverFactory.getInstance().getDriver().findElement(By.name("type"));
+        Select select = new Select(selectElement);
+        select.selectByVisibleText(type);
+    }
+
+    private void fillInputWithValue(String value, String input) {
+        WebElement fieldElement = DriverFactory.getInstance().getDriver().findElement(By.id(input));
+        fieldElement.clear();
+        fieldElement.sendKeys(value);
+    }
+
+    private void submitButtonWithId(String id) {
+        WebElement submit = DriverFactory.getInstance().getDriver().findElement(By.id(id));
+        submit.submit();
+    }
+
+    private void clickLinkWithId(String id) {
+        WebElement link = DriverFactory.getInstance().getDriver().findElement(By.id(id));
+        link.click();
     }
 }

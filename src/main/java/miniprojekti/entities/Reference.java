@@ -340,12 +340,17 @@ public class Reference {
         bibtex += getBooktitle() != null && !getBooktitle().equals("") ? " booktitle   = \"" + getBooktitle() + "\",\n" : "";
         bibtex = bibtex.substring(0, bibtex.length() - 2);
         bibtex += "\n}\n\n";
-        bibtex = bibtex.replaceAll("ä", "{\\\\" + "\"a}");
-        bibtex = bibtex.replaceAll("Ä", "{\\\\" + "\"A}");
-        bibtex = bibtex.replaceAll("ö", "{\\\\" + "\"o}");
-        bibtex = bibtex.replaceAll("Ö", "{\\\\" + "\"O}");
-        bibtex = bibtex.replaceAll("å", "{\\\\" + "\"aa}");
-        bibtex = bibtex.replaceAll("Å", "{\\\\" + "\"AA}");
+        bibtex = replaceScandinavian(bibtex);
+        return bibtex;
+    }
+
+    private String replaceScandinavian(String bibtex) {
+        bibtex = bibtex.replaceAll("ä", "{\\\\"+"\"a}");
+        bibtex = bibtex.replaceAll("Ä", "{\\\\"+"\"A}");
+        bibtex = bibtex.replaceAll("ö", "{\\\\"+"\"o}");
+        bibtex = bibtex.replaceAll("Ö", "{\\\\"+"\"O}");
+        bibtex = bibtex.replaceAll("å", "{\\\\"+"\"aa}");
+        bibtex = bibtex.replaceAll("Å", "{\\\\"+"\"AA}");
         return bibtex;
     }
 
@@ -354,5 +359,19 @@ public class Reference {
             return false;
         }
         return true;
+    }
+
+    public void generateKey() {
+        String title = getTitle();
+        String key;
+        int length = title.length();
+
+        if (length < 5) {
+            key = title;
+        } else {
+            key = title.substring(0,5);
+        }
+        key += getId();
+        setName(key);
     }
 }

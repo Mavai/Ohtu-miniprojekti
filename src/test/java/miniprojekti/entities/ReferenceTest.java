@@ -5,7 +5,7 @@
  */
 package miniprojekti.entities;
 
-import miniprojekti.entities.Reference;
+import miniprojekti.Services.ReferenceService;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,24 +13,21 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
-import javax.validation.constraints.AssertFalse;
-import miniprojekti.repositories.ReferenceRepository;
-
 import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  *
  * @author markovai
  */
-//@RunWith(SpringRunner.class)
-//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class ReferenceTest {
-    
+
     @Autowired
-    ReferenceRepository referenceRepository;
+    ReferenceService refService;
 
     public ReferenceTest() {
     }
@@ -73,13 +70,30 @@ public class ReferenceTest {
         assertEquals(bibtex, ref.getBibtex());
     }
 
-//    @Test
-//    public void nameIsGeneratedCorrectlyWhenItsEmpty() {
-//        Reference ref = new Reference("author:authorForMisc", "title:title", "refType:misc");
-//        System.out.println(ref.getBibtex());
-//        referenceRepository.save(ref);
-//        String tex = ref.getBibtex();
-//        String bibtex = "@misc{title" + ref.getId() + ",\n author    = \"authorForMisc\",\n title    = \"title\"}\n\n";
-//        assertEquals(bibtex, ref.getBibtex());
-//    }
+    @Test
+    public void referenceNameIsGeneratedCorrectlyWhenTitlesSizeIsOver4() {
+        Reference ref = new Reference("author:authorName1", "title:theTitle", "refType:article");
+        ref.setId(888L);
+        ref.generateKey();
+        String bibtex = "@article{theTi888,\n author    = \"authorName1\",\n title     = \"theTitle\"\n}\n\n";
+        assertEquals(bibtex, ref.getBibtex());
+    }
+
+    @Test
+    public void referenceNameIsGeneratedCorrectlyWhenTitlesSizeIs4() {
+        Reference ref = new Reference("author:authorName2", "title:qwert", "refType:article");
+        ref.setId(999L);
+        ref.generateKey();
+        String bibtex = "@article{qwert999,\n author    = \"authorName2\",\n title     = \"qwert\"\n}\n\n";
+        assertEquals(bibtex, ref.getBibtex());
+    }
+
+    @Test
+    public void referenceNameIsGeneratedCorrectlyWhenTitlesSizeIsLessThan4() {
+        Reference ref = new Reference("author:authorName3", "title:asd", "refType:article");
+        ref.setId(777L);
+        ref.generateKey();
+        String bibtex = "@article{asd777,\n author    = \"authorName3\",\n title     = \"asd\"\n}\n\n";
+        assertEquals(bibtex, ref.getBibtex());
+    }
 }
