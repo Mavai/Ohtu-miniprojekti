@@ -270,31 +270,4 @@ public class Stepdefs {
         WebElement link = DriverFactory.getInstance().getDriver().findElement(By.id(id));
         link.click();
     }
-
-//    @Given("^getbibtex is visited$")
-//    public void getbibtex_is_visited() throws Throwable {
-//        DriverFactory.getInstance().getDriver().get(getbibtexPath);
-//    }
-//
-//    @When("^type: \"([^\"]*)\" is selected$")
-//    public void type_is_selected(String type) throws Throwable {
-//        selectType(type);
-//        submitButtonWithId("submit");
-//    }
-//
-//    @When("^form is filled with value: \"([^\"]*)\" for \"([^\"]*)\"$")
-//    public void form_is_filled_with_value(String value, String field) throws Throwable {
-//        fillInputWithValue(value, field);
-//    }
-//
-//    @When("^form is submitted$")
-//    public void form_is_submitted() throws Throwable {
-//        submitButtonWithId("submit");
-//    }
-//
-//    @Then("^page displays create a new reference$")
-//    public void page_displays_create_a_new_reference() throws Throwable {
-//        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Create a new reference"));
-//    }
-//
 }
