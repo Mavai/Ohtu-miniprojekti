@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.HashMap;
+
 import miniprojekti.Services.RefTypes;
 import miniprojekti.Services.ReferenceService;
 import miniprojekti.entities.RefField;
@@ -34,12 +35,12 @@ public class MainController {
 
     @Autowired
     ReferenceRepository refRepo;
-    
+
     @RequestMapping(value = "/")
     public String index(Model model) {
         return "redirect:/references";
     }
-    
+
     @RequestMapping(value = "/references", method = RequestMethod.GET)
     public String get(Model model) {
         model.addAllAttributes(refService.findAllByRefType());
@@ -51,7 +52,7 @@ public class MainController {
         model.addAttribute("reference", new Reference(type));
         return "add_" + type;
     }
-    
+
     @RequestMapping(value = "/references/edit/{id}", method = RequestMethod.GET)
     public String showEditForm(Model model, @PathVariable Long id) {
         Reference ref = refRepo.findOne(id);
@@ -78,7 +79,7 @@ public class MainController {
         return refService.makeFile(filename);
     }
 
-    @RequestMapping(value= "/requestbibtex", method = RequestMethod.POST )
+    @RequestMapping(value = "/requestbibtex", method = RequestMethod.POST)
     public String requestBibtex(Model model, @RequestParam String filename) {
         return "redirect:/getbibtex/" + filename;
     }
@@ -89,23 +90,27 @@ public class MainController {
         return "redirect:/references";
     }
 
-    @RequestMapping(value="test", method=RequestMethod.GET)
+    @RequestMapping(value = "test", method = RequestMethod.GET)
     public String testHashMap(Model model) {
+        Reference ref = new Reference();
+        model.addAttribute("reference", ref);
         HashMap<String, Boolean[]> map = new HashMap<String, Boolean[]>();
-        map.put("testi", new Boolean[] {true, true});
-        map.put("testi2", new Boolean[] {true, true});
-        map.put("testi3", new Boolean[] {false, false});
-        map.put("testi4", new Boolean[] {true, true});
+        map.put("testi", new Boolean[]{true, true});
+        map.put("testi2", new Boolean[]{true, true});
+        map.put("testi3", new Boolean[]{false, false});
+        map.put("testi4", new Boolean[]{true, true});
         model.addAttribute("testmap", map);
-        return "test";
+        return "test2";
     }
-    
-    @RequestMapping(value="test2", method=RequestMethod.GET)
+
+    @RequestMapping(value = "test2", method = RequestMethod.GET)
     public String testTypeMaps(Model model) {
+        Reference ref = new Reference();
         RefTypes rt = new RefTypes();
         HashMap<String, Boolean[]> map = rt.getTypeMap("book");
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + map);
         model.addAttribute("testmap", map);
+        model.addAttribute("reference", ref);
         return "test";
     }
 
