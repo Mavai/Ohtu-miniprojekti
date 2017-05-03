@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Component
 public class ReferenceService {
-    private int uniqueNum = 0;
+    private int uniqueNum = 2;
 
     @Autowired
     private ReferenceRepository refRepo;
@@ -36,7 +36,7 @@ public class ReferenceService {
                 refRepo.save(reference);
             } catch (Exception e) {
                 reference.setName(reference.getName() + uniqueNum++);
-                refRepo.save(reference);
+                save(reference);
             }
             if (reference.getName().equals("")) {
                 reference.generateKey();
@@ -69,21 +69,10 @@ public class ReferenceService {
 
     public HashMap<String, List<Reference>> findAllByRefType() {
         HashMap<String, List<Reference>> map = new HashMap<>();
-        map.put("articleReferences", refRepo.findByRefType("article"));
-        map.put("articleReferences", refRepo.findByRefType("article"));
-        map.put("bookReferences", refRepo.findByRefType("book"));
-        map.put("bookletReferences", refRepo.findByRefType("booklet"));
-        map.put("conferenceReferences", refRepo.findByRefType("conference"));
-        map.put("inbookReferences", refRepo.findByRefType("inbook"));
-        map.put("incollectionReferences", refRepo.findByRefType("incollection"));
-        map.put("inproceedingsReferences", refRepo.findByRefType("inproceedings"));
-        map.put("manualReferences", refRepo.findByRefType("manual"));
-        map.put("mastersthesisReferences", refRepo.findByRefType("mastersthesis"));
-        map.put("miscReferences", refRepo.findByRefType("misc"));
-        map.put("phdthesisReferences", refRepo.findByRefType("phdthesis"));
-        map.put("proceedingsReferences", refRepo.findByRefType("proceedings"));
-        map.put("techreportReferences", refRepo.findByRefType("techreport"));
-        map.put("unpublishedReferences", refRepo.findByRefType("unpublished"));
+        RefTypes refTypes = new RefTypes();
+        for (String type : refTypes.getTypes().keySet()) {
+            map.put(type + "References", refRepo.findByRefType(type));
+        }
         return map;
     }
 
@@ -92,5 +81,4 @@ public class ReferenceService {
             refRepo.delete(ref);
         }
     }
-
 }
