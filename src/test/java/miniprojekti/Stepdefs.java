@@ -258,6 +258,7 @@ public class Stepdefs {
 
     private void fillInputWithValue(String value, String input) {
         WebElement fieldElement = DriverFactory.getInstance().getDriver().findElement(By.id(input));
+        fieldElement.clear();
         fieldElement.sendKeys(value);
     }
 
