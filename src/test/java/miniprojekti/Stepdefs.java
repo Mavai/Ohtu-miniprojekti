@@ -176,6 +176,12 @@ public class Stepdefs {
         downloadedFileString = new Scanner(url.openStream()).useDelimiter("\\A").next();
     }
 
+    @When("^type: \"([^\"]*)\" is selected$")
+    public void type_is_selected(String type) throws Throwable {
+        selectType(type);
+        submitButtonWithId("submit");
+    }
+
     @Then("^page displays content: \"([^\"]*)\"$")
     public void page_displays_content(String content) throws Throwable {
         assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains(content));
