@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import javax.servlet.http.HttpServletRequest;
 
 import miniprojekti.Services.RefTypes;
 import miniprojekti.Services.ReferenceService;
@@ -33,7 +34,7 @@ public class MainController {
 
     @Autowired
     ReferenceRepository refRepo;
-    
+
     @Autowired
     RefTypes refTypes;
 
@@ -56,7 +57,7 @@ public class MainController {
         model.addAttribute("reference", new Reference(type));
         return "form";
     }
-    
+
     @RequestMapping(value = "/references/edit/{id}", method = RequestMethod.GET)
     public String showEditForm(Model model, @PathVariable Long id) {
         Reference ref = refRepo.findOne(id);
@@ -73,14 +74,14 @@ public class MainController {
 //        model.addAttribute("reference", ref);
 //        return "form";
 //    }
-
     @RequestMapping(value = "/save")
-    public String addNew(Reference reference) {
+    public String addNew(HttpServletRequest request, Reference reference) {
         System.out.println(reference.getBibtex());
         if (refService.save(reference)) {
             return "redirect:/references";
         } else {
-            return "redirect:/references/create/" + reference.getRefType();
+            String referer = request.getHeader("Referer");
+            return "redirect:" + referer;
         }
     }
 
