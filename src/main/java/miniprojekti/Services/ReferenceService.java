@@ -89,7 +89,7 @@ public class ReferenceService {
         if (!containsWhitespace(reference.getAuthor())) {
             return false;
         }
-        if (!containsWhitespace(reference.getTitle())) {
+        if (!containsWhitespace(reference.getTitle()) ||(!reference.getRefType().equals("misc") && reference.getTitle().isEmpty())) {
             return false;
         }
         if (!containsWhitespace(reference.getJournal())) {

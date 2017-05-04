@@ -133,6 +133,7 @@ public class ReferenceServiceTest {
     @Test
     public void titleWithInvalidValueDoesNotValidate() {
         Reference ref = new Reference();
+        ref.setRefType("booklet");
         ref.setTitle("  \t");
         assertFalse(refService.validate(ref));
     }
@@ -140,13 +141,16 @@ public class ReferenceServiceTest {
     @Test
     public void titleWithValidValueValidates() {
         Reference ref = new Reference();
-        ref.setAuthor("author");
+        ref.setRefType("booklet");
+        ref.setTitle("testTitle");
         assertTrue(refService.validate(ref));
     }
     
     @Test
     public void authorWithInvalidValueDoesNotValidate() {
         Reference ref = new Reference();
+        ref.setRefType("booklet");
+        ref.setTitle("testTitle");
         ref.setAuthor("  \t");
         assertFalse(refService.validate(ref));
     }
@@ -154,6 +158,8 @@ public class ReferenceServiceTest {
     @Test
     public void journalWithInvalidValueDoesNotValidate() {
         Reference ref = new Reference();
+        ref.setRefType("booklet");
+        ref.setTitle("testTitle");
         ref.setJournal("  \t");
         assertFalse(refService.validate(ref));
     }
