@@ -56,16 +56,23 @@ public class MainController {
         model.addAttribute("reference", new Reference(type));
         return "form";
     }
-
+    
     @RequestMapping(value = "/references/edit/{id}", method = RequestMethod.GET)
     public String showEditForm(Model model, @PathVariable Long id) {
         Reference ref = refRepo.findOne(id);
-        LinkedHashMap<String, Boolean[]> map = refTypes.getTypeMap(ref.getRefType());
-        model.addAttribute("header", "Edit reference: " + ref.getRefType());
-        model.addAttribute("map", map);
         model.addAttribute("reference", ref);
-        return "form";
+        return "add_" + ref.getRefType();
     }
+
+//    @RequestMapping(value = "/references/edit/{id}", method = RequestMethod.GET)
+//    public String showEditForm(Model model, @PathVariable Long id) {
+//        Reference ref = refRepo.findOne(id);
+//        LinkedHashMap<String, Boolean[]> map = refTypes.getTypeMap(ref.getRefType());
+//        model.addAttribute("header", "Edit reference: " + ref.getRefType());
+//        model.addAttribute("map", map);
+//        model.addAttribute("reference", ref);
+//        return "form";
+//    }
 
     @RequestMapping(value = "/save")
     public String addNew(Reference reference) {
