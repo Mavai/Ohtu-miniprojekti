@@ -19,7 +19,7 @@ Feature: References pages display right content
     And page displays content: "1955"
     And page displays content: "testPublisherForBookReferenceFeature"
 
-  Scenario: Book with empty fields will not be added
+  Scenario: Book with empty required fields will not be added
     Given references is visited
     When book with author: "authorWithOtherFieldsEmpty" is added
     Then page displays add a book reference content
@@ -67,7 +67,7 @@ Feature: References pages display right content
     And page displays content: "1955"
     And page displays content: "187"
 
-  Scenario: Article with empty fields will not be added
+  Scenario: Article with empty required fields will not be added
     Given references is visited
     When article with author: "authorWithOtherFieldsEmpty" is added
     Then page displays add an article reference content
@@ -114,7 +114,7 @@ Feature: References pages display right content
     And page displays content: "testBooktitleForInproceedingsReferenceFeature"
     And page displays content: "1925"
 
-  Scenario: Inproceedings with empty fields will not be added
+  Scenario: Inproceedings with empty required fields will not be added
     Given references is visited
     When inproceedings with author: "authorWithOtherFieldsEmpty" is added
     Then page displays add an inproceedings reference content
