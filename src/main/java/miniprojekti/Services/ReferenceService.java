@@ -31,7 +31,7 @@ public class ReferenceService {
     }
 
     public boolean save(Reference reference) {
-        if (reference.validate()) {
+        if (validate(reference)) {
             try {
                 refRepo.save(reference);
             } catch (Exception e) {
@@ -80,5 +80,88 @@ public class ReferenceService {
         for (Reference ref: refRepo.findAll()) {
             refRepo.delete(ref);
         }
+    }
+    
+    public boolean validate(Reference reference) {
+        if (!containsWhitespace(reference.getName())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getAuthor())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getTitle())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getJournal())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getYear())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getVolume())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getNumber())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getPages())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getMonth())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getNote())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getKey())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getPublisher())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getSeries())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getAddress())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getEdition())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getAnnote())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getChapter())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getCrossref())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getEditor())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getHowpublished())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getInstitution())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getOrganization())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getSchool())) {
+            return false;
+        }
+        if (!containsWhitespace(reference.getBooktitle())) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean containsWhitespace(String string) {
+        if (string != null && string.matches("\\s+")) {
+            return false;
+        }
+        return true;
     }
 }

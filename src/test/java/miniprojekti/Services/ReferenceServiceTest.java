@@ -129,4 +129,32 @@ public class ReferenceServiceTest {
         assertFalse(fileString.contains("ö"));
         assertFalse(fileString.contains("Ö"));
     }
+    
+    @Test
+    public void titleWithInvalidValueDoesNotValidate() {
+        Reference ref = new Reference();
+        ref.setTitle("  \t");
+        assertFalse(refService.validate(ref));
+    }
+    
+    @Test
+    public void titleWithValidValueValidates() {
+        Reference ref = new Reference();
+        ref.setAuthor("author");
+        assertTrue(refService.validate(ref));
+    }
+    
+    @Test
+    public void authorWithInvalidValueDoesNotValidate() {
+        Reference ref = new Reference();
+        ref.setAuthor("  \t");
+        assertFalse(refService.validate(ref));
+    }
+    
+    @Test
+    public void journalWithInvalidValueDoesNotValidate() {
+        Reference ref = new Reference();
+        ref.setJournal("  \t");
+        assertFalse(refService.validate(ref));
+    }
 }
