@@ -195,56 +195,56 @@ public class Stepdefs {
 
     @Then("^page displays add a book reference content$")
     public void page_displays_add_a_book_reference_content() throws Throwable {
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Add a book reference"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Reference name"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Author"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Title"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Publisher"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Year"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Volume"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Number"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Series"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Address"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Edition"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Month"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Note"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Key"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Add reference: book"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("name"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("author"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("title"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("publisher"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("year"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("volume"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("number"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("series"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("address"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("edition"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("month"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("note"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("key"));
     }
 
     @Then("^page displays add an article reference content$")
     public void page_displays_add_an_article_reference_content() throws Throwable {
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Add an article reference"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Reference name"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Author"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Title"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Journal"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Year"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Volume"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Number"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Pages"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Month"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Note"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Key"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Add reference: article"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("name"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("author"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("title"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("journal"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("year"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("volume"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("number"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("pages"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("month"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("note"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("key"));
     }
 
     @Then("^page displays add an inproceedings reference content$")
     public void page_displays_add_an_inproceedings_reference_content() throws Throwable {
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Add an inproceedings reference"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Reference name"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Author"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Title"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Book Title"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Editor"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Volume"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Number"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Series"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Pages"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Address"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Month"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Organization"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Publisher"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Note"));
-        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Key"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("Add reference: inproceedings"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("name"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("author"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("title"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("booktitle"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("editor"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("volume"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("number"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("series"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("pages"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("address"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("month"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("organization"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("publisher"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("note"));
+        assertTrue(DriverFactory.getInstance().getDriver().getPageSource().contains("key"));
     }
 
     private void selectType(String type) {

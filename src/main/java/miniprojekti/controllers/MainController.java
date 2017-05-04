@@ -33,6 +33,9 @@ public class MainController {
 
     @Autowired
     ReferenceRepository refRepo;
+    
+    @Autowired
+    RefTypes refTypes;
 
     @RequestMapping(value = "/")
     public String index(Model model) {
@@ -47,15 +50,21 @@ public class MainController {
 
     @RequestMapping(value = "/references/create/{type}", method = RequestMethod.GET)
     public String showForm(Model model, @PathVariable String type) {
+        LinkedHashMap<String, Boolean[]> map = refTypes.getTypeMap(type);
+        model.addAttribute("header", "Add reference: " + type);
+        model.addAttribute("map", map);
         model.addAttribute("reference", new Reference(type));
-        return "add_" + type;
+        return "form";
     }
 
     @RequestMapping(value = "/references/edit/{id}", method = RequestMethod.GET)
     public String showEditForm(Model model, @PathVariable Long id) {
         Reference ref = refRepo.findOne(id);
+        LinkedHashMap<String, Boolean[]> map = refTypes.getTypeMap(ref.getRefType());
+        model.addAttribute("header", "Edit reference: " + ref.getRefType());
+        model.addAttribute("map", map);
         model.addAttribute("reference", ref);
-        return "add_" + ref.getRefType();
+        return "form";
     }
 
     @RequestMapping(value = "/save")

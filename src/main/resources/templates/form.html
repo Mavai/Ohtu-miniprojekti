@@ -5,7 +5,7 @@
 <head th:include="base :: header"></head>
 <body>
 <div class="container">
-    <h2>Add reference: <b th:text="${reference.refType}"/></h2>
+    <h2><p th:text="${header}"></p></h2>
 
     <form class="form-horizontal" id="ref-form" role="form" th:action="@{/save}" method="post" th:object="${reference}">
         <input type="hidden" th:value="${reference.refType}"
@@ -13,7 +13,7 @@
         <input type="hidden" th:value="${reference.id}"
                th:field="${reference.id}"/>-->
 
-        <p th:each="entry: ${testmap}">
+        <p th:each="entry: ${map}">
         <div th:if="${entry.value[0]}" class="form-group">
             <!--
                 <label class="control-label col-sm-2" for="name" th:text="${entry.key}"></label>

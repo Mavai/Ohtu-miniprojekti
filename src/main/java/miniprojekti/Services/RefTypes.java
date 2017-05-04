@@ -2,7 +2,9 @@ package miniprojekti.Services;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RefTypes {
 
     private HashMap<String, LinkedHashMap<String, Boolean[]>> types;
@@ -14,8 +16,8 @@ public class RefTypes {
         setIsField(new String[]{"article", "author", "title", "journal", "year", "volume", "number", "pages", "month", "note", "key"});
         setIsRequired(new String[]{"article", "author", "title", "journal", "year", "volume"});
         types.put("book", generateReference());
-        setIsField(new String[]{"book", "author", "title", "publisher", "year", "volume", "number", "series", "address", "edition", "month", "note", "key"});
-        setIsRequired(new String[]{"book", "author", "title", "publisher", "year"});
+        setIsField(new String[]{"book", "author", "editor", "title", "publisher", "year", "volume", "number", "series", "address", "edition", "month", "note", "key"});
+        setIsRequired(new String[]{"book", "author", "editor", "title", "publisher", "year"});
         types.put("booklet", generateReference());
         setIsField(new String[]{"booklet", "title", "author", "howpublished", "address", "month", "year", "note", "key"});
         setIsRequired(new String[]{"booklet", "title"});
@@ -66,7 +68,7 @@ public class RefTypes {
     private void setIsRequired(String... fields) {
         LinkedHashMap<String, Boolean[]> map = types.get(fields[0]);
         
-        map.get("name")[1] = true;
+//        map.get("name")[1] = true;
         
         for (int i = 1; i < fields.length; i++) {
             map.get(fields[i])[1] = true;
