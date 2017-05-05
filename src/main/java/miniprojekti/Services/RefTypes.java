@@ -2,6 +2,7 @@ package miniprojekti.Services;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,7 +16,8 @@ public class RefTypes {
     }
 
     private void setFieldsForAllTypes() {
-        setArticleFields();
+        setFields("article", new String[]{"article", "author", "title", "journal", "year", "volume"}
+                , new String[]{"article", "number", "pages", "month", "note", "key"});
         setBookFields();
         setBookletFields();
         setConferenceFields();
@@ -26,27 +28,18 @@ public class RefTypes {
         setMasterthesisFields();
         setMiscFields();
         setPhdThesisFields();
-        setProceedingsFields();
-        setTechreportFields();
-        setUnpublishedFields();
+        setFields("proceedings", new String[]{"proceedings", "title", "year"}
+                , new String[]{"editor", "volume", "number", "series", "address", "month", "publisher", "organization", "note", "key"});
+        setFields("techreport", new String[]{"techreport", "author", "title", "institution", "year"}
+                , new String[]{"techreport", "type", "number", "address", "month", "note", "key"});
+        setFields("unpublished", new String[]{"unpublished", "author", "title", "note"}
+                , new String[]{"month", "year", "key"});
     }
 
-    private void setUnpublishedFields() {
-        types.put("unpublished", generateReference());
-        setIsField(new String[]{"unpublished", "author", "title", "note", "month", "year", "key"});
-        setIsRequired(new String[]{"unpublished", "author", "title", "note"});
-    }
-
-    private void setTechreportFields() {
-        types.put("techreport", generateReference());
-        setIsField(new String[]{"techreport", "author", "title", "institution", "year", "type", "number", "address", "month", "note", "key"});
-        setIsRequired(new String[]{"techreport", "author", "title", "institution", "year"});
-    }
-
-    private void setProceedingsFields() {
-        types.put("proceedings", generateReference());
-        setIsField(new String[]{"proceedings", "title", "year", "editor", "volume", "number", "series", "address", "month", "publisher", "organization", "note", "key"});
-        setIsRequired(new String[]{"proceedings", "title", "year"});
+    private void setFields(String type, String[] required, String[] optional) {
+        types.put(type, generateReference());
+        setIsField(optional);
+        setIsRequired(required);
     }
 
     private void setPhdThesisFields() {
@@ -108,17 +101,11 @@ public class RefTypes {
         setIsRequired(new String[]{"book", "author", "editor", "title", "publisher", "year"});
     }
 
-    private void setArticleFields() {
-        types.put("article", generateReference());
-        setIsField(new String[]{"article", "author", "title", "journal", "year", "volume", "number", "pages", "month", "note", "key"});
-        setIsRequired(new String[]{"article", "author", "title", "journal", "year", "volume"});
-    }
-
     private void setIsField(String... fields) {
         LinkedHashMap<String, Boolean[]> map = types.get(fields[0]);
-        
+
         map.get("name")[0] = true;
-        
+
         for (int i = 1; i < fields.length; i++) {
             map.get(fields[i])[0] = true;
         }
@@ -126,9 +113,9 @@ public class RefTypes {
 
     private void setIsRequired(String... fields) {
         LinkedHashMap<String, Boolean[]> map = types.get(fields[0]);
-        
+
 //        map.get("name")[1] = true;
-        
+
         for (int i = 1; i < fields.length; i++) {
             map.get(fields[i])[1] = true;
         }
@@ -163,7 +150,7 @@ public class RefTypes {
         map.put("type", new Boolean[]{false, false});
         return map;
     }
-    
+
     public LinkedHashMap<String, Boolean[]> getTypeMap(String type) {
         return types.get(type);
     }
