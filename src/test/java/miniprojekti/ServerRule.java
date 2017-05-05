@@ -16,6 +16,6 @@ public class ServerRule extends ExternalResource{
 
     @Override
     protected void after() {
-        DriverFactory.getInstance().getDriver().close();
+        Stepdefs.driver.quit();
     }
 }
