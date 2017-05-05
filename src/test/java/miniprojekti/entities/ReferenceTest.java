@@ -12,17 +12,16 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import static org.junit.Assert.*;
+
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- *
  * @author markovai
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class ReferenceTest {
 
     @Autowired
@@ -94,5 +93,13 @@ public class ReferenceTest {
         ref.generateKey();
         String bibtex = "@article{asd777,\n author    = \"authorName3\",\n title     = \"asd\"\n}\n\n";
         assertEquals(bibtex, ref.getBibtex());
+    }
+
+    @Test
+    public void dynamicGetterWorks() {
+        Reference ref = new Reference("author:foo", "title:bar", "refType:article");
+        assertEquals("foo", ref.get("author"));
+        assertEquals("bar", ref.get("title"));
+        assertEquals("article", ref.get("refType"));
     }
 }
