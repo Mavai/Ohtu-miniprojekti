@@ -50,11 +50,6 @@ public class Stepdefs {
         }
     }
 
-    @After
-    public void shutdown_server() {
-
-    }
-
     @Given("references is visited$")
     public void references_is_visited() throws Throwable {
         driver.get(referencesPath);
