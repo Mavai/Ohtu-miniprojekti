@@ -2,6 +2,7 @@ package miniprojekti.Services;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,122 +16,55 @@ public class RefTypes {
     }
 
     private void setFieldsForAllTypes() {
-        setArticleFields();
-        setBookFields();
-        setBookletFields();
-        setConferenceFields();
-        setInbookFields();
-        setIncollectionFields();
-        setInproceedingsFields();
-        setManualFields();
-        setMasterthesisFields();
-        setMiscFields();
-        setPhdThesisFields();
-        setProceedingsFields();
-        setTechreportFields();
-        setUnpublishedFields();
+        setFields(new String[]{"article", "author", "title", "journal", "year", "volume"}
+                , new String[]{"article", "number", "pages", "month", "note", "key"});
+        setFields(new String[]{"book", "author", "editor", "title", "publisher", "year"}
+                , new String[]{"book", "volume", "number", "series", "address", "edition", "month", "note", "key"});
+        setFields(new String[]{"booklet", "title"}
+                , new String[]{"booklet", "author", "howpublished", "address", "month", "year", "note", "key"});
+        setFields(new String[]{"conference", "author", "title", "booktitle", "year"}
+                , new String[]{"conference", "editor", "volume", "number", "series", "pages", "address", "month", "organization", "publisher", "note", "key"});
+        setFields(new String[]{"inbook", "author", "title", "chapter", "pages", "publisher", "year"}
+                , new String[]{"inbook", "volume", "number", "series", "type", "address", "edition", "month", "note", "key"});
+        setFields(new String[]{"incollection", "author", "title", "booktitle", "publisher", "year"}
+                , new String[]{"incollection", "editor", "volume", "number", "series", "type", "chapter", "pages", "address", "edition", "month", "note", "key"});
+        setFields(new String[]{"inproceedings", "author", "title", "booktitle", "year"}
+                , new String[]{"inproceedings", "editor", "volume", "number", "series", "pages", "address", "month", "organization", "publisher", "note", "key"});
+        setFields(new String[]{"manual", "title"}
+                , new String[]{"manual", "author", "organization", "address", "edition", "month", "year", "note", "key"});
+        setFields(new String[]{"mastersthesis", "author", "title", "school", "year"}
+                , new String[]{"mastersthesis", "type", "address", "month", "note", "key"});
+        setFields(new String[]{}, new String[]{"misc", "author", "title", "howpublished", "month", "year", "note", "key"});
+        setFields(new String[]{"phdthesis", "author", "title", "school", "year"}
+                , new String[]{"phdthesis", "type", "address", "month", "note", "key"});
+        setFields(new String[]{"proceedings", "title", "year"}
+                , new String[]{"proceedings", "editor", "volume", "number", "series", "address", "month", "publisher", "organization", "note", "key"});
+        setFields(new String[]{"techreport", "author", "title", "institution", "year"}
+                , new String[]{"techreport", "type", "number", "address", "month", "note", "key"});
+        setFields(new String[]{"unpublished", "author", "title", "note"}
+                , new String[]{"unpublished", "month", "year", "key"});
     }
 
-    private void setUnpublishedFields() {
-        types.put("unpublished", generateReference());
-        setIsField(new String[]{"unpublished", "author", "title", "note", "month", "year", "key"});
-        setIsRequired(new String[]{"unpublished", "author", "title", "note"});
-    }
-
-    private void setTechreportFields() {
-        types.put("techreport", generateReference());
-        setIsField(new String[]{"techreport", "author", "title", "institution", "year", "type", "number", "address", "month", "note", "key"});
-        setIsRequired(new String[]{"techreport", "author", "title", "institution", "year"});
-    }
-
-    private void setProceedingsFields() {
-        types.put("proceedings", generateReference());
-        setIsField(new String[]{"proceedings", "title", "year", "editor", "volume", "number", "series", "address", "month", "publisher", "organization", "note", "key"});
-        setIsRequired(new String[]{"proceedings", "title", "year"});
-    }
-
-    private void setPhdThesisFields() {
-        types.put("phdthesis", generateReference());
-        setIsField(new String[]{"phdthesis", "author", "title", "school", "year", "type", "address", "month", "note", "key"});
-        setIsRequired(new String[]{"phdthesis", "author", "title", "school", "year"});
-    }
-
-    private void setMiscFields() {
-        types.put("misc", generateReference());
-        setIsField(new String[]{"misc", "author", "title", "howpublished", "month", "year", "note", "key"});
-    }
-
-    private void setMasterthesisFields() {
-        types.put("mastersthesis", generateReference());
-        setIsField(new String[]{"mastersthesis", "author", "title", "school", "year", "type", "address", "month", "note", "key"});
-        setIsRequired(new String[]{"mastersthesis", "author", "title", "school", "year"});
-    }
-
-    private void setManualFields() {
-        types.put("manual", generateReference());
-        setIsField(new String[]{"manual", "title", "author", "organization", "address", "edition", "month", "year", "note", "key"});
-        setIsRequired(new String[]{"manual", "title"});
-    }
-
-    private void setInproceedingsFields() {
-        types.put("inproceedings", generateReference());
-        setIsField(new String[]{"inproceedings", "author", "title", "booktitle", "year", "editor", "volume", "number", "series", "pages", "address", "month", "organization", "publisher", "note", "key"});
-        setIsRequired(new String[]{"inproceedings", "author", "title", "booktitle", "year"});
-    }
-
-    private void setIncollectionFields() {
-        types.put("incollection", generateReference());
-        setIsField(new String[]{"incollection", "author", "title", "booktitle", "publisher", "year", "editor", "volume", "number", "series", "type", "chapter", "pages", "address", "edition", "month", "note", "key"});
-        setIsRequired(new String[]{"incollection", "author", "title", "booktitle", "publisher", "year"});
-    }
-
-    private void setInbookFields() {
-        types.put("inbook", generateReference());
-        setIsField(new String[]{"inbook", "author", "title", "chapter", "pages", "publisher", "year", "volume", "number", "series", "type", "address", "edition", "month", "note", "key"});
-        setIsRequired(new String[]{"inbook", "author", "title", "chapter", "pages", "publisher", "year"});
-    }
-
-    private void setConferenceFields() {
-        types.put("conference", generateReference());
-        setIsField(new String[]{"conference", "author", "title", "booktitle", "year", "editor", "volume", "number", "series", "pages", "address", "month", "organization", "publisher", "note", "key"});
-        setIsRequired(new String[]{"conference", "author", "title", "booktitle", "year"});
-    }
-
-    private void setBookletFields() {
-        types.put("booklet", generateReference());
-        setIsField(new String[]{"booklet", "title", "author", "howpublished", "address", "month", "year", "note", "key"});
-        setIsRequired(new String[]{"booklet", "title"});
-    }
-
-    private void setBookFields() {
-        types.put("book", generateReference());
-        setIsField(new String[]{"book", "author", "editor", "title", "publisher", "year", "volume", "number", "series", "address", "edition", "month", "note", "key"});
-        setIsRequired(new String[]{"book", "author", "editor", "title", "publisher", "year"});
-    }
-
-    private void setArticleFields() {
-        types.put("article", generateReference());
-        setIsField(new String[]{"article", "author", "title", "journal", "year", "volume", "number", "pages", "month", "note", "key"});
-        setIsRequired(new String[]{"article", "author", "title", "journal", "year", "volume"});
+    private void setFields(String[] required, String[] optional) {
+        types.put(optional[0], generateReference());
+        setIsField(optional);
+        setIsRequired(required);
     }
 
     private void setIsField(String... fields) {
         LinkedHashMap<String, Boolean[]> map = types.get(fields[0]);
-        
         map.get("name")[0] = true;
-        
         for (int i = 1; i < fields.length; i++) {
             map.get(fields[i])[0] = true;
         }
     }
 
     private void setIsRequired(String... fields) {
-        LinkedHashMap<String, Boolean[]> map = types.get(fields[0]);
-        
-//        map.get("name")[1] = true;
-        
-        for (int i = 1; i < fields.length; i++) {
-            map.get(fields[i])[1] = true;
+        if (fields.length > 0) {
+            LinkedHashMap<String, Boolean[]> map = types.get(fields[0]);
+            for (int i = 1; i < fields.length; i++) {
+                map.get(fields[i])[1] = true;
+            }
         }
     }
 
@@ -163,7 +97,7 @@ public class RefTypes {
         map.put("type", new Boolean[]{false, false});
         return map;
     }
-    
+
     public LinkedHashMap<String, Boolean[]> getTypeMap(String type) {
         return types.get(type);
     }
