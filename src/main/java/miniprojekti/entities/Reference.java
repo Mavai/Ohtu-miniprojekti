@@ -2,6 +2,7 @@
  */
 package miniprojekti.entities;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,6 +93,18 @@ public class Reference {
 
     public Reference(String type) {
         this.refType = type;
+    }
+
+    public String get(String attribute) {
+        String attributeValue = "";
+        String fieldName = "get"+Character.toUpperCase(attribute.charAt(0))+attribute.substring(1, attribute.length());
+        try {
+            Method method = getClass().getMethod(fieldName);
+            attributeValue = (String)method.invoke(this);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        return attributeValue;
     }
 
     public Long getId() {

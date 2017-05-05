@@ -25,7 +25,7 @@
                 <div class="form-group"><b th:if="${entry.value[1]}">*</b>
                 <label class="control-label col-sm-2" th:for="${entry.key}" th:text="${entry.key}">Reference name:</label>
                 <div class="col-sm-10">
-                    <input type="text" th:value="${reference.name}"
+                    <input type="text" th:value="${reference.get(entry.key)}"
                            th:name="${entry.key}" th:id="${entry.key}" pattern=".*[^ ].*" th:required="${entry.value[1]}"/>
                 </div>
 
