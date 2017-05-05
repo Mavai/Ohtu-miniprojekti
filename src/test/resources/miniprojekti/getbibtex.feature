@@ -13,7 +13,7 @@ Feature: Bibtex file can be downloaded
 
   Scenario: Edited books new fields are found in downloaded bibtex file
     Given references is visited
-    And And book is added with name: "referenceToBeEditedForGetBibtexFeature", author: "authorToBeEdited"ForGetBibtexFeature, editor: "editorToBeEditedForGetBibtexFeature", title: "titleToBeEditedForGetBibtexFeature", year: "1555" and publisher: "publisherToBeEditedForGetBibtexFeature"
+    And book is added with name: "referenceToBeEditedForGetBibtexFeature", author: "authorToBeEditedForGetBibtexFeature", editor: "editorToBeEditedForGetBibtexFeature", title: "titleToBeEditedForGetBibtexFeature", year: "1555" and publisher: "publisherToBeEditedForGetBibtexFeature"
     And book with name "referenceToBeEditedForGetBibtexFeature" is edited with name: "newNameForGetBibtexFeature", author: "newAuthorForGetBibtexFeature", editor: "newEditorForGetBibtexFeature", title: "newTitleForGetBibtexFeature", year: "1111" and publisher: "newPublisherForGetBibtexFeature"
     When getbibtex file named "bibtexFile" is downloaded
     Then file does not contain content: "referenceToBeEditedForGetBibtexFeature"
@@ -31,11 +31,12 @@ Feature: Bibtex file can be downloaded
 
   Scenario: Deleted book is not found in downloaded bibtex file
     Given references is visited
-    And book is added with name: "referenceToBeDeletedForGetBibtexFeature", author: "authorToBeDeletedForGetBibtexFeature", title: "titleToBeDeletedForGetBibtexFeature", year: "1555" and publisher: "publisherToBeDeletedForGetBibtexFeature"
+    And book is added with name: "referenceToBeDeletedForGetBibtexFeature", author: "authorToBeDeletedForGetBibtexFeature", editor: "editorToBeDeletedForGetBibtexFeature", title: "titleToBeDeletedForGetBibtexFeature", year: "1555" and publisher: "publisherToBeDeletedForGetBibtexFeature"
     And book with name: "referenceToBeDeletedForGetBibtexFeature" is deleted
     When getbibtex file named "bibtexFile" is downloaded
     Then file does not contain content: "referenceToBeDeletedForGetBibtexFeature"
     And file does not contain content: "authorToBeDeletedForGetBibtexFeature"
+    And file does not contain content: "editorToBeDeletedForGetBibtexFeature"
     And file does not contain content: "titleToBeDeletedForGetBibtexFeature"
     And file does not contain content: "1555"
     And file does not contain content: "publisherToBeDeleted"

@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import javax.servlet.http.HttpServletRequest;
 
 import miniprojekti.Services.RefTypes;
 import miniprojekti.Services.ReferenceService;
 import miniprojekti.entities.RefField;
 import miniprojekti.entities.Reference;
-import miniprojekti.entities.Type;
 import miniprojekti.repositories.ReferenceRepository;
-import miniprojekti.repositories.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MainController {
@@ -35,6 +34,9 @@ public class MainController {
 
     @Autowired
     ReferenceRepository refRepo;
+
+    @Autowired
+    RefTypes refTypes;
 
     @RequestMapping(value = "/")
     public String index(Model model) {
@@ -49,8 +51,11 @@ public class MainController {
 
     @RequestMapping(value = "/references/create/{type}", method = RequestMethod.GET)
     public String showForm(Model model, @PathVariable String type) {
+        LinkedHashMap<String, Boolean[]> map = refTypes.getTypeMap(type);
+        model.addAttribute("header", "Add reference: " + type);
+        model.addAttribute("map", map);
         model.addAttribute("reference", new Reference(type));
-        return "add_" + type;
+        return "form";
     }
 
     @RequestMapping(value = "/references/edit/{id}", method = RequestMethod.GET)
@@ -60,12 +65,23 @@ public class MainController {
         return "add_" + ref.getRefType();
     }
 
+//    @RequestMapping(value = "/references/edit/{id}", method = RequestMethod.GET)
+//    public String showEditForm(Model model, @PathVariable Long id) {
+//        Reference ref = refRepo.findOne(id);
+//        LinkedHashMap<String, Boolean[]> map = refTypes.getTypeMap(ref.getRefType());
+//        model.addAttribute("header", "Edit reference: " + ref.getRefType());
+//        model.addAttribute("map", map);
+//        model.addAttribute("reference", ref);
+//        return "form";
+//    }
     @RequestMapping(value = "/save")
-    public String addNew(Reference reference) {
+    public String addNew(HttpServletRequest request, Reference reference) {
+        System.out.println(reference.getBibtex());
         if (refService.save(reference)) {
             return "redirect:/references";
         } else {
-            return "redirect:/references/create/" + reference.getRefType();
+            String referer = request.getHeader("Referer");
+            return "redirect:" + referer;
         }
     }
 
@@ -94,24 +110,24 @@ public class MainController {
     public String testHashMap(Model model) {
         Reference ref = new Reference();
         model.addAttribute("reference", ref);
-        HashMap<String, Boolean[]> map = new HashMap<String, Boolean[]>();
+        LinkedHashMap<String, Boolean[]> map = new LinkedHashMap<String, Boolean[]>();
         map.put("testi", new Boolean[]{true, true});
         map.put("testi2", new Boolean[]{true, true});
         map.put("testi3", new Boolean[]{false, false});
         map.put("testi4", new Boolean[]{true, true});
         model.addAttribute("testmap", map);
-        return "test2";
+        return "test";
     }
 
     @RequestMapping(value = "test2", method = RequestMethod.GET)
     public String testTypeMaps(Model model) {
-        Reference ref = new Reference();
+        Reference ref = new Reference("book");
         RefTypes rt = new RefTypes();
-        HashMap<String, Boolean[]> map = rt.getTypeMap("book");
+        LinkedHashMap<String, Boolean[]> map = rt.getTypeMap("book");
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + map);
         model.addAttribute("testmap", map);
         model.addAttribute("reference", ref);
-        return "test";
+        return "test2";
     }
 
 }
