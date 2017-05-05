@@ -50,14 +50,7 @@ public class MainController {
         model.addAttribute("reference", new Reference(type));
         return "form";
     }
-/*
-    @RequestMapping(value = "/references/edit/{id}", method = RequestMethod.GET)
-    public String showEditForm(Model model, @PathVariable Long id) {
-        Reference ref = refRepo.findOne(id);
-        model.addAttribute("reference", ref);
-        return "add_" + ref.getRefType();
-    }
-*/
+
     @RequestMapping(value = "/references/edit/{id}", method = RequestMethod.GET)
     public String showEditForm(Model model, @PathVariable Long id) {
         Reference ref = refRepo.findOne(id);
@@ -98,30 +91,6 @@ public class MainController {
     public String destroy(@PathVariable Long id) {
         refService.delete(id);
         return "redirect:/references";
-    }
-
-    @RequestMapping(value = "test", method = RequestMethod.GET)
-    public String testHashMap(Model model) {
-        Reference ref = new Reference();
-        model.addAttribute("reference", ref);
-        LinkedHashMap<String, Boolean[]> map = new LinkedHashMap<String, Boolean[]>();
-        map.put("testi", new Boolean[]{true, true});
-        map.put("testi2", new Boolean[]{true, true});
-        map.put("testi3", new Boolean[]{false, false});
-        map.put("testi4", new Boolean[]{true, true});
-        model.addAttribute("testmap", map);
-        return "test";
-    }
-
-    @RequestMapping(value = "test2", method = RequestMethod.GET)
-    public String testTypeMaps(Model model) {
-        Reference ref = new Reference("book");
-        RefTypes rt = new RefTypes();
-        LinkedHashMap<String, Boolean[]> map = rt.getTypeMap("book");
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + map);
-        model.addAttribute("testmap", map);
-        model.addAttribute("reference", ref);
-        return "test2";
     }
 
 }
