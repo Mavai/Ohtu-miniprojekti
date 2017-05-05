@@ -3,22 +3,15 @@
 package miniprojekti.controllers;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import javax.servlet.http.HttpServletRequest;
 
 import miniprojekti.Services.RefTypes;
 import miniprojekti.Services.ReferenceService;
-import miniprojekti.entities.RefField;
 import miniprojekti.entities.Reference;
 import miniprojekti.repositories.ReferenceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
