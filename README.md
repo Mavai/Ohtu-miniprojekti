@@ -8,7 +8,7 @@
 
 [Product Backlog](https://docs.google.com/document/d/1YaIB6HcYTcdvNgQCJSWi3i2i2dYFnVzZa28sf3EoE-Q/edit?usp=sharing)
 
-[Loppuraportti](https://docs.google.com/document/d/1F2s7r-3LVopQ0zNsD7LgmdpEQBpHMdYCI6VYebYeQBk/edit?usp=sharing)
+[Loppuraportti](https://docs.google.com/document/d/1F2s7r-3LVopQ0zNsD7LgmdpEQBpHMdYCI6VYebYeQBk/pub)
 
 
 
